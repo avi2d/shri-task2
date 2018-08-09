@@ -9,13 +9,38 @@
     "install-modules": "yarn install",
     "delete-modules": "rimraf ./node_modules",
     "clear-cache": "rimraf .cache/*",
-    "start": "yarn clear-cache && parcel ./source/index.html",
+    "start": "parcel ./source/index.html --no-cache",
     "build": "parcel build ./source/index.html --out-dir ./dist --no-minify",
-    "lint": "eslint ./source/scripts/** && eslint ./source/styles/**"
+    "lint-styles": "stylelint ./source/styles/**/*.less"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
+    "mobx-state-tree": "^2.2.0",
+    "classnames": "^2.2.6"
   },
   "devDependencies": {
+    "autoprefixer": "^9.1.0",
     "less": "^3.5.3",
-    "parcel-bundler": "^1.9.4",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-optimize": "^1.0.1",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-import-resolver-alias": "^1.1.0",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.1.0",
+    "parcel-bundler": "1.9.4",
     "stylelint": "^7.12.0",
     "stylelint-config-standard": "^16.0.0"
   }
