@@ -8,23 +8,27 @@
   "scripts": {
     "install-modules": "yarn install",
     "delete-modules": "rimraf ./node_modules",
-    "clear-cache": "rimraf .cache/*",
-    "start": "parcel ./source/index.html --no-cache",
+    "start": "parcel ./source/index.html --no-cache --no-hmr",
     "build": "parcel build ./source/index.html --out-dir ./dist --no-minify",
-    "lint-styles": "stylelint ./source/styles/**/*.less"
+    "lint-styles": "stylelint ./source/styles/**/*.less",
+    "generate-svg-sprite": "node sprite.generator.js"
   },
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "classnames": "^2.2.6",
+    "lodash": "4.17.4",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
     "mobx-state-tree": "^2.2.0",
-    "classnames": "^2.2.6"
+    "prop-types": "^15.6.2",
+    "rc-slider": "^8.6.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-select": "^2.0.0",
+    "react-slick": "^0.23.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "autoprefixer": "^9.1.0",
-    "less": "^3.5.3",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
     "babel-plugin-module-resolver": "^3.1.1",
@@ -40,8 +44,10 @@
     "eslint-plugin-import": "^2.6.0",
     "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-react": "^7.1.0",
+    "less": "^3.5.3",
     "parcel-bundler": "1.9.4",
     "stylelint": "^7.12.0",
-    "stylelint-config-standard": "^16.0.0"
+    "stylelint-config-standard": "^16.0.0",
+    "svgstore": "2.0.3"
   }
 }

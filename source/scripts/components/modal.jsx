@@ -20,27 +20,29 @@ class Modal extends Component {
 
   render() {
     const { modals: { active }, type, children } = this.props;
-    const show = type === active;
+    const opened = type === active;
 
     return (
       <Fragment>
-        <div className={classNames('md-modal', 'md-effect', { 'md-show': show })}>
-          <div className="md-content">
-            {children}
-          </div>
-          <div className="md-footer">
-            <Button shStyle="primary" onClick={this.onModalToggle}>Применить</Button>
-            <Button onClick={this.onModalToggle}>Закрыть</Button>
+        <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
+          <div className={classNames('modal')}>
+            <div className="modal-content">
+              {children}
+            </div>
+            <div className="modal-footer">
+              <Button shStyle="primary" onClick={this.onModalToggle}>Применить</Button>
+              <Button onClick={this.onModalToggle}>Закрыть</Button>
+            </div>
           </div>
         </div>
-        <div className="md-overlay" />
+        <div className="modal-overlay" />
       </Fragment>
     );
   }
 }
 
 Modal.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   modals: PropTypes.object,
   children: PropTypes.node,
 };

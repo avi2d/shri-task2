@@ -1,102 +1,112 @@
-.md-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  height: auto;
-  z-index: 2000;
+.modal-wrapper {
+  display: flex;
   visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateX(-50%) translateY(-50%);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  z-index: @modal-initial-z-index + 80;
+  overflow: auto;
 
-  &.md-show {
+  &.modal-effect {
+    .modal-content {
+      transform: scale(0.7);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .modal-footer {
+      transform: scale(0.7);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    &.opened {
+      .modal-content {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .modal-footer {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    & ~ .modal-overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
+      top: 0;
+      left: 0;
+      z-index: @modal-initial-z-index + 40;
+      opacity: 0;
+      background: rgba(51, 51, 51, 0.5);
+      transition: all 0.3s;
+    }
+  }
+
+  &.opened {
     visibility: visible;
 
-    & ~ .md-overlay {
+    .modal {
+      visibility: visible;
+    }
+
+    & ~ .modal-overlay {
       opacity: 1;
       visibility: visible;
     }
   }
 
-  &.md-effect {
-    .md-content {
-      transform: scale(0.7);
-      opacity: 0;
-      transition: all 0.3s;
+  .modal {
+    margin: auto;
+    width: 600px;
+    visibility: hidden;
+
+    .modal-content {
+      padding: 25px;
+      background: @white;
+      border-radius: @border-radius;
     }
 
-    .md-footer {
-      transform: scale(0.7);
-      opacity: 0;
-      transition: all 0.3s;
-    }
+    .modal-footer {
+      margin-top: 20px;
 
-    &.md-show {
-      .md-content {
-        transform: scale(1);
-        opacity: 1;
+      .btn {
+        min-width: 0;
       }
 
-      .md-footer {
-        transform: scale(1);
-        opacity: 1;
+      .btn:first-child {
+        width: calc(50% - 8px);
+        float: left;
       }
-    }
-  }
 
-  .md-content {
-    background: @white;
-    border-radius: @border-radius;
-    margin: 0 auto;
-    padding: 25px;
-    min-width: 630px;
-    overflow: auto;
-  }
-
-  .md-footer {
-    margin-top: 20px;
-
-    .btn:first-child {
-      width: calc(50% - 8px);
-      float: left;
-    }
-
-    .btn:last-child {
-      width: calc(50% - 8px);
-      float: right;
-    }
-  }
-}
-
-.md-overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  visibility: hidden;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  opacity: 0;
-  background: rgba(51, 51, 51, 0.5);
-  transition: all 0.3s;
-}
-
-@media (max-width: 1000px) {
-  .md-modal {
-    width: 90%;
-
-    .md-content {
-      padding: 10px;
-      min-width: 0;
-    }
-
-    .md-footer {
-      margin-top: 0;
-
-      .btn:first-child,
       .btn:last-child {
-        float: none;
-        margin-top: 15px;
-        width: 100%;
+        width: calc(50% - 8px);
+        float: right;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-wrapper {
+    .modal {
+      width: 100%;
+
+      .modal-footer {
+        margin-top: 0;
+
+        .btn:first-child,
+        .btn:last-child {
+          float: none;
+          margin-top: 15px;
+          width: 100%;
+        }
       }
     }
   }

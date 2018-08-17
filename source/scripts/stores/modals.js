@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { types } from 'mobx-state-tree';
+import { autorun } from 'mobx';
 
 const Modals = types.model('modals', {
   active: '',
@@ -16,6 +17,14 @@ const Modals = types.model('modals', {
   stateClear() {
     self.active = '';
   }
-}));
+})).create();
 
-export default Modals.create();
+autorun(() => {
+  if (Modals.active) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+});
+
+export default Modals;

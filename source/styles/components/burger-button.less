@@ -1,0 +1,43 @@
+@burger-bar-width: 16px;
+@burger-bar-height: 3px;
+@burger-bar-indent: 4px;
+@burger-bar-background: @gray-200;
+
+.burger-button {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  padding: 0;
+  height: calc((@burger-bar-height * 3) + (@burger-bar-indent * 2));
+  background: transparent;
+  cursor: pointer;
+
+  .burger-button-bar {
+    border-radius: 2px;
+    width: @burger-bar-width;
+    height: @burger-bar-height;
+    background: @burger-bar-background;
+    transition: all 0.2s ease-in-out;
+    transform-origin: left center;
+  }
+
+  &.active {
+    .burger-button-bar {
+      border-radius: 0;
+
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(2px, -1.5px);
+      }
+
+      &:nth-child(2) {
+        width: 0;
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(2px, 1.5px);
+      }
+    }
+  }
+}

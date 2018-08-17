@@ -1,0 +1,32 @@
+.switch-buttons {
+  .svg-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .switch-left,
+  .switch-right {
+    display: inline-block;
+    padding: 0;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+
+    &.disabled {
+      outline-width: 0;
+      cursor: not-allowed;
+
+      .svg-icon {
+        fill: #c2c2c2;
+      }
+    }
+  }
+
+  .switch-right {
+    margin-left: 15px;
+
+    .svg-icon {
+      transform: rotate(180deg);
+    }
+  }
+}

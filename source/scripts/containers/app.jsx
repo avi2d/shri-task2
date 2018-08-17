@@ -1,36 +1,50 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { observer, inject } from 'mobx-react';
 
-import Modal from '../components/modal';
-import InputRange from '../components/input-range';
+import { Modal } from '../components';
+import { FILTERS, DEVICES_TYPES } from '../constants/data-constants';
 
-@inject('modals')
-@observer
+import Layout from './layout';
+import MainWidget from './widgets/main';
+import ScenariosWidget from './widgets/scenarios';
+import DevicesWidget from './widgets/devices';
+import DeviceForm from './device-form';
+
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    const { modalToggle } = props.modals;
-
-    this.modalOpen = () => modalToggle('testType');
-  }
-
   render() {
     return (
-      <div>
-        <Modal type="testType">
-          <InputRange type="lighting" />
-          <InputRange type="temperature" min="-10" max="+35" />
+      <Layout>
+        <MainWidget />
+        <ScenariosWidget />
+        <DevicesWidget />
+        <Modal type={DEVICES_TYPES.lighting}>
+          <DeviceForm
+            type={DEVICES_TYPES.lighting}
+            title="Xiaomi Yeelight LED Smart Bulb"
+            scheduleInfo="Включится в 17:00"
+            filters={FILTERS}
+          />
         </Modal>
-        <button onClick={this.modalOpen}>Open modal</button>
-      </div>
+        <Modal type={DEVICES_TYPES.temperature}>
+          <DeviceForm
+            type={DEVICES_TYPES.temperature}
+            title="Elgato Eve Degree Connected"
+            scheduleInfo="Включено"
+            filters={FILTERS}
+            devicePrevState="+23"
+          />
+        </Modal>
+        <Modal type={DEVICES_TYPES.temperatureCircular}>
+          <DeviceForm
+            type={DEVICES_TYPES.temperatureCircular}
+            title="Elgato Eve Degree Connected"
+            scheduleInfo="Включено"
+            filters={FILTERS}
+            devicePrevState="+23"
+          />
+        </Modal>
+      </Layout>
     );
   }
 }
-
-App.propTypes = {
-  modals: PropTypes.object
-};
 
 export default App;

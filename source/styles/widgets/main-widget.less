@@ -1,0 +1,160 @@
+.main-widget {
+  .define-main-widget-width(@slider-columns-count);
+
+  .widget-header {
+    margin-bottom: calc(@widget-title-margin-bottom + @slider-item-indent-half);
+
+    .widget-header-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: @text-color;
+    }
+  }
+
+  .widget-content {
+    .define-slider-height(@slider-rows-count);
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background: url(../../assets/main-widget-bg.png) no-repeat 50% 50%;
+    background-size: cover;
+    border-radius: @border-radius;
+    overflow: hidden;
+
+    .widget-content-main-info {
+      color: @text-color;
+
+      .greeting {
+        margin-bottom: 5px;
+        font-size: 27px;
+        font-weight: bold;
+      }
+
+      .state-info {
+        margin-bottom: 25px;
+        font-size: 14px;
+      }
+
+      .temperature-info {
+        .inside,
+        .outside {
+          display: inline-block;
+          vertical-align: top;
+
+          .title {
+            vertical-align: middle;
+            font-size: 14px;
+            color: @text-color-light;
+          }
+
+          .value {
+            vertical-align: middle;
+            font-size: 36px;
+            font-weight: bold;
+          }
+
+          .svg-icon {
+            vertical-align: middle;
+            margin-left: 5px;
+            width: 26px;
+            height: 26px;
+          }
+        }
+
+        .inside {
+          margin-right: 18px;
+        }
+      }
+    }
+
+    .slider-wrapper {
+      width: calc(@slider-item-width + @slider-item-indent);
+      margin: -@slider-item-indent-half -@slider-item-indent-half 0 0;
+    }
+  }
+}
+
+//@media (max-width: 1320px) {
+//  .main-widget {
+//    .define-main-widget-width(@slider-columns-count-media);
+//  }
+//}
+
+@media (max-width: 1320px) {
+  .main-widget {
+    //.define-main-widget-width(@slider-columns-count-media);
+
+    .widget-content {
+      .slider-wrapper {
+        .define-slider-width(@slider-columns-count);
+
+        margin: 0 0 -@slider-item-indent-half -@slider-item-indent-half;
+      }
+    }
+  }
+}
+
+@media (max-width: 1070px) {
+  .main-widget {
+    .define-main-widget-width(@slider-columns-count-media);
+
+    .widget-content {
+      .slider-wrapper {
+        .define-slider-width(@slider-columns-count);
+
+        margin: 0 0 -@slider-item-indent-half -@slider-item-indent-half;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .main-widget {
+    width: 100%;
+
+    .widget-header {
+      display: none;
+    }
+
+    .widget-content {
+      flex-flow: row wrap;
+      height: 250px;
+      overflow: hidden;
+
+      .widget-content-main-info {
+        .greeting {
+          font-size: 18px;
+        }
+
+        .state-info {
+          margin-bottom: 15px;
+          font-size: 12px;
+        }
+
+        .temperature-info {
+          .inside,
+          .outside {
+            .title {
+              font-size: 12px;
+            }
+
+            .value {
+              font-size: 24px;
+            }
+
+            .svg-icon {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+
+      .slider-wrapper {
+        .define-slider-width(@slider-rows-count-media-last);
+      }
+    }
+  }
+}

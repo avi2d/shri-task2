@@ -1,0 +1,24 @@
+@main-scenarios-indent: 26px;
+@widget-title-margin-bottom: 12.5px;
+
+@slider-columns-count: 3;
+@slider-rows-count: 3;
+@slider-columns-count-media: 2;
+@slider-rows-count-media-last: 4;
+
+@devices-slider-rows-count: 6;
+
+.define-slider-width(@columns-count) {
+  width: calc((@slider-item-width + @slider-item-indent) * @columns-count);
+}
+
+.define-slider-height(@rows-count) {
+  height: calc(((@slider-item-height + @slider-item-indent) * @rows-count) - @slider-item-indent);
+}
+
+.define-main-widget-width(@scenarios-columns-count) {
+  @scenarios-width: ((@slider-item-width + @slider-item-indent) * @scenarios-columns-count);
+
+  width: calc((100% - @scenarios-width - @main-scenarios-indent) + @slider-item-indent-half);
+}
+

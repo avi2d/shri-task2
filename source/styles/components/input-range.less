@@ -1,21 +1,40 @@
+@import (less) "~rc-slider/assets/index.css";
+
 @thumb-radius: 50%;
 @thumb-height: 60px;
 @thumb-width: 60px;
 @thumb-border-width: 4px;
 @thumb-border-color: @white;
-@thumb-color: rgba(51, 51, 51, 0.1);
+//@thumb-color: rgba(51, 51, 51, 0.1);
 
 @track-width: 100%;
 @track-height: 60px;
 @track-radius: 30px;
+@track-width-vertical: 60px;
+@track-height-vertical: 340px;
 
 @lighting-image-radius: 18px;
 
-.track() {
-  width: @track-width;
-  height: @track-height;
-  border-radius: @track-radius;
-  cursor: pointer;
+.lighting-background() {
+  background:
+    url(../../assets/svg/range-lighting-min.svg) no-repeat (@track-radius - @lighting-image-radius) 50%,
+    url(../../assets/svg/range-lighting-max.svg) no-repeat right (@track-radius - @lighting-image-radius) top 50%,
+    linear-gradient(to right, @yellow-100, @yellow-400);
+}
+
+.lighting-background-vertical() {
+  background:
+    url(../../assets/svg/range-lighting-max.svg) no-repeat top (@track-radius - @lighting-image-radius) left 50%,
+    url(../../assets/svg/range-lighting-min.svg) no-repeat bottom (@track-radius - @lighting-image-radius) left 50%,
+    linear-gradient(to top, @yellow-100, @yellow-400);
+}
+
+.temperature-background() {
+  background: linear-gradient(to right, #068fff, #ffd800, #f76b1c);
+}
+
+.temperature-background-vertical() {
+  background: linear-gradient(to top, #068fff, #ffd800, #f76b1c);
 }
 
 .thumb() {
@@ -23,96 +42,174 @@
   height: @thumb-height;
   width: @thumb-width;
   border-radius: @thumb-radius;
-  background: @thumb-color;
+  background: transparent;
   box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.track() {
+  position: absolute;
+  top: 50%;
+  left: -@track-radius !important;
+  border-radius: @track-radius;
+  width: calc(@track-width + (@track-radius * 2)) !important;
+  height: 100%;
+  transform: translateY(-50%);
   cursor: pointer;
 }
 
-.lighting-background() {
-  background:
-    url(../../assets/sun-max.svg) no-repeat (@track-radius - @lighting-image-radius) 50%,
-    url(../../assets/sun-max.svg) no-repeat right (@track-radius - @lighting-image-radius) top 50%,
-    linear-gradient(to right, @yellow-100, @yellow-400);
+.track-vertical() {
+  position: absolute;
+  top: -@track-radius;
+  left: 50%;
+  border-radius: @track-radius;
+  width: 100%;
+  height: calc(@track-height-vertical + (@track-radius * 2)) !important;
+  transform: translateX(-50%);
+  cursor: pointer;
 }
 
-.temperature-background() {
-  background:
-    url(../../assets/min-temperature.svg) no-repeat (@track-radius - @lighting-image-radius) 50%,
-    url(../../assets/max-temperature.svg) no-repeat right (@track-radius - @lighting-image-radius) top 50%,
-    linear-gradient(to right, #068fff, #ffd800, #f76b1c);
-}
+.input-range {
+  &:not(.rc-slider-vertical) {
+    margin: 0 auto;
+    width: calc(@track-width - (@track-radius * 2));
+    height: @track-height;
 
-input[type=range] {
-  -webkit-appearance: none;
-  margin: 0;
-  width: @track-width;
-  height: @track-height;
-
-  &:focus {
-    outline: none;
-  }
-
-  &.lighting {
-    &::-webkit-slider-runnable-track {
-      .lighting-background();
+    &.lighting {
+      .rc-slider-track {
+        .lighting-background();
+      }
     }
 
-    &::-moz-range-track {
-      .lighting-background();
+    &.temperature {
+      .rc-slider-track {
+        .temperature-background()
+      }
     }
 
-    &::-ms-track {
-      .lighting-background();
+    .rc-slider-track {
+      .track();
+    }
+
+    .rc-slider-handle {
+      .vertical-center();
+    }
+
+    .rc-slider-step {
+      .vertical-center();
+    }
+
+    .rc-slider-mark {
+      left: -@track-radius;
+      top: 0;
+      width: calc(@track-width + (@track-radius * 2));
+      height: 100%;
+
+      .rc-slider-mark-text {
+        .vertical-center();
+      }
+
+      .rc-slider-mark-text:first-child {
+        left: 0;
+      }
+
+      .rc-slider-mark-text:last-child {
+        left: unset !important;
+        right: 0;
+      }
     }
   }
 
-  &.temperature {
-    &::-webkit-slider-runnable-track {
-      .temperature-background();
+  &.rc-slider-vertical {
+    margin: @track-radius auto;
+    padding: 0;
+    width: @track-width-vertical;
+    height: @track-height-vertical;
+
+    &.lighting {
+      .rc-slider-track {
+        .lighting-background-vertical();
+      }
     }
 
-    &::-moz-range-track {
-      .temperature-background();
+    &.temperature {
+      .rc-slider-track {
+        .temperature-background-vertical()
+      }
     }
 
-    &::-ms-track {
-      .temperature-background();
+    .rc-slider-track {
+      .track-vertical();
+    }
+
+    .rc-slider-handle {
+      .horizontal-center();
+    }
+
+    .rc-slider-step {
+      .horizontal-center();
+    }
+
+    .rc-slider-mark {
+      top: -@track-radius;
+      left: 0;
+      width: 100%;
+      height: calc(@track-width + (@track-radius * 2));
+
+      .rc-slider-mark-text {
+        .horizontal-center();
+      }
+
+      .rc-slider-mark-text:first-child {
+        bottom: 0 !important;
+      }
+
+      .rc-slider-mark-text:last-child {
+        top: 0 !important;
+      }
     }
   }
 
-  // webkit
-  &::-webkit-slider-runnable-track {
-    .track();
+  .rc-slider-step {
+    .rc-slider-dot {
+      display: none;
+    }
   }
 
-  &::-webkit-slider-thumb {
-    .thumb();
-
-    -webkit-appearance: none;
-  }
-
-  // moz
-  &::-moz-range-track {
-    .track();
-  }
-
-  &::-moz-range-thumb {
-    .thumb();
-  }
-
-  // ms
-  &::-ms-track {
-    .track();
-
+  .rc-slider-handle {
+    margin: 0;
     border: none;
-    color: transparent;
+    width: 0;
+    height: 0;
+    z-index: @layout-initial-z-index + 60;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::before {
+      .thumb();
+      .absolute-center();
+
+      content: "";
+      display: inline-block;
+    }
   }
 
-  &::-ms-thumb {
-    .thumb();
+  .rc-slider-rail {
+    .absolute-center();
   }
 
-  &::-ms-tooltip {
-    display: none;
+  .rc-slider-mark {
+    //z-index: 2300;
+    cursor: pointer;
+
+    .rc-slider-mark-text {
+      margin: 0 !important;
+      width: @thumb-width !important;
+      height: @thumb-height !important;
+      font-size: 18px;
+      line-height: @thumb-height;
+      color: @white;
+    }
   }
 }
