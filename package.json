@@ -9,7 +9,8 @@
     "install-modules": "yarn install",
     "delete-modules": "rimraf ./node_modules",
     "start": "parcel ./source/index.html --no-cache --no-hmr",
-    "build": "parcel build ./source/index.html --out-dir ./docs --public-url ./ --no-minify --no-cache",
+    "build": "rimraf ./docs && parcel build ./source/index.html --out-dir ./docs --public-url ./ --no-minify --no-cache",
+    "lint-scripts": "eslint ./source/scripts/**",
     "lint-styles": "stylelint ./source/styles/**/*.less",
     "generate-svg-sprite": "node sprite.generator.js"
   },
