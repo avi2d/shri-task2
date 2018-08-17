@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react/index';
 
+import { SvgIcon } from '../../components';
 import HeaderMenu from './header-menu';
-
-import logo from '../../../assets/yandex-home.png';
 
 const HEADER_MENU_ITEMS = ['Сводка', 'Устройства', 'Сценарии'];
 const FOOTER_MENU_ITEMS = ['Помощь', 'Обратная связь', 'Разработчикам', 'Условия использования'];
@@ -18,7 +17,7 @@ class Layout extends Component {
     return (
       <div className="layout">
         <div className="layout-header">
-          <img src={logo} alt="Яндекс Дом" />
+          <SvgIcon className="layout-header-logo" id="logo" />
           <HeaderMenu
             vertical={isWidthLowerThen800}
             data={HEADER_MENU_ITEMS}
