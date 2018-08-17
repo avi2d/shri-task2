@@ -12,6 +12,10 @@ const WindowSize = types.model('windowSize', {
   get isWidthLowerThen500() {
     return self.width <= 500;
   },
+
+  get isWidthLowerThen1070() {
+    return self.width <= 1070;
+  },
 })).actions(self => ({
   handleUpdateSize({ target }) {
     self.width = target.innerWidth;

@@ -60,23 +60,10 @@ class InputCircularRange extends Component {
     this.inputCircularRange = null;
 
     this.state = {
-      angle: defineAngleByValue(props.defaultValue, props.min, props.max),
-      disableDocumentScroll: false
+      angle: defineAngleByValue(props.defaultValue, props.min, props.max)
     };
 
     this.onInputCircularRangeMount = node => { this.inputCircularRange = node; };
-    // this.componentDidUpdate = (prevProps, { disableDocumentScroll }) => {
-    //   if (disableDocumentScroll === this.state.disableDocumentScroll) {
-    //     return;
-    //   }
-    //   console.log('disable', this.state.disableDocumentScroll);
-    //
-    //   if (this.state.disableDocumentScroll) {
-    //     document.body.style.overflow = 'hidden';
-    //   } else {
-    //     document.body.style.overflow = '';
-    //   }
-    // };
 
     this.onUpdateAngle = angle => {
       if (angle >= MAX_ANGLE) {
@@ -139,10 +126,7 @@ class InputCircularRange extends Component {
     };
 
     this.onMouseDown = event => {
-      // Левая клавиша мыши
-      // if (event.which !== 1) {
-      //   return;
-      // }
+      if (event.button !== 0) return;
 
       this.onUpdateAngleByPoint(event.pageX, event.pageY);
 
@@ -160,12 +144,10 @@ class InputCircularRange extends Component {
     };
 
     this.onTouchStart = event => {
-      this.setState({ disableDocumentScroll: true });
-
       this.onUpdateAngleByPoint(event.touches[0].clientX, event.touches[0].clientY);
 
-      window.addEventListener('touchmove', this.onTouchMove, { capture: true, passive: false });
-      window.addEventListener('touchend', this.onTouchEnd, { capture: true, passive: false });
+      this.inputCircularRange.addEventListener('touchmove', this.onTouchMove, { capture: true, passive: false });
+      this.inputCircularRange.addEventListener('touchend', this.onTouchEnd, { capture: true, passive: false });
     };
 
     this.onTouchMove = event => {
@@ -177,8 +159,8 @@ class InputCircularRange extends Component {
     this.onTouchEnd = () => {
       event.preventDefault();
 
-      window.removeEventListener('touchmove', this.onTouchMove);
-      window.removeEventListener('touchend', this.onTouchEnd);
+      this.inputCircularRange.removeEventListener('touchmove', this.onTouchMove);
+      this.inputCircularRange.removeEventListener('touchend', this.onTouchEnd);
     };
   }
 

@@ -46,6 +46,7 @@ const MainWidget = () => (
               settings: {
                 vertical: false,
                 verticalSwiping: false,
+                infinite: true,
                 slidesToShow: 4,
               }
             },

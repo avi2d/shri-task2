@@ -22,8 +22,10 @@ class SliderItem extends Component {
       this.setState({ point: { x: touches[0].clientX, y: touches[0].clientY } });
     };
 
-    this.onMouseUp = type => ({ pageX, pageY }) => {
+    this.onMouseUp = type => ({ pageX, pageY, button }) => {
       const { point } = this.state;
+
+      if (button !== 0) return;
 
       if (!point) return;
 
@@ -51,12 +53,12 @@ class SliderItem extends Component {
   }
 
   render() {
-    const { turnedOn, type, title, stateInfo } = this.props;
+    const { turnedOn, type, className, title, stateInfo } = this.props;
 
     return (
       <div className="slider-item-wrapper">
         <div
-          className={classNames('slider-item', type, { 'turned-on': turnedOn })}
+          className={classNames('slider-item', className, type, { 'turned-on': turnedOn })}
           title={title}
           onMouseDown={this.onMouseDown}
           onTouchStart={this.onTouchStart}
@@ -79,6 +81,7 @@ SliderItem.propTypes = {
   type: PropTypes.oneOf(
     Object.values(DEVICES_TYPES)
   ),
+  className: PropTypes.string,
   title: PropTypes.string,
   stateInfo: PropTypes.string,
   modals: PropTypes.object,

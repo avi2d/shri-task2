@@ -45,14 +45,15 @@ class DevicesWidget extends Component {
             data={FAVORITES_SCENARIOS}
             settings={{
               swipe: false,
-              slidesToShow: isDevicesEnough(FAVORITES_SCENARIOS.length) ? 6 : FAVORITES_SCENARIOS.length,
+              infinite: true,
+              slidesToShow: isDevicesEnough(FAVORITES_SCENARIOS.length) ? MAX_DEVICES_COUNT : FAVORITES_SCENARIOS.length,
               responsive: [
                 {
                   breakpoint: 800,
                   settings: {
                     swipe: true,
                     swipeToSlide: true,
-                    slidesToShow: 4,
+                    slidesToShow: 4
                   }
                 },
               ]

@@ -29,6 +29,26 @@ export const FAVORITES_SCENARIOS = [
     title: 'Сделать пол тёплым во всей квартире',
     type: 'temperature-circular'
   },
+  {
+    turnedOn: true,
+    title: 'Сделать пол тёплым во всей квартире',
+    type: 'temperature-circular'
+  },
+  {
+    turnedOn: true,
+    title: 'Сделать пол тёплым во всей квартире',
+    type: 'temperature-circular'
+  },
+  {
+    turnedOn: true,
+    title: 'Сделать пол тёплым во всей квартире',
+    type: 'temperature-circular'
+  },
+  {
+    turnedOn: true,
+    title: 'Сделать пол тёплым во всей квартире',
+    type: 'temperature-circular'
+  },
 ];
 
 export const FILTERS = [

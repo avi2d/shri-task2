@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
@@ -25,7 +26,11 @@ class SimpleSlider extends Component {
 
   renderSliderItems(data) {
     return data.map((item, index) => (
-      <SliderItem key={index} {...item} />
+      <SliderItem
+        key={index}
+        className={classNames({ 'first-item': index === 0 })}
+        {...item}
+      />
     ));
   }
 
