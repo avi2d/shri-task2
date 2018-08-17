@@ -83,6 +83,11 @@
         .define-slider-width(@slider-columns-count);
 
         margin: 0 0 -@slider-item-indent-half -@slider-item-indent-half;
+
+        .slider-item.first-item {
+          background: @white;
+          box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.5);
+        }
       }
     }
   }
@@ -146,11 +151,6 @@
 
       .slider-wrapper {
         .define-slider-width(@slider-rows-count-media-last);
-
-        .slider-item.first-item {
-          background: @white;
-          box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.5);
-        }
       }
     }
   }

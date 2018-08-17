@@ -9,6 +9,7 @@ const DEFAULT_SETTINGS = {
   arrows: false,
   infinite: false,
   speed: 500,
+  touchThreshold: 15
 };
 
 class SimpleSlider extends Component {
