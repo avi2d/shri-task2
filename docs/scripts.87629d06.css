@@ -82,6 +82,10 @@ ul {
   height: 85px;
   background: #fff;
 }
+.layout .layout-header .layout-header-logo {
+  width: 110px;
+  height: 30px;
+}
 .layout .layout-content {
   display: flex;
   flex-flow: row wrap;
@@ -1302,6 +1306,11 @@ ul {
   }
   .main-widget .widget-content .slider-wrapper {
     width: calc((200px + 15px) * 4);
+  }
+}
+@media (min-resolution: 1.5) {
+  .main-widget .widget-content {
+    background: url(main-widget-hr.636f73ca.png) no-repeat 50% 50%;
   }
 }
 .scenarios-widget {
