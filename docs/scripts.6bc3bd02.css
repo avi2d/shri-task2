@@ -219,6 +219,11 @@ ul {
   width: calc(50% - 8px);
   float: right;
 }
+@media (max-width: 800px) {
+  .modal-wrapper .modal {
+    width: 100%;
+  }
+}
 @media (max-width: 500px) {
   .modal-wrapper .modal {
     width: 100%;
