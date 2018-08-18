@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
@@ -23,20 +23,17 @@ class Modal extends Component {
     const opened = type === active;
 
     return (
-      <Fragment>
-        <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
-          <div className={classNames('modal')}>
-            <div className="modal-content">
-              {children}
-            </div>
-            <div className="modal-footer">
-              <Button shStyle="primary" onClick={this.onModalToggle}>Применить</Button>
-              <Button onClick={this.onModalToggle}>Закрыть</Button>
-            </div>
+      <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
+        <div className={classNames('modal')}>
+          <div className="modal-content">
+            {children}
+          </div>
+          <div className="modal-footer">
+            <Button shStyle="primary" onClick={this.onModalToggle}>Применить</Button>
+            <Button onClick={this.onModalToggle}>Закрыть</Button>
           </div>
         </div>
-        <div className="modal-overlay" />
-      </Fragment>
+      </div>
     );
   }
 }

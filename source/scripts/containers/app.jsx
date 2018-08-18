@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { Modal } from '../components';
 import { FILTERS, DEVICES_TYPES } from '../constants/data-constants';
@@ -12,10 +12,13 @@ import DeviceForm from './device-form';
 class App extends Component {
   render() {
     return (
-      <Layout>
-        <MainWidget />
-        <ScenariosWidget />
-        <DevicesWidget />
+      <Fragment>
+        <Layout>
+          <MainWidget />
+          <ScenariosWidget />
+          <DevicesWidget />
+          <div className="modal-overlay" />
+        </Layout>
         <Modal type={DEVICES_TYPES.lighting}>
           <DeviceForm
             type={DEVICES_TYPES.lighting}
@@ -42,7 +45,7 @@ class App extends Component {
             devicePrevState="+23"
           />
         </Modal>
-      </Layout>
+      </Fragment>
     );
   }
 }
