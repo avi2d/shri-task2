@@ -42,7 +42,7 @@
 @media (max-width: 800px) {
   .devices-widget {
     margin: 20px -@slider-item-indent-half 0 -@slider-item-indent-half;
-    width: 100%;
+    width: calc(100% + @slider-item-indent-half);
 
     .widget-header {
       display: flex;
@@ -55,6 +55,8 @@
     }
 
     .widget-content {
+      margin-right: -20px;
+
       .slider-wrapper {
         .define-slider-width(@slider-rows-count-media-last);
       }

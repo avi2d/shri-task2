@@ -8,6 +8,7 @@ import {
   SvgIcon
 } from '../components';
 import utils from '../utils';
+import { DEVICES_TYPES } from '../constants/data-constants';
 
 @inject('windowSize')
 @observer
@@ -34,7 +35,9 @@ class DeviceForm extends Component {
           }
         </div>
         <div className="device-schedule-info">{scheduleInfo}</div>
-        <FiltersList swipable data={filters} defaultValue={filters[0]} />
+        {type !== DEVICES_TYPES.temperatureCircular &&
+          <FiltersList swipable data={filters} defaultValue={filters[0]} />
+        }
         <div className="device-form-content">
           <InputRange vertical={isWidthLowerThen500} type={type} />
         </div>

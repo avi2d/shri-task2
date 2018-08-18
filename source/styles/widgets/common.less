@@ -6,14 +6,14 @@
 @slider-columns-count-media: 2;
 @slider-rows-count-media-last: 4;
 
-@devices-slider-rows-count: 6;
+@devices-slider-rows-count: 7;
 
 .define-slider-width(@columns-count) {
   width: calc((@slider-item-width + @slider-item-indent) * @columns-count);
 }
 
-.define-slider-height(@rows-count) {
-  height: calc(((@slider-item-height + @slider-item-indent) * @rows-count) - @slider-item-indent);
+.define-slider-height-scenario(@rows-count) {
+  height: calc(((@slider-item-height-scenario + @slider-item-indent) * @rows-count) - @slider-item-indent);
 }
 
 .define-main-widget-width(@scenarios-columns-count) {

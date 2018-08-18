@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react/index';
 import { Slider, SwitchButtons, FiltersList } from '../../components';
 import { FAVORITES_SCENARIOS, FILTERS } from '../../constants/data-constants';
 
-const MAX_DEVICES_COUNT = 6;
+const MAX_DEVICES_COUNT = 7;
 
 const isDevicesEnough = devicesCount => devicesCount > MAX_DEVICES_COUNT;
 

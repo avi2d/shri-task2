@@ -25,6 +25,14 @@
 
     .slider-wrapper {
       .define-slider-width(@slider-columns-count);
+
+      .slider-item-wrapper {
+        height: calc(@slider-item-height-scenario + @slider-item-indent);
+
+        .slider-item {
+          height: @slider-item-height-scenario;
+        }
+      }
     }
   }
 }
@@ -44,8 +52,7 @@
 @media (max-width: 800px) {
   .scenarios-widget {
     margin: 20px -@slider-item-indent-half 0 -@slider-item-indent-half;
-    width: 100%;
-    overflow: hidden;
+    width: calc(100% + @slider-item-indent-half);
 
     .widget-header {
       .switch-buttons {
@@ -54,6 +61,8 @@
     }
 
     .widget-content {
+      margin-right: -20px;
+
       .slider-wrapper {
         .define-slider-width(@slider-rows-count-media-last);
 

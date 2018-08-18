@@ -98,8 +98,8 @@ class InputCircularRange extends Component {
       let resultAngle = -toDegrees(defineAngle(mousePoint, centerPoint, startPoint));
       // const distance = defineDistance(mousePoint, centerPoint);
 
-      // // Включаем только окружность с отметками
-      // if (distance < RADIUS || distance > 96) {
+      // Включаем только окружность с отметками
+      // if (distance < (RADIUS - STROKE_WIDTH) || distance > (RADIUS + STROKE_WIDTH)) {
       //   return;
       // }
 
@@ -176,8 +176,6 @@ class InputCircularRange extends Component {
         className="input-circular-range"
         onMouseDown={this.onMouseDown}
         onTouchStart={this.onTouchStart}
-        // onTouchMove={this.onTouchMove}
-        // onTouchEnd={this.onTouchEnd}
         ref={this.onInputCircularRangeMount}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${SIZE} ${SIZE}`} width={SIZE} height={SIZE}>
