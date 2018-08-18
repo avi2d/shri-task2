@@ -2,7 +2,8 @@ export const FAVORITES_SCENARIOS = [
   {
     turnedOn: true,
     title: 'Выключить весь свет в доме и во дворе',
-    type: 'lighting'
+    type: 'lighting',
+    stateInfo: 'Начнется в 18:00'
   },
   {
     title: 'Я ухожу',
@@ -22,7 +23,8 @@ export const FAVORITES_SCENARIOS = [
   {
     turnedOn: true,
     title: 'Сделать пол тёплым во всей квартире',
-    type: 'temperature-circular'
+    type: 'temperature-circular',
+    stateInfo: 'Начнется в 18:00'
   },
   {
     turnedOn: true,
@@ -32,7 +34,8 @@ export const FAVORITES_SCENARIOS = [
   {
     turnedOn: true,
     title: 'Сделать пол тёплым во всей квартире',
-    type: 'temperature-circular'
+    type: 'temperature-circular',
+    stateInfo: 'Начнется в 18:00'
   },
   {
     turnedOn: true,

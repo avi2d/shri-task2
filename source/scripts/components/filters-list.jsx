@@ -10,7 +10,8 @@ const DEFAULT_SETTINGS = {
   variableWidth: true,
   swipe: true,
   swipeToSlide: true,
-  speed: 500,
+  speed: 100,
+  touchThreshold: 15
 };
 
 class FiltersList extends Component {
@@ -42,7 +43,7 @@ class FiltersList extends Component {
       return (
         <Slider
           {...DEFAULT_SETTINGS}
-          className="filters-list"
+          className={classNames('filters-list', { swipable })}
         >
           {data.map(({ label, value }, index) => (
             <div key={value} className="item-wrapper">

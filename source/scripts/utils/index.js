@@ -7,5 +7,9 @@ export default {
     }
 
     return `state-${type}`;
+  },
+
+  formatNumberToOutput(value) {
+    return value > 0 ? `+${value}` : value;
   }
 };

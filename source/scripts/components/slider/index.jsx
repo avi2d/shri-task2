@@ -8,7 +8,7 @@ import SliderItem from './item';
 const DEFAULT_SETTINGS = {
   arrows: false,
   infinite: false,
-  speed: 500,
+  speed: 400,
   touchThreshold: 15
 };
 

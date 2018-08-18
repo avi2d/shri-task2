@@ -68,8 +68,10 @@ class SliderItem extends Component {
           <div className="slider-item-header">
             <SvgIcon id={utils.defineIcon(type, turnedOn)} />
           </div>
-          <div className="slider-item-title">{title}</div>
-          <div className="slider-item-state-info">{stateInfo}</div>
+          <div className="slider-item-content">
+            <div className="content-title">{title}</div>
+            {stateInfo && <div className="content-state-info">{stateInfo}</div>}
+          </div>
         </div>
       </div>
     );

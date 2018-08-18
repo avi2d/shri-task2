@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import utils from '../utils';
+
 const DISABLED_ANGLE = 60;
 const DISABLED_PART = DISABLED_ANGLE / 360;
 const AVAILABLE_PART = 1 - DISABLED_PART;
@@ -49,8 +51,6 @@ const defineDashOffset = (value, minValue, maxValue) => {
 
   return CIRCUMFERENCE * (1 - part);
 };
-
-const formatValueToOutput = value => (value > 0 ? `+${value}` : value);
 
 
 class InputCircularRange extends Component {
@@ -135,6 +135,8 @@ class InputCircularRange extends Component {
     };
 
     this.mouseMove = event => {
+      event.preventDefault();
+
       this.onUpdateAngleByPoint(event.pageX, event.pageY);
     };
 
@@ -215,7 +217,7 @@ class InputCircularRange extends Component {
             transform={`rotate(${DISABLED_ANGLE} ${RADIUS} ${RADIUS})`}
           />
           <circle
-            strokeDasharray={`${CIRCUMFERENCE / 101},1`}
+            strokeDasharray="4.3,1"
             cx={RADIUS}
             cy={RADIUS}
             r={RADIUS - STROKE_WIDTH_HALF}
@@ -254,7 +256,7 @@ class InputCircularRange extends Component {
           />
         </svg>
         <div className="input-circular-range-value">
-          {formatValueToOutput(value)}
+          {utils.formatNumberToOutput(value)}
         </div>
       </div>
     );

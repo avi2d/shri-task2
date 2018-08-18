@@ -6,8 +6,12 @@ import Slider from 'rc-slider';
 
 import { InputCircularRange } from '../components';
 import { DEVICES_TYPES } from '../constants/data-constants';
+import utils from '../utils';
 
-const defineMarks = (min, max) => (_.isNumber(min) && _.isNumber(max) ? { [min]: min, [max]: max } : null);
+const defineMarks = (min, max) => (_.isNumber(min) && _.isNumber(max)
+  ? { [min]: min, [max]: utils.formatNumberToOutput(max) }
+  : null
+);
 
 class InputRange extends Component {
   render() {
