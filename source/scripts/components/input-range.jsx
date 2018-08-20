@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -8,10 +7,7 @@ import { InputCircularRange } from '../components';
 import { DEVICES_TYPES } from '../constants/data-constants';
 import utils from '../utils';
 
-const defineMarks = (min, max) => (_.isNumber(min) && _.isNumber(max)
-  ? { [min]: min, [max]: utils.formatNumberToOutput(max) }
-  : null
-);
+const defineMarks = (min, max) => ({ [min]: min, [max]: utils.formatNumberToOutput(max) });
 
 class InputRange extends Component {
   render() {
