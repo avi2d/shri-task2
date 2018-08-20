@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { SvgIcon, Slider } from '../../components';
-import { FAVORITES_SCENARIOS } from '../../constants/data-constants';
+import { DEVICES_DATA } from '../../constants/data-constants';
 
 const MainWidget = () => (
   <div className="main-widget">
@@ -27,7 +27,7 @@ const MainWidget = () => (
         </div>
       </div>
       <Slider
-        data={FAVORITES_SCENARIOS}
+        data={DEVICES_DATA}
         settings={{
           vertical: true,
           swipeToSlide: true,

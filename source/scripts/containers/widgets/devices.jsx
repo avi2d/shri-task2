@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react/index';
 
 import { Slider, SwitchButtons, FiltersList } from '../../components';
-import { FAVORITES_SCENARIOS, FILTERS } from '../../constants/data-constants';
+import { DEVICES_DATA, FILTERS } from '../../constants/data-constants';
 
 const MAX_DEVICES_COUNT = 7;
 
@@ -33,7 +33,7 @@ class DevicesWidget extends Component {
             data={FILTERS}
             defaultValue={FILTERS[0]}
           />
-          {isDevicesEnough(FAVORITES_SCENARIOS.length) &&
+          {isDevicesEnough(DEVICES_DATA.length) &&
             <SwitchButtons
               onSwitchLeft={this.onSwitchSlidePrev}
               onSwitchRight={this.onSwitchSlideNext}
@@ -42,11 +42,11 @@ class DevicesWidget extends Component {
         </div>
         <div className="widget-content">
           <Slider
-            data={FAVORITES_SCENARIOS}
+            data={DEVICES_DATA}
             settings={{
               swipe: false,
               infinite: true,
-              slidesToShow: isDevicesEnough(FAVORITES_SCENARIOS.length) ? MAX_DEVICES_COUNT : FAVORITES_SCENARIOS.length,
+              slidesToShow: isDevicesEnough(DEVICES_DATA.length) ? MAX_DEVICES_COUNT : DEVICES_DATA.length,
               responsive: [
                 {
                   breakpoint: 800,

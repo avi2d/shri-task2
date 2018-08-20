@@ -1,4 +1,4 @@
-export const FAVORITES_SCENARIOS = [
+export const DEVICES_DATA = [
   {
     turnedOn: true,
     title: 'Выключить весь свет в доме и во дворе',

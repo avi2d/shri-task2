@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
 import { Slider, SwitchButtons } from '../../components';
-import { FAVORITES_SCENARIOS } from '../../constants/data-constants';
+import { DEVICES_DATA } from '../../constants/data-constants';
 
 const MAX_SCENARIOS_COUNT = 9;
 const MAX_SCENARIOS_COUNT_MEDIA = 6;
@@ -18,8 +18,8 @@ const defineSlidesToShow = scenariosCount => {
 };
 
 const isSwitchRightDisabled = (currentSlide, isMedia) => (isMedia
-  ? MAX_SCENARIOS_COUNT_MEDIA + (currentSlide * COLUMN_SCENARIOS_COUNT) >= FAVORITES_SCENARIOS.length
-  : MAX_SCENARIOS_COUNT + (currentSlide * COLUMN_SCENARIOS_COUNT) >= FAVORITES_SCENARIOS.length
+  ? MAX_SCENARIOS_COUNT_MEDIA + (currentSlide * COLUMN_SCENARIOS_COUNT) >= DEVICES_DATA.length
+  : MAX_SCENARIOS_COUNT + (currentSlide * COLUMN_SCENARIOS_COUNT) >= DEVICES_DATA.length
 );
 
 @inject('windowSize')
@@ -54,7 +54,7 @@ class ScenariosWidget extends Component {
       <div className="scenarios-widget">
         <div className="widget-header">
           <span className="widget-header-title">Избранные сценарии</span>
-          {isScenariosEnough(FAVORITES_SCENARIOS.length) &&
+          {isScenariosEnough(DEVICES_DATA.length) &&
             <SwitchButtons
               disabledLeft={switchLeftDisabled}
               disabledRight={switchRightDisabled}
@@ -65,11 +65,11 @@ class ScenariosWidget extends Component {
         </div>
         <div className="widget-content">
           <Slider
-            data={FAVORITES_SCENARIOS}
+            data={DEVICES_DATA}
             settings={{
               swipe: false,
               rows: 3,
-              slidesToShow: defineSlidesToShow(FAVORITES_SCENARIOS.length),
+              slidesToShow: defineSlidesToShow(DEVICES_DATA.length),
               responsive: [
                 {
                   breakpoint: 1070,
