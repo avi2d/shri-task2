@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { SvgIcon, Slider } from '../../components';
-import { DEVICES_DATA } from '../../constants/data-constants';
+import { SvgIcon, Slider } from "../../components";
+import { DEVICES_DATA } from "../../constants/data-constants";
 
 const MainWidget = () => (
   <div className="main-widget">
@@ -11,7 +11,9 @@ const MainWidget = () => (
     <div className="widget-content">
       <div className="widget-content-main-info">
         <div className="greeting">Привет, Геннадий!</div>
-        <div className="state-info">Двери и окна закрыты, сигнализация включена.</div>
+        <div className="state-info">
+          Двери и окна закрыты, сигнализация включена.
+        </div>
         <div className="temperature-info">
           <div className="inside">
             <div className="title">Дома</div>
@@ -39,7 +41,7 @@ const MainWidget = () => (
               settings: {
                 vertical: false,
                 verticalSwiping: false,
-                infinite: true,
+                infinite: true
               }
             },
             {
@@ -48,9 +50,9 @@ const MainWidget = () => (
                 vertical: false,
                 verticalSwiping: false,
                 infinite: true,
-                slidesToShow: 4,
+                slidesToShow: 4
               }
-            },
+            }
           ]
         }}
       />

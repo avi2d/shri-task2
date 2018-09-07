@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import utils from '../utils';
+import utils from "../utils";
 
 const DISABLED_ANGLE = 60;
 const DISABLED_PART = DISABLED_ANGLE / 360;
 const AVAILABLE_PART = 1 - DISABLED_PART;
-const MIN_ANGLE = -270 + (DISABLED_ANGLE / 2);
-const MAX_ANGLE = 90 - (DISABLED_ANGLE / 2);
+const MIN_ANGLE = -270 + DISABLED_ANGLE / 2;
+const MAX_ANGLE = 90 - DISABLED_ANGLE / 2;
 
 const SIZE = 210;
 const RADIUS = 105;
@@ -16,11 +16,11 @@ const STROKE_WIDTH_HALF = STROKE_WIDTH / 2;
 const CIRCUMFERENCE = 2 * Math.PI * (RADIUS - STROKE_WIDTH_HALF);
 
 const defineAngle = (A, B, C) => {
-  const AB = Math.sqrt(((B.x - A.x) ** 2) + ((B.y - A.y) ** 2));
-  const BC = Math.sqrt(((B.x - C.x) ** 2) + ((B.y - C.y) ** 2));
-  const AC = Math.sqrt(((C.x - A.x) ** 2) + ((C.y - A.y) ** 2));
+  const AB = Math.sqrt((B.x - A.x) ** 2 + (B.y - A.y) ** 2);
+  const BC = Math.sqrt((B.x - C.x) ** 2 + (B.y - C.y) ** 2);
+  const AC = Math.sqrt((C.x - A.x) ** 2 + (C.y - A.y) ** 2);
 
-  return Math.acos((((BC * BC) + (AB * AB)) - (AC * AC)) / (2 * BC * AB));
+  return Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB));
 };
 
 const toDegrees = angle => angle * (180 / Math.PI);
@@ -36,14 +36,14 @@ const defineValueByAngle = (angle, minValue, maxValue) => {
   const part = (-MIN_ANGLE + angle) / (MAX_ANGLE - MIN_ANGLE);
   const difference = maxValue - minValue;
 
-  return Math.round(minValue + (part * difference));
+  return Math.round(minValue + part * difference);
 };
 
 const defineAngleByValue = (value, minValue, maxValue) => {
   const part = (-minValue + value) / (maxValue - minValue);
   const difference = MAX_ANGLE - MIN_ANGLE;
 
-  return MIN_ANGLE + (part * difference);
+  return MIN_ANGLE + part * difference;
 };
 
 const defineDashOffset = (value, minValue, maxValue) => {
@@ -51,7 +51,6 @@ const defineDashOffset = (value, minValue, maxValue) => {
 
   return CIRCUMFERENCE * (1 - part);
 };
-
 
 class InputCircularRange extends Component {
   constructor(props) {
@@ -63,7 +62,9 @@ class InputCircularRange extends Component {
       angle: defineAngleByValue(props.defaultValue, props.min, props.max)
     };
 
-    this.onInputCircularRangeMount = node => { this.inputCircularRange = node; };
+    this.onInputCircularRangeMount = node => {
+      this.inputCircularRange = node;
+    };
 
     this.onUpdateAngle = angle => {
       if (angle >= MAX_ANGLE) {
@@ -95,7 +96,9 @@ class InputCircularRange extends Component {
         y: this.inputCircularRange.offsetWidth / 2
       };
 
-      let resultAngle = -toDegrees(defineAngle(mousePoint, centerPoint, startPoint));
+      let resultAngle = -toDegrees(
+        defineAngle(mousePoint, centerPoint, startPoint)
+      );
       // const distance = defineDistance(mousePoint, centerPoint);
 
       // Включаем только окружность с отметками
@@ -130,8 +133,8 @@ class InputCircularRange extends Component {
 
       this.onUpdateAngleByPoint(event.pageX, event.pageY);
 
-      document.addEventListener('mousemove', this.mouseMove);
-      document.addEventListener('mouseup', this.mouseUp);
+      document.addEventListener("mousemove", this.mouseMove);
+      document.addEventListener("mouseup", this.mouseUp);
     };
 
     this.mouseMove = event => {
@@ -141,28 +144,43 @@ class InputCircularRange extends Component {
     };
 
     this.mouseUp = () => {
-      document.removeEventListener('mousemove', this.mouseMove);
-      document.removeEventListener('mouseup', this.mouseUp);
+      document.removeEventListener("mousemove", this.mouseMove);
+      document.removeEventListener("mouseup", this.mouseUp);
     };
 
     this.onTouchStart = event => {
-      this.onUpdateAngleByPoint(event.touches[0].clientX, event.touches[0].clientY);
+      this.onUpdateAngleByPoint(
+        event.touches[0].clientX,
+        event.touches[0].clientY
+      );
 
-      this.inputCircularRange.addEventListener('touchmove', this.onTouchMove, { capture: true, passive: false });
-      this.inputCircularRange.addEventListener('touchend', this.onTouchEnd, { capture: true, passive: false });
+      this.inputCircularRange.addEventListener("touchmove", this.onTouchMove, {
+        capture: true,
+        passive: false
+      });
+      this.inputCircularRange.addEventListener("touchend", this.onTouchEnd, {
+        capture: true,
+        passive: false
+      });
     };
 
     this.onTouchMove = event => {
       event.preventDefault();
 
-      this.onUpdateAngleByPoint(event.touches[0].clientX, event.touches[0].clientY);
+      this.onUpdateAngleByPoint(
+        event.touches[0].clientX,
+        event.touches[0].clientY
+      );
     };
 
-    this.onTouchEnd = () => {
+    this.onTouchEnd = event => {
       event.preventDefault();
 
-      this.inputCircularRange.removeEventListener('touchmove', this.onTouchMove);
-      this.inputCircularRange.removeEventListener('touchend', this.onTouchEnd);
+      this.inputCircularRange.removeEventListener(
+        "touchmove",
+        this.onTouchMove
+      );
+      this.inputCircularRange.removeEventListener("touchend", this.onTouchEnd);
     };
   }
 
@@ -180,11 +198,30 @@ class InputCircularRange extends Component {
         onTouchStart={this.onTouchStart}
         ref={this.onInputCircularRangeMount}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${SIZE} ${SIZE}`} width={SIZE} height={SIZE}>
-          <filter id="filter-for-center" width="107.9%" height="107.9%" x="-3.9%" y="-2.8%" filterUnits="objectBoundingBox">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox={`0 0 ${SIZE} ${SIZE}`}
+          width={SIZE}
+          height={SIZE}
+        >
+          <filter
+            id="filter-for-center"
+            width="107.9%"
+            height="107.9%"
+            x="-3.9%"
+            y="-2.8%"
+            filterUnits="objectBoundingBox"
+          >
             <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1" />
-            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2" />
-            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.524208121 0 0 0 0 0.475951723 0 0 0 0 0.279118818 0 0 0 0.446388134 0" />
+            <feGaussianBlur
+              in="shadowOffsetOuter1"
+              result="shadowBlurOuter1"
+              stdDeviation="2"
+            />
+            <feColorMatrix
+              in="shadowBlurOuter1"
+              values="0 0 0 0 0.524208121 0 0 0 0 0.475951723 0 0 0 0 0.279118818 0 0 0 0.446388134 0"
+            />
           </filter>
           <circle
             cx={RADIUS}
@@ -203,7 +240,7 @@ class InputCircularRange extends Component {
             fill="none"
             stroke="#f5a623"
             strokeWidth={STROKE_WIDTH}
-            transform={`rotate(${90 + (DISABLED_ANGLE / 2)} ${RADIUS} ${RADIUS})`}
+            transform={`rotate(${90 + DISABLED_ANGLE / 2} ${RADIUS} ${RADIUS})`}
           />
           <circle
             strokeDasharray={CIRCUMFERENCE}
@@ -231,12 +268,7 @@ class InputCircularRange extends Component {
             r={RADIUS - 23}
             filter="url(#filter-for-center)"
           />
-          <circle
-            cx={RADIUS}
-            cy={RADIUS}
-            r={RADIUS - 23}
-            fill="#fefefe"
-          />
+          <circle cx={RADIUS} cy={RADIUS} r={RADIUS - 23} fill="#fefefe" />
           <circle
             cx={RADIUS}
             cy={RADIUS}
@@ -266,13 +298,13 @@ class InputCircularRange extends Component {
 InputCircularRange.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
-  defaultValue: PropTypes.number,
+  defaultValue: PropTypes.number
 };
 
 InputCircularRange.defaultProps = {
   min: -100,
   max: 100,
-  defaultValue: 50,
+  defaultValue: 50
 };
 
 export default InputCircularRange;

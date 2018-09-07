@@ -1,13 +1,13 @@
-import classNames from 'classnames';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { inject, observer } from 'mobx-react';
+import classNames from "classnames";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { inject, observer } from "mobx-react";
 
-import SvgIcon from '../svg-icon';
-import utils from '../../utils';
-import { DEVICES_TYPES } from '../../constants/data-constants';
+import SvgIcon from "../svg-icon";
+import utils from "../../utils";
+import { DEVICES_TYPES } from "../../constants/data-constants";
 
-@inject('modals')
+@inject("modals")
 @observer
 class SliderItem extends Component {
   constructor(props) {
@@ -15,11 +15,14 @@ class SliderItem extends Component {
 
     this.state = { point: null };
 
-    this.onMouseDown = ({ pageX, pageY }) => this.setState({ point: { x: pageX, y: pageY } });
+    this.onMouseDown = ({ pageX, pageY }) =>
+      this.setState({ point: { x: pageX, y: pageY } });
     this.onTouchStart = ({ touches }) => {
       if (touches.length === 0) return;
 
-      this.setState({ point: { x: touches[0].clientX, y: touches[0].clientY } });
+      this.setState({
+        point: { x: touches[0].clientX, y: touches[0].clientY }
+      });
     };
 
     this.onMouseUp = type => ({ pageX, pageY, button }) => {
@@ -58,7 +61,9 @@ class SliderItem extends Component {
     return (
       <div className="slider-item-wrapper">
         <div
-          className={classNames('slider-item', className, type, { 'turned-on': turnedOn })}
+          className={classNames("slider-item", className, type, {
+            "turned-on": turnedOn
+          })}
           title={title}
           onMouseDown={this.onMouseDown}
           onTouchStart={this.onTouchStart}
@@ -80,13 +85,11 @@ class SliderItem extends Component {
 
 SliderItem.propTypes = {
   turnedOn: PropTypes.bool,
-  type: PropTypes.oneOf(
-    Object.values(DEVICES_TYPES)
-  ),
+  type: PropTypes.oneOf(Object.values(DEVICES_TYPES)),
   className: PropTypes.string,
   title: PropTypes.string,
   stateInfo: PropTypes.string,
-  modals: PropTypes.object,
+  modals: PropTypes.object
 };
 
 export default SliderItem;

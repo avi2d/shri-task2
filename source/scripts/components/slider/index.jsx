@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Slider from 'react-slick';
+import classNames from "classnames";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Slider from "react-slick";
 
-import SliderItem from './item';
+import SliderItem from "./item";
 
 const DEFAULT_SETTINGS = {
   arrows: false,
@@ -22,14 +22,16 @@ class SimpleSlider extends Component {
       this.props.sliderApi(this.slider);
     };
 
-    this.setSliderNode = node => { this.slider = node; };
+    this.setSliderNode = node => {
+      this.slider = node;
+    };
   }
 
   renderSliderItems(data) {
     return data.map((item, index) => (
       <SliderItem
         key={index}
-        className={classNames({ 'first-item': index === 0 })}
+        className={classNames({ "first-item": index === 0 })}
         {...item}
       />
     ));
@@ -41,10 +43,7 @@ class SimpleSlider extends Component {
 
     return (
       <div className="slider-wrapper">
-        <Slider
-          {...resultSettings}
-          ref={this.setSliderNode}
-        >
+        <Slider {...resultSettings} ref={this.setSliderNode}>
           {this.renderSliderItems(data)}
         </Slider>
       </div>
@@ -63,4 +62,3 @@ SimpleSlider.defaultProps = {
 };
 
 export default SimpleSlider;
-

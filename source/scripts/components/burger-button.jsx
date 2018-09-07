@@ -1,12 +1,9 @@
-import classNames from 'classnames';
-import React from 'react';
-import PropTypes from 'prop-types';
+import classNames from "classnames";
+import React from "react";
+import PropTypes from "prop-types";
 
 const BurgerButton = ({ active, onClick }) => (
-  <button
-    className={classNames('burger-button', { active })}
-    onClick={onClick}
-  >
+  <button className={classNames("burger-button", { active })} onClick={onClick}>
     <div className="burger-button-bar" />
     <div className="burger-button-bar" />
     <div className="burger-button-bar" />

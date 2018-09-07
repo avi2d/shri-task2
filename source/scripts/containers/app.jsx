@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
-import { Modal } from '../components';
-import { FILTERS, DEVICES_TYPES } from '../constants/data-constants';
+import { Modal } from "../components";
+import { FILTERS, DEVICES_TYPES } from "../constants/data-constants";
 
-import Layout from './layout';
-import MainWidget from './widgets/main';
-import ScenariosWidget from './widgets/scenarios';
-import DevicesWidget from './widgets/devices';
-import DeviceForm from './device-form';
+import Layout from "./layout";
+import MainWidget from "./widgets/main";
+import ScenariosWidget from "./widgets/scenarios";
+import DevicesWidget from "./widgets/devices";
+import DeviceForm from "./device-form";
 
 class App extends Component {
   render() {

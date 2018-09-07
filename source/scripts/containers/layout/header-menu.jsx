@@ -1,8 +1,8 @@
-import classNames from 'classnames';
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import classNames from "classnames";
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 
-import { BurgerButton } from '../../components';
+import { BurgerButton } from "../../components";
 
 class LayoutHeaderMenu extends Component {
   constructor(props) {
@@ -29,9 +29,16 @@ class LayoutHeaderMenu extends Component {
 
     return (
       <Fragment>
-        {vertical && <BurgerButton active={isOpen} onClick={this.onMenuToggle} />}
+        {vertical && (
+          <BurgerButton active={isOpen} onClick={this.onMenuToggle} />
+        )}
 
-        <ul className={classNames('layout-header-menu', { vertical, opened: isOpen })}>
+        <ul
+          className={classNames("layout-header-menu", {
+            vertical,
+            opened: isOpen
+          })}
+        >
           {this.renderMenuItems(data)}
         </ul>
       </Fragment>

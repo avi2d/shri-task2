@@ -1,11 +1,11 @@
-import classNames from 'classnames';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { inject, observer } from 'mobx-react';
+import classNames from "classnames";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { inject, observer } from "mobx-react";
 
-import Button from './button';
+import Button from "./button";
 
-@inject('modals')
+@inject("modals")
 @observer
 class Modal extends Component {
   constructor(props) {
@@ -19,17 +19,21 @@ class Modal extends Component {
   }
 
   render() {
-    const { modals: { active }, type, children } = this.props;
+    const {
+      modals: { active },
+      type,
+      children
+    } = this.props;
     const opened = type === active;
 
     return (
-      <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
-        <div className={classNames('modal')}>
-          <div className="modal-content">
-            {children}
-          </div>
+      <div className={classNames("modal-wrapper", "modal-effect", { opened })}>
+        <div className={classNames("modal")}>
+          <div className="modal-content">{children}</div>
           <div className="modal-footer">
-            <Button shStyle="primary" onClick={this.onModalToggle}>Применить</Button>
+            <Button shStyle="primary" onClick={this.onModalToggle}>
+              Применить
+            </Button>
             <Button onClick={this.onModalToggle}>Закрыть</Button>
           </div>
         </div>
@@ -41,7 +45,7 @@ class Modal extends Component {
 Modal.propTypes = {
   type: PropTypes.string.isRequired,
   modals: PropTypes.object,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default Modal;

@@ -1,7 +1,7 @@
-import modalsStore from './modals';
-import windowSizeStore from './windowSize';
+import modalsStore from "./modals";
+import windowSizeStore from "./windowSize";
 
-export default ({
+export default {
   modals: modalsStore,
   windowSize: windowSizeStore
-});
+};
