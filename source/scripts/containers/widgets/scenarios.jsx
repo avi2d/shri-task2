@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 
-import { Slider, SwitchButtons } from "../../components";
-import { DEVICES_DATA } from "../../constants/data-constants";
+import { Slider, SwitchButtons } from '../../components';
+import { DEVICES_DATA } from '../../constants/data-constants';
 
 const MAX_SCENARIOS_COUNT = 9;
 const MAX_SCENARIOS_COUNT_MEDIA = 6;
@@ -25,7 +25,7 @@ const isSwitchRightDisabled = (currentSlide, isMedia) =>
     : MAX_SCENARIOS_COUNT + currentSlide * COLUMN_SCENARIOS_COUNT >=
       DEVICES_DATA.length;
 
-@inject("windowSize")
+@inject('windowSize')
 @observer
 class ScenariosWidget extends Component {
   constructor(props) {

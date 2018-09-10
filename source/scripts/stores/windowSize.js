@@ -1,7 +1,7 @@
-import { types } from "mobx-state-tree";
+import { types } from 'mobx-state-tree';
 
 const WindowSize = types
-  .model("windowSize", {
+  .model('windowSize', {
     width: window.innerWidth,
     height: window.innerHeight
   })
@@ -25,7 +25,7 @@ const WindowSize = types
     },
 
     afterCreate() {
-      window.addEventListener("resize", self.handleUpdateSize);
+      window.addEventListener('resize', self.handleUpdateSize);
     }
   }));
 

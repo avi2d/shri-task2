@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react/index";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react/index';
 
-import { InputRange, FiltersList, SvgIcon } from "../components";
-import utils from "../utils";
-import { DEVICES_TYPES } from "../constants/data-constants";
+import { InputRange, FiltersList, SvgIcon } from '../components';
+import utils from '../utils';
+import { DEVICES_TYPES } from '../constants/data-constants';
 
-@inject("windowSize")
+@inject('windowSize')
 @observer
 class DeviceForm extends Component {
   render() {

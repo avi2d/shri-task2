@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import Select from "react-select";
-import Slider from "react-slick";
+import React, { Component } from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import Select from 'react-select';
+import Slider from 'react-slick';
 
 const DEFAULT_SETTINGS = {
   arrows: false,
@@ -43,7 +43,7 @@ class FiltersList extends Component {
       return (
         <Slider
           {...DEFAULT_SETTINGS}
-          className={classNames("filters-list", { swipable })}
+          className={classNames('filters-list', { swipable })}
         >
           {data.map(({ label, value }, index) => (
             <div key={value} className="item-wrapper">

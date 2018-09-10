@@ -1,13 +1,13 @@
-import classNames from "classnames";
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react";
+import classNames from 'classnames';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 
-import SvgIcon from "../svg-icon";
-import utils from "../../utils";
-import { DEVICES_TYPES } from "../../constants/data-constants";
+import SvgIcon from '../svg-icon';
+import utils from '../../utils';
+import { DEVICES_TYPES } from '../../constants/data-constants';
 
-@inject("modals")
+@inject('modals')
 @observer
 class SliderItem extends Component {
   constructor(props) {
@@ -61,8 +61,8 @@ class SliderItem extends Component {
     return (
       <div className="slider-item-wrapper">
         <div
-          className={classNames("slider-item", className, type, {
-            "turned-on": turnedOn
+          className={classNames('slider-item', className, type, {
+            'turned-on': turnedOn
           })}
           title={title}
           onMouseDown={this.onMouseDown}

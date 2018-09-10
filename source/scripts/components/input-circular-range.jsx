@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import utils from "../utils";
+import utils from '../utils';
 
 const DISABLED_ANGLE = 60;
 const DISABLED_PART = DISABLED_ANGLE / 360;
@@ -133,8 +133,8 @@ class InputCircularRange extends Component {
 
       this.onUpdateAngleByPoint(event.pageX, event.pageY);
 
-      document.addEventListener("mousemove", this.mouseMove);
-      document.addEventListener("mouseup", this.mouseUp);
+      document.addEventListener('mousemove', this.mouseMove);
+      document.addEventListener('mouseup', this.mouseUp);
     };
 
     this.mouseMove = event => {
@@ -144,8 +144,8 @@ class InputCircularRange extends Component {
     };
 
     this.mouseUp = () => {
-      document.removeEventListener("mousemove", this.mouseMove);
-      document.removeEventListener("mouseup", this.mouseUp);
+      document.removeEventListener('mousemove', this.mouseMove);
+      document.removeEventListener('mouseup', this.mouseUp);
     };
 
     this.onTouchStart = event => {
@@ -154,11 +154,11 @@ class InputCircularRange extends Component {
         event.touches[0].clientY
       );
 
-      this.inputCircularRange.addEventListener("touchmove", this.onTouchMove, {
+      this.inputCircularRange.addEventListener('touchmove', this.onTouchMove, {
         capture: true,
         passive: false
       });
-      this.inputCircularRange.addEventListener("touchend", this.onTouchEnd, {
+      this.inputCircularRange.addEventListener('touchend', this.onTouchEnd, {
         capture: true,
         passive: false
       });
@@ -177,10 +177,10 @@ class InputCircularRange extends Component {
       event.preventDefault();
 
       this.inputCircularRange.removeEventListener(
-        "touchmove",
+        'touchmove',
         this.onTouchMove
       );
-      this.inputCircularRange.removeEventListener("touchend", this.onTouchEnd);
+      this.inputCircularRange.removeEventListener('touchend', this.onTouchEnd);
     };
   }
 

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import Slider from "rc-slider";
+import React, { Component } from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import Slider from 'rc-slider';
 
-import { InputCircularRange } from "../components";
-import { DEVICES_TYPES } from "../constants/data-constants";
-import utils from "../utils";
+import { InputCircularRange } from '../components';
+import { DEVICES_TYPES } from '../constants/data-constants';
+import utils from '../utils';
 
 const defineMarks = (min, max) => ({
   [min]: min,
@@ -27,7 +27,7 @@ class InputRange extends Component {
     return (
       <Slider
         vertical={vertical}
-        className={classNames("input-range", type)}
+        className={classNames('input-range', type)}
         marks={marks}
         min={min}
         max={max}

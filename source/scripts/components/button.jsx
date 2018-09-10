@@ -1,14 +1,14 @@
-import classNames from "classnames";
-import React from "react";
-import PropTypes from "prop-types";
+import classNames from 'classnames';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const STYLES = {
-  default: "default",
-  primary: "primary"
+  default: 'default',
+  primary: 'primary'
 };
 
 const Button = ({ shStyle, className, children, ...props }) => (
-  <button {...props} className={classNames("btn", className, shStyle)}>
+  <button {...props} className={classNames('btn', className, shStyle)}>
     {children}
   </button>
 );

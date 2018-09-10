@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+import classNames from 'classnames';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-import { BurgerButton } from "../../components";
+import { BurgerButton } from '../../components';
 
 class LayoutHeaderMenu extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class LayoutHeaderMenu extends Component {
         )}
 
         <ul
-          className={classNames("layout-header-menu", {
+          className={classNames('layout-header-menu', {
             vertical,
             opened: isOpen
           })}

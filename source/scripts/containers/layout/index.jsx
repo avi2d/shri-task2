@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react/index";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react/index';
 
-import { SvgIcon } from "../../components";
-import HeaderMenu from "./header-menu";
+import { SvgIcon } from '../../components';
+import HeaderMenu from './header-menu';
 
-const HEADER_MENU_ITEMS = ["Сводка", "Устройства", "Сценарии"];
+const HEADER_MENU_ITEMS = ['Сводка', 'Устройства', 'Сценарии'];
 const FOOTER_MENU_ITEMS = [
-  "Помощь",
-  "Обратная связь",
-  "Разработчикам",
-  "Условия использования"
+  'Помощь',
+  'Обратная связь',
+  'Разработчикам',
+  'Условия использования'
 ];
 
-@inject("windowSize")
+@inject('windowSize')
 @observer
 class Layout extends Component {
   render() {

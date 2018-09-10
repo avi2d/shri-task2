@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react";
+import classNames from 'classnames';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 
-import Button from "./button";
+import Button from './button';
 
-@inject("modals")
+@inject('modals')
 @observer
 class Modal extends Component {
   constructor(props) {
@@ -27,8 +27,8 @@ class Modal extends Component {
     const opened = type === active;
 
     return (
-      <div className={classNames("modal-wrapper", "modal-effect", { opened })}>
-        <div className={classNames("modal")}>
+      <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
+        <div className={classNames('modal')}>
           <div className="modal-content">{children}</div>
           <div className="modal-footer">
             <Button shStyle="primary" onClick={this.onModalToggle}>

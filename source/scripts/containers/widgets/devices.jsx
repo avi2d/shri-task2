@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react/index";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react/index';
 
-import { Slider, SwitchButtons, FiltersList } from "../../components";
-import { DEVICES_DATA, FILTERS } from "../../constants/data-constants";
+import { Slider, SwitchButtons, FiltersList } from '../../components';
+import { DEVICES_DATA, FILTERS } from '../../constants/data-constants';
 
 const MAX_DEVICES_COUNT = 7;
 
 const isDevicesEnough = devicesCount => devicesCount > MAX_DEVICES_COUNT;
 
-@inject("windowSize")
+@inject('windowSize')
 @observer
 class DevicesWidget extends Component {
   constructor(props) {
