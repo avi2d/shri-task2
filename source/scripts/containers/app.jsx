@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, HashRouter } from 'react-router-dom';
 
 import Layout from './layout';
 import EventsPage from './pages/events';
@@ -8,7 +8,7 @@ import SummaryPage from './pages/summary';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <HashRouter>
         <Layout>
           <Switch>
             <Route
@@ -20,7 +20,7 @@ class App extends Component {
             <Route path="/summary" component={SummaryPage} />
           </Switch>
         </Layout>
-      </Router>
+      </HashRouter>
     );
   }
 }
