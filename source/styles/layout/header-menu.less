@@ -24,17 +24,17 @@
     li {
       display: block;
       margin: 0;
-      padding: 5px 40px;
-
-      &.selected {
-        box-shadow: inset 3px 0 0 0 @primary;
-        //background: @gray-100;
-      }
 
       a {
+        display: inline-block;
+        padding: 5px 40px;
+        width: 100%;
         font-size: 17px;
+
+        &.active {
+          box-shadow: inset 3px 0 0 0 @primary;
+        }
       }
-      //text-align: center;
     }
   }
 
@@ -42,9 +42,11 @@
     display: inline-block;
     margin-right: 15px;
 
-    &.selected a {
-      font-weight: bold;
-      color: @text-color;
+    a {
+      &.active {
+        font-weight: bold;
+        color: @text-color;
+      }
     }
   }
 }

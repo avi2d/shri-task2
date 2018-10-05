@@ -10,6 +10,12 @@
   }
 }
 
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .vertical-center() {
   position: absolute;
   top: 50%;
@@ -27,4 +33,21 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.button-base {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.font-size-linear-interpolation(@max-width1, @max-width2, @size1, @size2) {
+  @m: (@size2 - @size1) / (@max-width2 - @max-width1);
+  @b: @size1 - @m * @max-width1;
+
+  font-size: calc(unit(@m * 100, vw) + @b);
 }

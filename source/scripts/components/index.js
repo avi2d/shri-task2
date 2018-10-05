@@ -7,6 +7,7 @@ import SwitchButtons from './switch-buttons';
 import FiltersList from './filters-list';
 import BurgerButton from './burger-button';
 import InputCircularRange from './input-circular-range';
+import EventCard from './event-card';
 
 export {
   Button,
@@ -17,5 +18,6 @@ export {
   SwitchButtons,
   FiltersList,
   BurgerButton,
-  InputCircularRange
+  InputCircularRange,
+  EventCard
 };

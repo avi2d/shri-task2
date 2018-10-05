@@ -6,9 +6,9 @@ import {
   InputRange,
   FiltersList,
   SvgIcon
-} from '../components';
-import utils from '../utils';
-import { DEVICES_TYPES } from '../constants/data-constants';
+} from '../../../components';
+import utils from '../../../utils/index';
+import { DEVICES_TYPES } from '../../../constants/data-constants';
 
 @inject('windowSize')
 @observer

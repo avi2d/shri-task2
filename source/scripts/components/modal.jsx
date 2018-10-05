@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
@@ -22,7 +23,7 @@ class Modal extends Component {
     const { modals: { active }, type, children } = this.props;
     const opened = type === active;
 
-    return (
+    return ReactDOM.createPortal((
       <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
         <div className={classNames('modal')}>
           <div className="modal-content">
@@ -34,7 +35,7 @@ class Modal extends Component {
           </div>
         </div>
       </div>
-    );
+    ), document.querySelector('#root'));
   }
 }
 

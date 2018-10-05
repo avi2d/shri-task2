@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { inject, observer } from 'mobx-react/index';
+import { withRouter } from 'react-router';
+import { inject, observer } from 'mobx-react';
 
 import { SvgIcon } from '../../components';
 import HeaderMenu from './header-menu';
 
-const HEADER_MENU_ITEMS = ['Сводка', 'Устройства', 'Сценарии'];
+const HEADER_MENU_ITEMS = [
+  { title: 'События', to: '/events' },
+  { title: 'Сводка', to: '/summary' },
+  { title: 'Устройства', to: '/devices' },
+  { title: 'Сценарии', to: '/scenarios' }
+];
 const FOOTER_MENU_ITEMS = ['Помощь', 'Обратная связь', 'Разработчикам', 'Условия использования'];
 
 @inject('windowSize')
@@ -46,4 +52,4 @@ Layout.propTypes = {
   children: PropTypes.node,
 };
 
-export default Layout;
+export default withRouter(Layout);

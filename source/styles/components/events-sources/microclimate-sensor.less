@@ -1,0 +1,21 @@
+.event-source-microclimate-sensor {
+  display: flex;
+
+  .temperature,
+  .humidity {
+    display: inline-block;
+  }
+
+  .temperature {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .event-source-microclimate-sensor {
+    .temperature,
+    .humidity {
+      font-size: 14px;
+    }
+  }
+}

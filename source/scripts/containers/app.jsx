@@ -1,51 +1,26 @@
-import React, { Component, Fragment } from 'react';
-
-import { Modal } from '../components';
-import { FILTERS, DEVICES_TYPES } from '../constants/data-constants';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import Layout from './layout';
-import MainWidget from './widgets/main';
-import ScenariosWidget from './widgets/scenarios';
-import DevicesWidget from './widgets/devices';
-import DeviceForm from './device-form';
+import EventsPage from './pages/events';
+import SummaryPage from './pages/summary';
 
 class App extends Component {
   render() {
     return (
-      <Fragment>
+      <Router>
         <Layout>
-          <MainWidget />
-          <ScenariosWidget />
-          <DevicesWidget />
-          <div className="modal-overlay" />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => <Redirect to="/events" />}
+            />
+            <Route path="/events" component={EventsPage} />
+            <Route path="/summary" component={SummaryPage} />
+          </Switch>
         </Layout>
-        <Modal type={DEVICES_TYPES.lighting}>
-          <DeviceForm
-            type={DEVICES_TYPES.lighting}
-            title="Xiaomi Yeelight LED Smart Bulb"
-            scheduleInfo="Включится в 17:00"
-            filters={FILTERS}
-          />
-        </Modal>
-        <Modal type={DEVICES_TYPES.temperature}>
-          <DeviceForm
-            type={DEVICES_TYPES.temperature}
-            title="Elgato Eve Degree Connected"
-            scheduleInfo="Включено"
-            filters={FILTERS}
-            devicePrevState="+23"
-          />
-        </Modal>
-        <Modal type={DEVICES_TYPES.temperatureCircular}>
-          <DeviceForm
-            type={DEVICES_TYPES.temperatureCircular}
-            title="Elgato Eve Degree Connected"
-            scheduleInfo="Включено"
-            filters={FILTERS}
-            devicePrevState="+23"
-          />
-        </Modal>
-      </Fragment>
+      </Router>
     );
   }
 }
