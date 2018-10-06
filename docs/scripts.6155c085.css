@@ -737,8 +737,6 @@ li:focus {
   position: absolute;
   right: 20px;
   top: 20px;
-  width: 15px;
-  height: 15px;
 }
 .event-card .event-card-cross-button .svg-icon {
   width: 15px;
@@ -809,10 +807,6 @@ li:focus {
   }
 }
 @media (max-width: 680px) {
-  .event-card .event-card-cross-button {
-    width: 12px;
-    height: 12px;
-  }
   .event-card .event-card-cross-button .svg-icon {
     width: 12px;
     height: 12px;
