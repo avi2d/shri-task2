@@ -3,7 +3,7 @@ import MainWidget from './widgets/main';
 import ScenariosWidget from './widgets/scenarios';
 import DevicesWidget from './widgets/devices';
 
-import { Modal } from '../../../components/index';
+import { Modal } from '../../../components';
 import DeviceForm from './device-form';
 import { FILTERS, DEVICES_TYPES } from '../../../constants/data-constants';
 

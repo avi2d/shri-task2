@@ -20,6 +20,11 @@ const defineAngle = (A, B, C) => {
   const BC = Math.sqrt((B.x - C.x) ** 2 + (B.y - C.y) ** 2);
   const AC = Math.sqrt((C.x - A.x) ** 2 + (C.y - A.y) ** 2);
 
+  // ровно центр
+  if (BC === 0 || AB === 0) {
+    return 90;
+  }
+
   return Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB));
 };
 

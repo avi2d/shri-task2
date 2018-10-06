@@ -1,5 +1,5 @@
 import React from 'react';
-import { EventCard } from '../../../components/index';
+import { EventCard } from '../../../components';
 import { EVENTS_DATA } from '../../../constants/data-constants';
 
 const EventsPage = () => (

@@ -21,9 +21,7 @@ const VALID_SOURCES = [
   {
     key: 'Сенсоры потребления',
     component: 'ConsumptionSensor',
-    fields: [
-      'image'
-    ]
+    fields: ['image']
   },
   {
     key: 'Сенсор входной двери',
@@ -43,10 +41,7 @@ const VALID_SOURCES = [
   {
     key: 'Сенсор микроклимата',
     component: 'MicroclimateSensor',
-    fields: [
-      'temperature',
-      'humidity'
-    ]
+    fields: ['temperature', 'humidity']
   },
   {
     key: 'Кондиционер',
@@ -56,19 +51,12 @@ const VALID_SOURCES = [
   {
     key: 'Яндекс.Станция',
     component: 'Station',
-    fields: [
-      'albumcover',
-      'artist',
-      'track',
-      'volume'
-    ]
+    fields: ['albumcover', 'artist', 'track', 'volume']
   },
   {
     key: 'Холодильник',
     component: 'Fridge',
-    fields: [
-      'buttons'
-    ]
+    fields: ['buttons']
   },
   {
     key: 'Оконный сенсор',
@@ -78,9 +66,7 @@ const VALID_SOURCES = [
   {
     key: 'Сенсор движения',
     component: 'MotionSensor',
-    fields: [
-      'image'
-    ]
+    fields: ['image']
   },
   {
     key: 'Чайник',
@@ -104,9 +90,7 @@ class EventCard extends Component {
     if (!component) return null;
 
     return (
-      <div className="content-data">
-        {React.createElement(component, data)}
-      </div>
+      <div className="content-data">{React.createElement(component, data)}</div>
     );
   }
 
@@ -134,12 +118,12 @@ class EventCard extends Component {
             <div className="header-info-time">{time}</div>
           </div>
         </div>
-        {description &&
+        {description && (
           <div className="event-card-content">
             <div className="content-description">{description}</div>
             {this.renderData(source, data)}
           </div>
-        }
+        )}
         <button className="event-card-cross-button">
           <SvgIcon id="cross" />
         </button>
@@ -152,12 +136,8 @@ class EventCard extends Component {
 }
 
 EventCard.propTypes = {
-  size: PropTypes.oneOf(
-    Object.values(CARD_SIZE)
-  ),
-  type: PropTypes.oneOf(
-    Object.values(CARD_TYPE)
-  ),
+  size: PropTypes.oneOf(Object.values(CARD_SIZE)),
+  type: PropTypes.oneOf(Object.values(CARD_TYPE)),
   icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
@@ -171,4 +151,3 @@ EventCard.defaultProps = {
 };
 
 export default EventCard;
-

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SvgIcon, Slider } from '../../../../components/index';
+import { SvgIcon, Slider } from '../../../../components';
 import { DEVICES_DATA } from '../../../../constants/data-constants';
 
 const MainWidget = () => (

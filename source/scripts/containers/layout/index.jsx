@@ -12,26 +12,30 @@ const HEADER_MENU_ITEMS = [
   { title: 'Устройства', to: '/devices' },
   { title: 'Сценарии', to: '/scenarios' }
 ];
-const FOOTER_MENU_ITEMS = ['Помощь', 'Обратная связь', 'Разработчикам', 'Условия использования'];
+
+const FOOTER_MENU_ITEMS = [
+  'Помощь',
+  'Обратная связь',
+  'Разработчикам',
+  'Условия использования'
+];
 
 @inject('windowSize')
 @observer
 class Layout extends Component {
   render() {
-    const { children, windowSize: { isWidthLowerThen800 } } = this.props;
+    const {
+      children,
+      windowSize: { isWidthLowerThen800 }
+    } = this.props;
 
     return (
       <div className="layout">
         <div className="layout-header">
           <SvgIcon className="layout-header-logo" id="logo" />
-          <HeaderMenu
-            vertical={isWidthLowerThen800}
-            data={HEADER_MENU_ITEMS}
-          />
+          <HeaderMenu vertical={isWidthLowerThen800} data={HEADER_MENU_ITEMS} />
         </div>
-        <div className="layout-content">
-          {children}
-        </div>
+        <div className="layout-content">{children}</div>
         <div className="layout-footer">
           <ul className="layout-footer-menu">
             {FOOTER_MENU_ITEMS.map(item => (
@@ -40,7 +44,9 @@ class Layout extends Component {
               </li>
             ))}
           </ul>
-          <div className="layout-footer-copyright">© 2001–2017  ООО «Яндекс»</div>
+          <div className="layout-footer-copyright">
+            © 2001–2017 ООО «Яндекс»
+          </div>
         </div>
       </div>
     );
@@ -49,7 +55,7 @@ class Layout extends Component {
 
 Layout.propTypes = {
   windowSize: PropTypes.object,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default withRouter(Layout);

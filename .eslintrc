@@ -11,6 +11,7 @@
     "prettier",
     "standard"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {

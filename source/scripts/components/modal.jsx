@@ -27,7 +27,7 @@ class Modal extends Component {
     } = this.props;
     const opened = type === active;
 
-    return ReactDOM.createPortal((
+    return ReactDOM.createPortal(
       <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
         <div className={classNames('modal')}>
           <div className="modal-content">{children}</div>
@@ -38,8 +38,9 @@ class Modal extends Component {
             <Button onClick={this.onModalToggle}>Закрыть</Button>
           </div>
         </div>
-      </div>
-    ), document.querySelector('#root'));
+      </div>,
+      document.querySelector('#root')
+    );
   }
 }
 

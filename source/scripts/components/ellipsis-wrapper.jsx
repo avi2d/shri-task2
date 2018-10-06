@@ -21,7 +21,9 @@ class EllipsisWrapper extends Component {
     this.ellipsedElement.textContent = this.props.text;
 
     while (this.ellipsedElement.offsetHeight > ellipsedContainerHeight) {
-      this.ellipsedElement.textContent = ellipseLastWord(this.ellipsedElement.textContent);
+      this.ellipsedElement.textContent = ellipseLastWord(
+        this.ellipsedElement.textContent
+      );
     }
   };
 
@@ -31,7 +33,6 @@ class EllipsisWrapper extends Component {
     window.addEventListener('resize', _.debounce(this.onEllipseElement, 200));
   };
 
-
   render() {
     return (
       <div
@@ -40,12 +41,10 @@ class EllipsisWrapper extends Component {
         style={{
           overflow: 'hidden',
           height: '2em',
-          lineHeight: '1em',
+          lineHeight: '1em'
         }}
       >
-        <div ref={this.ellipsedElementRef}>
-          {this.props.text}
-        </div>
+        <div ref={this.ellipsedElementRef}>{this.props.text}</div>
       </div>
     );
   }

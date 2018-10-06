@@ -15,9 +15,7 @@ const StationCompositionSwitchButton = ({ switchTo }) => (
 );
 
 StationCompositionSwitchButton.propTypes = {
-  switchTo: PropTypes.oneOf(
-    Object.values(DIRECTIONS)
-  )
+  switchTo: PropTypes.oneOf(Object.values(DIRECTIONS))
 };
 
 StationCompositionSwitchButton.defaultProps = {

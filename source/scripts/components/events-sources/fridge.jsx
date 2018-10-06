@@ -11,7 +11,7 @@ const EventSourceFridge = ({ buttons }) => (
 );
 
 EventSourceFridge.propTypes = {
-  buttons: PropTypes.array.isRequired,
+  buttons: PropTypes.array.isRequired
 };
 
 export default EventSourceFridge;

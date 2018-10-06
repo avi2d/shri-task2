@@ -70,12 +70,13 @@ export const EVENTS_DATA = [
     title: 'Еженедельный отчет по расходам ресурсов',
     source: 'Сенсоры потребления',
     time: '19:00, Сегодня',
-    description: 'Так держать! За последнюю неделю вы потратили на 10% меньше ресурсов, чем неделей ранее.',
+    description:
+      'Так держать! За последнюю неделю вы потратили на 10% меньше ресурсов, чем неделей ранее.',
     icon: 'stats',
     size: 'large',
     data: {
       image: eventImage2
-    },
+    }
   },
   {
     type: 'info',
@@ -135,7 +136,8 @@ export const EVENTS_DATA = [
     icon: 'music',
     size: 'medium',
     data: {
-      albumcover: 'https://avatars.yandex.net/get-music-content/193823/1820a43e.a.5517056-1/m1000x1000',
+      albumcover:
+        'https://avatars.yandex.net/get-music-content/193823/1820a43e.a.5517056-1/m1000x1000',
       artist: 'Florence & The Machine',
       track: {
         name: 'Big God',
@@ -149,7 +151,8 @@ export const EVENTS_DATA = [
     title: 'Заканчивается молоко',
     source: 'Холодильник',
     time: '17:23, Сегодня',
-    description: 'Кажется, в холодильнике заканчивается молоко. Вы хотите добавить его в список покупок?',
+    description:
+      'Кажется, в холодильнике заканчивается молоко. Вы хотите добавить его в список покупок?',
     icon: 'fridge',
     size: 'medium',
     data: {
@@ -170,7 +173,8 @@ export const EVENTS_DATA = [
     title: 'Пылесос застрял',
     source: 'Сенсор движения',
     time: '16:17, Сегодня',
-    description: 'Робопылесос не смог сменить свое местоположение в течение последних 3 минут. Похоже, ему нужна помощь.',
+    description:
+      'Робопылесос не смог сменить свое местоположение в течение последних 3 минут. Похоже, ему нужна помощь.',
     icon: 'cam',
     data: {
       image: eventImage1,
@@ -178,7 +182,7 @@ export const EVENTS_DATA = [
       image3x: eventImage1_3x,
       imageWebp: eventImage1_webp,
       imageWebp2x: eventImage1_webp_2x,
-      imageWebp3x: eventImage1_webp_3x,
+      imageWebp3x: eventImage1_webp_3x
     },
     size: 'large'
   },

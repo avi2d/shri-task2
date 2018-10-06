@@ -8,7 +8,7 @@ const EventSourceConsumptionSensor = ({ image }) => (
 );
 
 EventSourceConsumptionSensor.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired
 };
 
 export default EventSourceConsumptionSensor;

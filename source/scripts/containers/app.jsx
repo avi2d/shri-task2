@@ -11,11 +11,7 @@ class App extends Component {
       <HashRouter>
         <Layout>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => <Redirect to="/events" />}
-            />
+            <Route exact path="/" render={() => <Redirect to="/events" />} />
             <Route path="/events" component={EventsPage} />
             <Route path="/summary" component={SummaryPage} />
           </Switch>

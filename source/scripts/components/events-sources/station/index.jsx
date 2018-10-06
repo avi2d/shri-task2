@@ -40,10 +40,7 @@ EventsSourceStation.propTypes = {
   albumcover: PropTypes.string,
   artist: PropTypes.string,
   track: PropTypes.object,
-  volume: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  volume: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 export default EventsSourceStation;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 
-import { Slider, SwitchButtons } from '../../../../components/index';
+import { Slider, SwitchButtons } from '../../../../components';
 import { DEVICES_DATA } from '../../../../constants/data-constants';
 
 const MAX_SCENARIOS_COUNT = 9;
