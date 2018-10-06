@@ -6,7 +6,7 @@ import eventImage1_3x from '../../assets/events/event-image1@3x.jpg';
 import eventImage1_webp from '../../assets/events/event-image1.webp';
 import eventImage1_webp_2x from '../../assets/events/event-image1@2x.webp';
 import eventImage1_webp_3x from '../../assets/events/event-image1@3x.webp';
-import eventImage2 from '../../assets/events/event-image2.png';
+import eventImage2 from '../../assets/events/event-image2.svg';
 
 export const DEVICES_DATA = [
   {
