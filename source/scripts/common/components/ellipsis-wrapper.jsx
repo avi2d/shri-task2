@@ -30,7 +30,7 @@ class EllipsisWrapper extends Component {
   componentDidMount = () => {
     this.onEllipseElement();
 
-    window.addEventListener('resize', _.debounce(this.onEllipseElement, 200));
+    window.addEventListener('resize', _.throttle(this.onEllipseElement, 16));
   };
 
   render() {
