@@ -6,7 +6,13 @@ import eventImage1_3x from '../../assets/events/event-image1@3x.jpg';
 import eventImage1_webp from '../../assets/events/event-image1.webp';
 import eventImage1_webp_2x from '../../assets/events/event-image1@2x.webp';
 import eventImage1_webp_3x from '../../assets/events/event-image1@3x.webp';
-import eventImage2 from '../../assets/events/event-image2.svg';
+
+import eventImage2 from '../../assets/events/event-image2.jpg';
+import eventImage2_2x from '../../assets/events/event-image2@2x.jpg';
+import eventImage2_3x from '../../assets/events/event-image2@3x.jpg';
+import eventImage2_webp from '../../assets/events/event-image2.webp';
+import eventImage2_webp_2x from '../../assets/events/event-image2@2x.webp';
+import eventImage2_webp_3x from '../../assets/events/event-image2@3x.webp';
 
 export const DEVICES_DATA = [
   {
@@ -75,7 +81,12 @@ export const EVENTS_DATA = [
     icon: 'stats',
     size: 'large',
     data: {
-      image: eventImage2
+      image: eventImage2,
+      image2x: eventImage2_2x,
+      image3x: eventImage2_3x,
+      imageWebp: eventImage2_webp,
+      imageWebp2x: eventImage2_webp_2x,
+      imageWebp3x: eventImage2_webp_3x
     }
   },
   {
