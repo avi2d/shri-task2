@@ -22,16 +22,21 @@ const Modals = types
   .create();
 
 autorun(() => {
-  const modalOverlay = document.querySelector('.modal-overlay');
   const layout = document.querySelector('.layout');
 
   if (Modals.active) {
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    layout.appendChild(modalOverlay);
+
     document.body.style.overflow = 'hidden';
 
     modalOverlay.style.opacity = '1';
     modalOverlay.style.visibility = 'visible';
     layout.style.filter = 'blur(3px)';
   } else {
+    const modalOverlay = document.querySelector('.modal-overlay');
+
     document.body.style.overflow = '';
 
     if (!modalOverlay) return;
@@ -39,6 +44,8 @@ autorun(() => {
     modalOverlay.style.opacity = '';
     modalOverlay.style.visibility = '';
     layout.style.filter = '';
+
+    layout.removeChild(modalOverlay);
   }
 });
 

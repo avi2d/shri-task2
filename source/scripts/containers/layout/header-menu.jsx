@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import { BurgerButton } from '../../components';
 
@@ -16,9 +17,9 @@ class LayoutHeaderMenu extends Component {
   }
 
   renderMenuItems(data) {
-    return data.map((item, index) => (
-      <li key={item} className={classNames({ selected: index === 0 })}>
-        <a href="#">{item}</a>
+    return data.map(({ title, to }) => (
+      <li key={to}>
+        <NavLink to={to}>{title}</NavLink>
       </li>
     ));
   }
