@@ -355,6 +355,10 @@ li:focus {
     font-size: 14px;
   }
 }
+.event-source-motion-sensor {
+  border-radius: 20px;
+  overflow: hidden;
+}
 .event-source-motion-sensor img {
   border-radius: 20px;
   width: 100%;
