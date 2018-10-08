@@ -32,6 +32,13 @@ const Camera = types
     rangeMaxY: 0,
     rangeMinY: 0
   })
+  .views(self => ({
+    get imageBrightnessProgress() {
+      return (
+        (self.imageCurrentBrightness / (MAX_BRIGHTNESS - MIN_BRIGHTNESS)) * 100
+      );
+    }
+  }))
   .actions(self => ({
     performInitialData(imageWidth, imageHeight) {
       self.containerWidth = imageWidth;
