@@ -113,6 +113,7 @@ class EventSourceMotionSensor extends Component {
           X:          ${imageCurrentX.toFixed(4)}
           Y:          ${imageCurrentY.toFixed(4)}
           Brightness: ${imageCurrentBrightness.toFixed(4)}
+          Temp:       ${this.image.offsetWidth} ${this.image.offsetHeight}
         Range
           rangeX:     ${rangeX.toFixed(4)}
           rangeMinX:  ${rangeMinX.toFixed(4)}
@@ -166,7 +167,7 @@ class EventSourceMotionSensor extends Component {
           style={this.defineImageStyle()}
         />
         <div id="hud">{this.renderHud()}</div>
-        <button onClick={this.toggleMode}>Toggle Mode</button>
+        {/* <button onClick={this.toggleMode}>Toggle Mode</button> */}
       </div>
     );
   }
