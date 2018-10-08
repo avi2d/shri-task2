@@ -154,30 +154,17 @@ class EventSourceMotionSensor extends Component {
   };
 
   render() {
-    const {
-      image,
-      image2x,
-      image3x,
-      imageWebp,
-      imageWebp2x,
-      imageWebp3x
-    } = this.props;
-
     return (
       <div
         className="event-source-motion-sensor"
         style={{ touchAction: 'none' }}
       >
-        <picture ref={this.imageRef} style={this.defineImageStyle()}>
-          <source
-            type="image/webp"
-            srcSet={`${imageWebp}, ${imageWebp2x} 2x, ${imageWebp3x} 3x`}
-          />
-          <img
-            srcSet={`${image}, ${image2x} 2x, ${image3x} 3x`}
-            alt="Изображение с камеры"
-          />
-        </picture>
+        <img
+          ref={this.imageRef}
+          srcSet={this.props.image}
+          alt="Изображение с камеры"
+          style={this.defineImageStyle()}
+        />
         <div id="hud">{this.renderHud()}</div>
         <button onClick={this.toggleMode}>Toggle Mode</button>
       </div>
@@ -188,12 +175,7 @@ class EventSourceMotionSensor extends Component {
 EventSourceMotionSensor.propTypes = {
   camera: PropTypes.object,
   events: PropTypes.object,
-  image: PropTypes.string.isRequired,
-  image2x: PropTypes.string,
-  image3x: PropTypes.string,
-  imageWebp: PropTypes.string,
-  imageWebp2x: PropTypes.string,
-  imageWebp3x: PropTypes.string
+  image: PropTypes.string.isRequired
 };
 
 export default EventSourceMotionSensor;
