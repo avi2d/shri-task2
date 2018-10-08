@@ -113,7 +113,6 @@ class EventSourceMotionSensor extends Component {
           X:          ${imageCurrentX.toFixed(4)}
           Y:          ${imageCurrentY.toFixed(4)}
           Brightness: ${imageCurrentBrightness.toFixed(4)}
-          Temp:       ${this.image.offsetWidth} ${this.image.offsetHeight}
         Range
           rangeX:     ${rangeX.toFixed(4)}
           rangeMinX:  ${rangeMinX.toFixed(4)}
