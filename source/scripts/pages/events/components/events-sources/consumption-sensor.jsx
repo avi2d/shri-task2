@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const EventSourceСonsumptionSensor = ({
+const EventSourceConsumptionSensor = ({
   image,
   image2x,
   image3x,
@@ -23,7 +23,7 @@ const EventSourceСonsumptionSensor = ({
   </div>
 );
 
-EventSourceСonsumptionSensor.propTypes = {
+EventSourceConsumptionSensor.propTypes = {
   image: PropTypes.string.isRequired,
   image2x: PropTypes.string,
   image3x: PropTypes.string,
@@ -32,4 +32,4 @@ EventSourceСonsumptionSensor.propTypes = {
   imageWebp3x: PropTypes.string
 };
 
-export default EventSourceСonsumptionSensor;
+export default EventSourceConsumptionSensor;
