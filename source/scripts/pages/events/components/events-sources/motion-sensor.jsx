@@ -19,24 +19,30 @@ class EventSourceMotionSensor extends Component {
   }
 
   componentDidMount() {
-    this.props.camera.performInitialData(
-      this.image.offsetWidth,
-      this.image.offsetHeight
-    );
+    this.image.onload = () => {
+      this.props.camera.performInitialData(
+        this.image.offsetWidth,
+        this.image.offsetHeight
+      );
 
-    this.image.onpointerdown = this.onPointerDown;
-    this.image.onpointermove = this.onPointerMove;
+      this.image.onpointerdown = this.onPointerDown;
+      this.image.onpointermove = this.onPointerMove;
 
-    this.image.onpointerup = this.onPointerUp;
-    this.image.onpointercancel = this.onPointerUp;
-    this.image.onpointerout = this.onPointerUp;
-    this.image.onpointerleave = this.onPointerUp;
+      this.image.onpointerup = this.onPointerUp;
+      this.image.onpointercancel = this.onPointerUp;
+      this.image.onpointerout = this.onPointerUp;
+      this.image.onpointerleave = this.onPointerUp;
 
-    this.image.addEventListener('touchstart', event => event.preventDefault(), {
-      capture: true,
-      passive: false
-    });
-    this.image.addEventListener('dragstart', event => event.preventDefault());
+      this.image.addEventListener(
+        'touchstart',
+        event => event.preventDefault(),
+        {
+          capture: true,
+          passive: false
+        }
+      );
+      this.image.addEventListener('dragstart', event => event.preventDefault());
+    };
   }
 
   onPointerDown = event => {
@@ -161,12 +167,12 @@ class EventSourceMotionSensor extends Component {
       >
         <img
           ref={this.imageRef}
-          srcSet={this.props.image}
+          src={this.props.image}
           alt="Изображение с камеры"
           style={this.defineImageStyle()}
         />
         <div id="hud">{this.renderHud()}</div>
-        {/* <button onClick={this.toggleMode}>Toggle Mode</button> */}
+        <button onClick={this.toggleMode}>Toggle Mode</button>
       </div>
     );
   }

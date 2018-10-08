@@ -362,6 +362,7 @@ li:focus {
 .event-source-motion-sensor img {
   border-radius: 20px;
   width: 100%;
+  height: 100%;
   vertical-align: top;
 }
 .event-source-fridge .btn {
