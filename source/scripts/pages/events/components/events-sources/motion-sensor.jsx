@@ -21,13 +21,6 @@ class EventSourceMotionSensor extends Component {
         this.image.offsetHeight
       );
 
-      // this.image.onpointerdown = this.onPointerDown;
-      // this.image.onpointermove = this.onPointerMove;
-      // this.image.onpointerup = this.onPointerUp;
-      // this.image.onpointercancel = this.onPointerUp;
-      // this.image.onpointerout = this.onPointerUp;
-      // this.image.onpointerleave = this.onPointerUp;
-
       this.image.addEventListener('pointerdown', this.onPointerDown);
       this.image.addEventListener('pointermove', this.onPointerMove);
       this.image.addEventListener('pointerup', this.onPointerUp);
@@ -35,14 +28,6 @@ class EventSourceMotionSensor extends Component {
       this.image.addEventListener('pointerout', this.onPointerUp);
       this.image.addEventListener('pointerleave', this.onPointerUp);
 
-      // this.image.addEventListener(
-      //   'touchstart',
-      //   event => event.preventDefault(),
-      //   {
-      //     capture: true,
-      //     passive: false
-      //   }
-      // );
       this.image.addEventListener('dragstart', event => event.preventDefault());
     };
   }
@@ -88,50 +73,50 @@ class EventSourceMotionSensor extends Component {
     this.props.camera.fixCameraState();
   };
 
-  renderHud = () => {
-    const {
-      imageStartX,
-      imageStartY,
-      imageStartScale,
-      imageStartBrightness,
-      imageCurrentX,
-      imageCurrentY,
-      imageCurrentScale,
-      imageCurrentBrightness,
-
-      rangeX,
-      rangeMaxX,
-      rangeMinX,
-
-      rangeY,
-      rangeMaxY,
-      rangeMinY
-    } = this.props.camera;
-
-    return (
-      <pre>
-        {`
-        Current
-          Scale:      ${imageCurrentScale.toFixed(4)}
-          X:          ${imageCurrentX.toFixed(4)}
-          Y:          ${imageCurrentY.toFixed(4)}
-          Brightness: ${imageCurrentBrightness.toFixed(4)}
-        Range
-          rangeX:     ${rangeX.toFixed(4)}
-          rangeMinX:  ${rangeMinX.toFixed(4)}
-          rangeMaxX:  ${rangeMaxX.toFixed(4)}
-          rangeY:     ${rangeY.toFixed(4)}
-          rangeMinY:  ${rangeMinY.toFixed(4)}
-          rangeMaxY:  ${rangeMaxY.toFixed(4)}
-        Updated
-          Scale:      ${imageStartScale.toFixed(4)}
-          X:          ${imageStartX.toFixed(4)}
-          Y:          ${imageStartY.toFixed(4)}
-          Brightness: ${imageStartBrightness.toFixed(4)}
-      `}
-      </pre>
-    );
-  };
+  // renderHud = () => {
+  //   const {
+  //     imageStartX,
+  //     imageStartY,
+  //     imageStartScale,
+  //     imageStartBrightness,
+  //     imageCurrentX,
+  //     imageCurrentY,
+  //     imageCurrentScale,
+  //     imageCurrentBrightness,
+  //
+  //     rangeX,
+  //     rangeMaxX,
+  //     rangeMinX,
+  //
+  //     rangeY,
+  //     rangeMaxY,
+  //     rangeMinY
+  //   } = this.props.camera;
+  //
+  //   return (
+  //     <pre>
+  //       {`
+  //       Current
+  //         Scale:      ${imageCurrentScale.toFixed(4)}
+  //         X:          ${imageCurrentX.toFixed(4)}
+  //         Y:          ${imageCurrentY.toFixed(4)}
+  //         Brightness: ${imageCurrentBrightness.toFixed(4)}
+  //       Range
+  //         rangeX:     ${rangeX.toFixed(4)}
+  //         rangeMinX:  ${rangeMinX.toFixed(4)}
+  //         rangeMaxX:  ${rangeMaxX.toFixed(4)}
+  //         rangeY:     ${rangeY.toFixed(4)}
+  //         rangeMinY:  ${rangeMinY.toFixed(4)}
+  //         rangeMaxY:  ${rangeMaxY.toFixed(4)}
+  //       Updated
+  //         Scale:      ${imageStartScale.toFixed(4)}
+  //         X:          ${imageStartX.toFixed(4)}
+  //         Y:          ${imageStartY.toFixed(4)}
+  //         Brightness: ${imageStartBrightness.toFixed(4)}
+  //     `}
+  //     </pre>
+  //   );
+  // };
 
   defineImageStyle = () => {
     const {
@@ -145,7 +130,7 @@ class EventSourceMotionSensor extends Component {
       translateX(${imageCurrentX}px)
       translateY(${imageCurrentY}px)
       translateZ(0px)
-      scale(${imageCurrentScale},${imageCurrentScale})
+      scale(${imageCurrentScale + 0.5},${imageCurrentScale + 0.5})
     `;
     const filter = `brightness(${imageCurrentBrightness})`;
 
@@ -157,15 +142,7 @@ class EventSourceMotionSensor extends Component {
 
     return (
       <div className="event-source-motion-sensor" touch-action="none">
-        <div
-          className="motion-sensor-container"
-          // onPointerDown={this.onPointerDown}
-          // onPointerMove={this.onPointerMove}
-          // onPointerUp={this.onPointerUp}
-          // onPointerCancel={this.onPointerUp}
-          // onPointerOut={this.onPointerUp}
-          // onPointerLeave={this.onPointerUp}
-        >
+        <div className="motion-sensor-container">
           <img
             ref={this.imageRef}
             src={this.props.image}
@@ -177,7 +154,7 @@ class EventSourceMotionSensor extends Component {
           <span>Приближение: {imageCurrentScale.toFixed(1)}</span>
           <span>Яркость: {imageBrightnessProgress.toFixed(0)}%</span>
         </div>
-        <div id="hud">{this.renderHud()}</div>
+        {/* <div id="hud">{this.renderHud()}</div> */}
       </div>
     );
   }
