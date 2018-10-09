@@ -156,7 +156,7 @@ class EventSourceMotionSensor extends Component {
     const { imageCurrentScale, imageBrightnessProgress } = this.props.camera;
 
     return (
-      <div className="event-source-motion-sensor" touchAction="none">
+      <div className="event-source-motion-sensor" touch-action="none">
         <div
           className="motion-sensor-container"
           // onPointerDown={this.onPointerDown}
