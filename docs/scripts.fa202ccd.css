@@ -273,7 +273,7 @@ li:focus {
   margin: 0 auto;
   padding: 0 40px;
   height: 85px;
-  max-width: 1280px;
+  max-width: 1320px;
 }
 .layout .layout-header .layout-header-content .header-content-logo {
   width: 110px;
@@ -282,18 +282,21 @@ li:focus {
 .layout .layout-content {
   margin: 0 auto;
   padding: 30px 40px 0;
-  max-width: 1280px;
+  max-width: 1320px;
 }
 .layout .layout-footer {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  left: 0;
   bottom: 0;
-  height: 65px;
   padding: 0 40px;
   width: 100%;
+  max-width: 1320px;
+  height: 65px;
   background: #fff;
   font-size: 12px;
   color: #858585;
@@ -1830,7 +1833,6 @@ li:focus {
 .main-widget .widget-content {
   height: calc(((100px + 15px) * 3) - 15px);
   display: flex;
-  flex-flow: row wrap;
   justify-content: space-between;
   padding: 20px;
   background: url(main-widget-bg.2c650cc7.png) no-repeat 50% 50%;
@@ -1882,6 +1884,9 @@ li:focus {
   margin: -7.5px -7.5px 0 0;
 }
 @media (max-width: 1320px) {
+  .main-widget .widget-content {
+    flex-direction: column;
+  }
   .main-widget .widget-content .slider-wrapper {
     width: calc((200px + 15px) * 3);
     margin: 0 0 -7.5px -7.5px;
