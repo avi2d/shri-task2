@@ -20,6 +20,7 @@
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
     "mobx-state-tree": "^2.2.0",
+    "pepjs": "^0.4.3",
     "prop-types": "^15.6.2",
     "rc-slider": "^8.6.1",
     "react": ">=15",

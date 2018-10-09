@@ -10,10 +10,6 @@ import { addEvents } from '../../decorators';
 class EventSourceMotionSensor extends Component {
   imageRef = React.createRef();
 
-  state = {
-    a: 5
-  };
-
   get image() {
     return this.imageRef.current;
   }
@@ -24,6 +20,20 @@ class EventSourceMotionSensor extends Component {
         this.image.offsetWidth,
         this.image.offsetHeight
       );
+
+      this.image.onpointerdown = this.onPointerDown;
+      this.image.onpointermove = this.onPointerMove;
+      this.image.onpointerup = this.onPointerUp;
+      this.image.onpointercancel = this.onPointerUp;
+      this.image.onpointerout = this.onPointerUp;
+      this.image.onpointerleave = this.onPointerUp;
+
+      // this.image.addEventListener('pointerdown', this.onPointerDown);
+      // this.image.addEventListener('pointermove', this.onPointerMove);
+      // this.image.addEventListener('pointerup', this.onPointerUp);
+      // this.image.addEventListener('pointercancel', this.onPointerUp);
+      // this.image.addEventListener('pointerout', this.onPointerUp);
+      // this.image.addEventListener('pointerleave', this.onPointerUp);
 
       // this.image.addEventListener(
       //   'touchstart',
@@ -106,8 +116,6 @@ class EventSourceMotionSensor extends Component {
           X:          ${imageCurrentX.toFixed(4)}
           Y:          ${imageCurrentY.toFixed(4)}
           Brightness: ${imageCurrentBrightness.toFixed(4)}
-          Temp:       ${this.image && this.image.offsetWidth}
-          Temp:       ${this.image && this.image.offsetHeight}
         Range
           rangeX:     ${rangeX.toFixed(4)}
           rangeMinX:  ${rangeMinX.toFixed(4)}
@@ -152,25 +160,26 @@ class EventSourceMotionSensor extends Component {
         className="event-source-motion-sensor"
         style={{ touchAction: 'none' }}
       >
-        <div className="motion-sensor-container">
+        <div
+          className="motion-sensor-container"
+          // onPointerDown={this.onPointerDown}
+          // onPointerMove={this.onPointerMove}
+          // onPointerUp={this.onPointerUp}
+          // onPointerCancel={this.onPointerUp}
+          // onPointerOut={this.onPointerUp}
+          // onPointerLeave={this.onPointerUp}
+        >
           <img
             ref={this.imageRef}
             src={this.props.image}
             alt="Изображение с камеры"
             style={this.defineImageStyle()}
-            onPointerDown={this.onPointerDown}
-            onPointerMove={this.onPointerMove}
-            onPointerUp={this.onPointerUp}
-            onPointerCancel={this.onPointerUp}
-            onPointerOut={this.onPointerUp}
-            onPointerLeave={this.onPointerUp}
           />
         </div>
         <div className="motion-sensor-indicators">
           <span>Приближение: {imageCurrentScale.toFixed(1)}</span>
-          <span>Яркость: {imageBrightnessProgress}%</span>
+          <span>Яркость: {imageBrightnessProgress.toFixed(0)}%</span>
         </div>
-        <button onClick={() => this.setState({ a: 10 })}>{this.state.a}</button>
         <div id="hud">{this.renderHud()}</div>
       </div>
     );
