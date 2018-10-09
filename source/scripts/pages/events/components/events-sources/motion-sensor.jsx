@@ -21,19 +21,19 @@ class EventSourceMotionSensor extends Component {
         this.image.offsetHeight
       );
 
-      this.image.onpointerdown = this.onPointerDown;
-      this.image.onpointermove = this.onPointerMove;
-      this.image.onpointerup = this.onPointerUp;
-      this.image.onpointercancel = this.onPointerUp;
-      this.image.onpointerout = this.onPointerUp;
-      this.image.onpointerleave = this.onPointerUp;
+      // this.image.onpointerdown = this.onPointerDown;
+      // this.image.onpointermove = this.onPointerMove;
+      // this.image.onpointerup = this.onPointerUp;
+      // this.image.onpointercancel = this.onPointerUp;
+      // this.image.onpointerout = this.onPointerUp;
+      // this.image.onpointerleave = this.onPointerUp;
 
-      // this.image.addEventListener('pointerdown', this.onPointerDown);
-      // this.image.addEventListener('pointermove', this.onPointerMove);
-      // this.image.addEventListener('pointerup', this.onPointerUp);
-      // this.image.addEventListener('pointercancel', this.onPointerUp);
-      // this.image.addEventListener('pointerout', this.onPointerUp);
-      // this.image.addEventListener('pointerleave', this.onPointerUp);
+      this.image.addEventListener('pointerdown', this.onPointerDown);
+      this.image.addEventListener('pointermove', this.onPointerMove);
+      this.image.addEventListener('pointerup', this.onPointerUp);
+      this.image.addEventListener('pointercancel', this.onPointerUp);
+      this.image.addEventListener('pointerout', this.onPointerUp);
+      this.image.addEventListener('pointerleave', this.onPointerUp);
 
       // this.image.addEventListener(
       //   'touchstart',
@@ -156,10 +156,7 @@ class EventSourceMotionSensor extends Component {
     const { imageCurrentScale, imageBrightnessProgress } = this.props.camera;
 
     return (
-      <div
-        className="event-source-motion-sensor"
-        style={{ touchAction: 'none' }}
-      >
+      <div className="event-source-motion-sensor" touchAction="none">
         <div
           className="motion-sensor-container"
           // onPointerDown={this.onPointerDown}
