@@ -32,8 +32,13 @@ class Layout extends Component {
     return (
       <div className="layout">
         <div className="layout-header">
-          <SvgIcon className="layout-header-logo" id="logo" />
-          <HeaderMenu vertical={isWidthLowerThen800} data={HEADER_MENU_ITEMS} />
+          <div className="layout-header-content">
+            <SvgIcon className="header-content-logo" id="logo" />
+            <HeaderMenu
+              vertical={isWidthLowerThen800}
+              data={HEADER_MENU_ITEMS}
+            />
+          </div>
         </div>
         <div className="layout-content">{children}</div>
         <div className="layout-footer">
