@@ -130,7 +130,7 @@ class EventSourceMotionSensor extends Component {
       translateX(${imageCurrentX}px)
       translateY(${imageCurrentY}px)
       translateZ(0px)
-      scale(${imageCurrentScale + 0.5},${imageCurrentScale + 0.5})
+      scale(${imageCurrentScale},${imageCurrentScale})
     `;
     const filter = `brightness(${imageCurrentBrightness})`;
 
