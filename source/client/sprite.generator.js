@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const svgstore = require('svgstore');
 const fs = require('fs');
 
-const svgDir = resolve(__dirname, 'source/assets/svg');
+const svgDir = resolve(__dirname, './static/assets/svg');
 
 const svgoOptions = {
   copyAttrs: ['fill']

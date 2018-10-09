@@ -7,11 +7,12 @@
     [
       "module-resolver",
       {
-        "root": ["./source/scripts/common"],
+        "root": ["./"],
         "alias": {
-          "components": "./source/scripts/common/components",
-          "constants": "./source/scripts/common/containers",
-          "extensions": [".js", ".jsx", ".less", ".css"]
+          "components": "./common/components",
+          "containers": "./common/containers",
+          "assets": "./static/assets",
+          "extensions": [".js", ".jsx", ".jpg", ".jpeg", ".svg", ".webp"]
         }
       }
     ]

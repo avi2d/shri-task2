@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import sprite from '../../../assets/svg/sprite.svg';
+import sprite from 'assets/svg/sprite.svg';
 
 const SvgIcon = ({ className, id, ...other }) => {
   const classes = classNames('svg-icon', id, className);

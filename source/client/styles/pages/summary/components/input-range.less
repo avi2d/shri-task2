@@ -1,4 +1,4 @@
-@import (less) "../../../../../node_modules/rc-slider/assets/index.css";
+@import (less) "../../../../node_modules/rc-slider/assets/index.css";
 
 @thumb-radius: 50%;
 @thumb-height: 60px;
@@ -17,15 +17,15 @@
 
 .lighting-background() {
   background:
-    url(../../../../assets/svg/range-lighting-min.svg) no-repeat (@track-radius - @lighting-image-radius) 50%,
-    url(../../../../assets/svg/range-lighting-max.svg) no-repeat right (@track-radius - @lighting-image-radius) top 50%,
+    url(../../../../static/assets/svg/range-lighting-min.svg) no-repeat (@track-radius - @lighting-image-radius) 50%,
+    url(../../../../static/assets/svg/range-lighting-max.svg) no-repeat right (@track-radius - @lighting-image-radius) top 50%,
     linear-gradient(to right, @yellow-100, @yellow-400);
 }
 
 .lighting-background-vertical() {
   background:
-    url(../../../../assets/svg/range-lighting-max.svg) no-repeat top (@track-radius - @lighting-image-radius) left 50%,
-    url(../../../../assets/svg/range-lighting-min.svg) no-repeat bottom (@track-radius - @lighting-image-radius) left 50%,
+    url(../../../../static/assets/svg/range-lighting-max.svg) no-repeat top (@track-radius - @lighting-image-radius) left 50%,
+    url(../../../../static/assets/svg/range-lighting-min.svg) no-repeat bottom (@track-radius - @lighting-image-radius) left 50%,
     linear-gradient(to top, @yellow-100, @yellow-400);
 }
 
