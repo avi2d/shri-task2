@@ -17,6 +17,8 @@ class EllipsisWrapper extends Component {
   }
 
   onEllipseElement = () => {
+    if (!this.ellipsedContainer) return;
+
     const ellipsedContainerHeight = this.ellipsedContainer.clientHeight;
     this.ellipsedElement.textContent = this.props.text;
 

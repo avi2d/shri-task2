@@ -15,7 +15,6 @@
     .define-slider-height-scenario(@slider-rows-count);
 
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-between;
     padding: 20px;
     background: url(../../../../assets/main-widget-bg.png) no-repeat 50% 50%;
@@ -79,6 +78,8 @@
 @media (max-width: 1320px) {
   .main-widget {
     .widget-content {
+      flex-direction: column;
+
       .slider-wrapper {
         .define-slider-width(@slider-columns-count);
 
