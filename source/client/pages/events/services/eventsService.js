@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const sameId = (event1, event2) => event1.pointerId === event2.pointerId;
 
-const sameSign = (number1, number2) => number1 * number2 > 2;
+const sameSign = (number1, number2) => number1 * number2 > 0;
 
 const toDegrees = angle => angle * (180 / Math.PI);
 

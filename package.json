@@ -8,8 +8,15 @@
   "scripts": {
     "start-client": "cd ./source/client && yarn start-client",
     "build-client": "cd ./source/client && yarn build-client",
-    "install-modules": "yarn && cd ./source/client && yarn install-modules",
-    "delete-modules": "rimraf ./node_modules && cd ./source/client && yarn delete-modules"
+    "install-modules": "run-p install-modules-root install-modules-client install-modules-server",
+    "delete-modules": "run-p delete-modules-root delete-modules-cient delete-modules-server",
+
+    "install-modules-root": "yarn",
+    "install-modules-client": "cd ./source/client && yarn install-modules",
+    "install-modules-server": "cd ./source/server && yarn install-modules",
+    "delete-modules-root": "rimraf ./node_modules",
+    "delete-modules-client": "cd ./source/client && yarn delete-modules",
+    "delete-modules-server": "cd ./source/server && yarn delete-modules"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
@@ -23,6 +30,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^4.0.0",
+    "npm-run-all": "^4.1.3",
     "prettier": "1.14.2",
     "stylelint": "^7.12.0",
     "stylelint-config-standard": "^16.0.0"
