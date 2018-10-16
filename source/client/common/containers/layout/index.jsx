@@ -9,8 +9,9 @@ import HeaderMenu from './header-menu';
 const HEADER_MENU_ITEMS = [
   { title: 'События', to: '/events' },
   { title: 'Сводка', to: '/summary' },
-  { title: 'Устройства', to: '/devices' },
-  { title: 'Сценарии', to: '/scenarios' }
+  { title: 'Видеонаблюдение', to: '/video-monitoring' },
+  // { title: 'Устройства', to: '/devices' },
+  // { title: 'Сценарии', to: '/scenarios' }
 ];
 
 const FOOTER_MENU_ITEMS = [

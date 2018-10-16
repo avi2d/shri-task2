@@ -6,8 +6,13 @@
   "license": "none",
   "private": true,
   "scripts": {
+    "start": "run-p start-client start-streaming-server",
+
     "start-client": "cd ./source/client && yarn start-client",
+    "start-streaming-server": "cd ./source/server && yarn start-streaming-server",
     "build-client": "cd ./source/client && yarn build-client",
+
+
     "install-modules": "run-p install-modules-root install-modules-client install-modules-server",
     "delete-modules": "run-p delete-modules-root delete-modules-cient delete-modules-server",
 

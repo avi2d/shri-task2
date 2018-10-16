@@ -1,0 +1,34 @@
+.video-monitoring-page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  .video-frame {
+    justify-self: stretch;
+    transition: 0.4s transform;
+    will-change: filter, transform, z-index;
+
+    video {
+      height: 200px;
+    }
+  }
+
+  .filters-controls {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    transition: 0.4s visibility, 0.4s bottom;
+    will-change: bottom, visibility, z-index;
+  }
+
+  .frequency-histogram {
+    position: absolute;
+    right: 0;
+    width: 200px;
+    transition: 0.4s visibility;
+    will-change: visibility, z-index;
+  }
+}
