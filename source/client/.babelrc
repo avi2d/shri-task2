@@ -11,6 +11,7 @@
         "alias": {
           "components": "./common/components",
           "containers": "./common/containers",
+          "constants": "./common/constants",
           "assets": "./static/assets",
           "extensions": [".js", ".jsx", ".jpg", ".jpeg", ".svg", ".webp"]
         }

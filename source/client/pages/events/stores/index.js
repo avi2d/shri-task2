@@ -1,5 +1,7 @@
 import cameraStore from './camera';
+import eventCardsStore from './events';
 
 export default {
-  camera: cameraStore
+  camera: cameraStore,
+  events: eventCardsStore
 };

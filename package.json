@@ -6,10 +6,11 @@
   "license": "none",
   "private": true,
   "scripts": {
-    "start": "run-p start-client start-streaming-server",
+    "start": "run-p start-client start-api-server start-streaming-server",
 
     "start-client": "cd ./source/client && yarn start-client",
     "start-streaming-server": "cd ./source/server && yarn start-streaming-server",
+    "start-api-server": "cd ./source/server && yarn start-api-server",
     "build-client": "cd ./source/client && yarn build-client",
 
 
