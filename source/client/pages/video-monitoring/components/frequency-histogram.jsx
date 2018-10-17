@@ -7,8 +7,8 @@ import {
   INITIAL_Z_INDEX
 } from '../constants/data-constants';
 
-const CANVAS_WIDTH = 200;
-const CANVAS_HEIGHT = 100;
+const CANVAS_WIDTH = 128;
+const CANVAS_HEIGHT = 64;
 
 @inject('videosExpanding')
 @observer
@@ -45,9 +45,9 @@ class FrequencyHistogram extends Component {
 
       this.canvasContext.fillStyle = '#ff0';
       this.canvasContext.fillRect(
-        index * 4,
+        index * 0.5 + 0.5,
         CANVAS_HEIGHT - barHeight / 2,
-        4,
+        0.5,
         barHeight
       );
     });
