@@ -13,9 +13,9 @@ function getServerWorkingTime(serverStartTime) {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-function getEvents(offset = 0, count, type) {
+async function getEvents(offset = 0, count, type) {
   const fileName = path.join(__dirname, '../database/events.json');
-  const events = readFileAsJson(fileName);
+  const events = await readFileAsJson(fileName);
   const totalCount = events.length;
 
   let filteredEvents = type ? _.filter(events, { type }) : events;
