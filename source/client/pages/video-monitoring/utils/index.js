@@ -1,8 +1,9 @@
 import Hls from 'hls.js';
+import { STREAM_URL, STREAM_HTTP_SERVER_URL } from 'constants/api-constants';
 
 export default {
   defineVideoUrl(name) {
-    return `http://localhost:9191/master?url=http://localhost:5000/streams/${name}/master.m3u8`;
+    return `${STREAM_HTTP_SERVER_URL}/master?url=${STREAM_URL}/streams/${name}/master.m3u8`;
   },
 
   initVideo(video, videoName) {

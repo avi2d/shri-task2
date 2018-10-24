@@ -25,7 +25,7 @@ export const MIN_CONTRAST = 0;
 export const DEFAULT_CONTRAST = 100;
 export const MAX_CONTRAST = 200;
 
-export const INITIAL_Z_INDEX = 1000;
+export const INITIAL_Z_INDEX = 500;
 export const VIDEO_Z_INDEX_DIFF = 50;
 export const CONTROLS_Z_INDEX_DIFF = 100;
 export const HISTOGRAM_Z_INDEX_DIFF = 150;

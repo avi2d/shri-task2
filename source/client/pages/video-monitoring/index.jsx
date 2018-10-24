@@ -6,8 +6,7 @@ import { VIDEOS } from './constants/data-constants';
 class VideoMonitoringPage extends Component {
   containerRef = React.createRef();
 
-  /* global AudioContext */
-  audioContext = new AudioContext();
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
   get container() {
     return this.containerRef.current;
