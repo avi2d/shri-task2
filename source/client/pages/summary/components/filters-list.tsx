@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Slider from 'react-slick';
 
@@ -14,14 +13,31 @@ const DEFAULT_SETTINGS = {
   touchThreshold: 15
 };
 
-class FiltersList extends Component {
-  constructor(props) {
-    super(props);
+interface IDataItem {
+  label: string;
+  value: number;
+}
 
-    this.state = {
-      selectedValue: props.defaultValue
-    };
-  }
+interface IProps {
+  vertical?: boolean;
+  swipable?: boolean;
+  defaultValue: IDataItem;
+  data: IDataItem[];
+}
+
+interface IState {
+  selectedValue: IDataItem;
+}
+
+class FiltersList extends React.Component<IProps, IState> {
+  static defaultProps = {
+    vertical: false,
+    swipable: false
+  };
+
+  state = {
+    selectedValue: this.props.defaultValue
+  };
 
   render() {
     const { selectedValue } = this.state;
@@ -74,16 +90,5 @@ class FiltersList extends Component {
     );
   }
 }
-
-FiltersList.propTypes = {
-  vertical: PropTypes.bool,
-  swipable: PropTypes.bool,
-  defaultValue: PropTypes.object,
-  data: PropTypes.array.isRequired
-};
-
-FiltersList.defaultProps = {
-  vertical: false
-};
 
 export default FiltersList;

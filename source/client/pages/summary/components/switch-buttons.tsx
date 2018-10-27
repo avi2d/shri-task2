@@ -1,9 +1,15 @@
 import classNames from 'classnames';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { SvgIcon } from 'components';
 
-const SwitchButtons = ({
+interface IProps {
+  disabledLeft?: boolean;
+  disabledRight?: boolean;
+  onSwitchLeft: () => void;
+  onSwitchRight: () => void;
+}
+
+const SwitchButtons: React.SFC<IProps> = ({
   disabledLeft,
   disabledRight,
   onSwitchLeft,
@@ -24,13 +30,6 @@ const SwitchButtons = ({
     </button>
   </div>
 );
-
-SwitchButtons.propTypes = {
-  disabledLeft: PropTypes.bool,
-  disabledRight: PropTypes.bool,
-  onSwitchLeft: PropTypes.func.isRequired,
-  onSwitchRight: PropTypes.func.isRequired
-};
 
 SwitchButtons.defaultProps = {
   disabledLeft: false,

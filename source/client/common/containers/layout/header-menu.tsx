@@ -1,19 +1,23 @@
 import classNames from 'classnames';
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { BurgerButton } from 'components';
 
-class LayoutHeaderMenu extends Component {
-  constructor(props) {
-    super(props);
+interface IProps {
+  vertical: boolean;
+  data: Array<{ title: string; to: string }>;
+}
 
-    this.state = {
-      isOpen: false
-    };
+class LayoutHeaderMenu extends React.Component<IProps> {
+  static defaultProps = {
+    vertical: false
+  };
 
-    this.onMenuToggle = () => this.setState({ isOpen: !this.state.isOpen });
-  }
+  state = {
+    isOpen: false
+  };
+
+  onMenuToggle = () => this.setState({ isOpen: !this.state.isOpen });
 
   renderMenuItems(data) {
     return data.map(({ title, to }) => (
@@ -28,7 +32,7 @@ class LayoutHeaderMenu extends Component {
     const { vertical, data } = this.props;
 
     return (
-      <Fragment>
+      <React.Fragment>
         {vertical && (
           <BurgerButton active={isOpen} onClick={this.onMenuToggle} />
         )}
@@ -41,18 +45,9 @@ class LayoutHeaderMenu extends Component {
         >
           {this.renderMenuItems(data)}
         </ul>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-
-LayoutHeaderMenu.propTypes = {
-  vertical: PropTypes.bool,
-  data: PropTypes.array
-};
-
-LayoutHeaderMenu.defaultProps = {
-  vertical: false
-};
 
 export default LayoutHeaderMenu;

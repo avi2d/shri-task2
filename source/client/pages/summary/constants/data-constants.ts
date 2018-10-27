@@ -62,9 +62,9 @@ export const FILTERS = [
   { value: 4, label: 'Камеры' }
 ];
 
-export const DEVICES_TYPES = {
-  lighting: 'lighting',
-  temperature: 'temperature',
-  temperatureCircular: 'temperature-circular',
-  scheduled: 'scheduled'
-};
+export enum DeviceType {
+  lighting = 'lighting',
+  temperature = 'temperature',
+  temperatureCircular = 'temperature-circular',
+  scheduled = 'scheduled'
+}

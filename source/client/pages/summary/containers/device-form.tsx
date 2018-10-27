@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import { SvgIcon } from 'components';
+import { IWindowsSize } from 'stores/windowSize';
 
 import { InputRange, FiltersList } from '../components';
-import { DEVICES_TYPES } from '../constants/data-constants';
-import utils from '../utils';
+import { DeviceType } from '../constants/data-constants';
+import utils from '../utils/index';
+
+interface IFilterItem {
+  label: string;
+  value: number;
+}
+
+interface IProps {
+  windowSize?: IWindowsSize;
+  filters: IFilterItem[];
+  type: DeviceType;
+  title: string;
+  scheduleInfo: string;
+  devicePrevState?: string | number;
+}
 
 @inject('windowSize')
 @observer
-class DeviceForm extends Component {
+class DeviceForm extends React.Component<IProps> {
   render() {
-    const {
-      type,
-      title,
-      scheduleInfo,
-      filters,
-      devicePrevState,
-      windowSize: { isWidthLowerThen500 }
-    } = this.props;
+    const { type, title, scheduleInfo, filters, devicePrevState } = this.props;
+    const { isWidthLowerThen500 } = this.props.windowSize!;
 
     return (
       <div className="device-form">
@@ -32,7 +40,7 @@ class DeviceForm extends Component {
           )}
         </div>
         <div className="device-schedule-info">{scheduleInfo}</div>
-        {type !== DEVICES_TYPES.temperatureCircular && (
+        {type !== DeviceType.temperatureCircular && (
           <FiltersList swipable data={filters} defaultValue={filters[0]} />
         )}
         <div className="device-form-content">
@@ -42,14 +50,5 @@ class DeviceForm extends Component {
     );
   }
 }
-
-DeviceForm.propTypes = {
-  windowSize: PropTypes.object,
-  filters: PropTypes.array.isRequired,
-  type: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  scheduleInfo: PropTypes.string.isRequired,
-  devicePrevState: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
 
 export default DeviceForm;

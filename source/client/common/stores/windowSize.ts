@@ -1,4 +1,4 @@
-import { types } from 'mobx-state-tree';
+import { Instance, types } from 'mobx-state-tree';
 
 const WindowSize = types
   .model('windowSize', {
@@ -22,11 +22,14 @@ const WindowSize = types
     handleUpdateSize({ target }) {
       self.width = target.innerWidth;
       self.height = target.innerHeight;
-    },
-
+    }
+  }))
+  .actions(self => ({
     afterCreate() {
       window.addEventListener('resize', self.handleUpdateSize);
     }
   }));
 
 export default WindowSize.create();
+
+export type IWindowsSize = Instance<typeof WindowSize>;

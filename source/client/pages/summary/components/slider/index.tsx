@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Slider from 'react-slick';
 
 import SliderItem from './item';
@@ -12,20 +11,26 @@ const DEFAULT_SETTINGS = {
   touchThreshold: 15
 };
 
-class SimpleSlider extends Component {
-  constructor(props) {
-    super(props);
+interface IProps {
+  data: any[];
+  settings: object;
+  sliderApi?: (slider: Slider) => void;
+}
 
-    this.slider = {};
+class SimpleSlider extends React.Component<IProps> {
+  static defaultProps = {
+    sliderApi: () => {}
+  };
 
-    this.componentDidMount = () => {
-      this.props.sliderApi(this.slider);
-    };
+  sliderRef = React.createRef<Slider>();
 
-    this.setSliderNode = node => {
-      this.slider = node;
-    };
+  get slider() {
+    return this.sliderRef.current;
   }
+
+  componentDidMount = () => {
+    this.props.sliderApi!(this.slider);
+  };
 
   renderSliderItems(data) {
     return data.map((item, index) => (
@@ -43,22 +48,12 @@ class SimpleSlider extends Component {
 
     return (
       <div className="slider-wrapper">
-        <Slider {...resultSettings} ref={this.setSliderNode}>
+        <Slider {...resultSettings} ref={this.sliderRef}>
           {this.renderSliderItems(data)}
         </Slider>
       </div>
     );
   }
 }
-
-SimpleSlider.propTypes = {
-  data: PropTypes.array,
-  settings: PropTypes.object,
-  sliderApi: PropTypes.func
-};
-
-SimpleSlider.defaultProps = {
-  sliderApi: () => {}
-};
 
 export default SimpleSlider;

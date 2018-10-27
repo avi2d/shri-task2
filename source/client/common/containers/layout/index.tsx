@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { withRouter } from 'react-router';
 import { inject, observer } from 'mobx-react';
 import { SvgIcon } from 'components';
+import { IWindowsSize } from 'stores/windowSize';
 
 import HeaderMenu from './header-menu';
 
 const HEADER_MENU_ITEMS = [
   { title: 'События', to: '/events' },
   { title: 'Сводка', to: '/summary' },
-  { title: 'Видеонаблюдение', to: '/video-monitoring' },
-  // { title: 'Устройства', to: '/devices' },
-  // { title: 'Сценарии', to: '/scenarios' }
+  { title: 'Видеонаблюдение', to: '/video-monitoring' }
 ];
 
 const FOOTER_MENU_ITEMS = [
@@ -21,14 +19,16 @@ const FOOTER_MENU_ITEMS = [
   'Условия использования'
 ];
 
+interface IProps {
+  windowSize?: IWindowsSize;
+  children: JSX.Element[] | JSX.Element;
+}
+
 @inject('windowSize')
 @observer
-class Layout extends Component {
+class Layout extends React.Component<IProps> {
   render() {
-    const {
-      children,
-      windowSize: { isWidthLowerThen800 }
-    } = this.props;
+    const { isWidthLowerThen800 } = this.props.windowSize!;
 
     return (
       <div className="layout">
@@ -41,7 +41,7 @@ class Layout extends Component {
             />
           </div>
         </div>
-        <div className="layout-content">{children}</div>
+        <div className="layout-content">{this.props.children}</div>
         <div className="layout-footer">
           <ul className="layout-footer-menu">
             {FOOTER_MENU_ITEMS.map(item => (
@@ -58,10 +58,5 @@ class Layout extends Component {
     );
   }
 }
-
-Layout.propTypes = {
-  windowSize: PropTypes.object,
-  children: PropTypes.node
-};
 
 export default withRouter(Layout);

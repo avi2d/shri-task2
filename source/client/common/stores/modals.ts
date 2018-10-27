@@ -1,14 +1,14 @@
-import { types } from 'mobx-state-tree';
+import { Instance, types } from 'mobx-state-tree';
 import { autorun } from 'mobx';
 
 const Modals = types
   .model('modals', {
-    active: ''
+    active: types.maybe(types.union(types.string, types.number, types.null))
   })
   .actions(self => ({
     modalToggle(modal) {
       if (self.active === modal) {
-        self.active = '';
+        self.active = null;
         return;
       }
 
@@ -16,13 +16,13 @@ const Modals = types
     },
 
     stateClear() {
-      self.active = '';
+      self.active = null;
     }
   }))
   .create();
 
 autorun(() => {
-  const layout = document.querySelector('.layout');
+  const layout = document.querySelector<HTMLElement>('.layout')!;
 
   if (Modals.active) {
     const modalOverlay = document.createElement('div');
@@ -35,7 +35,7 @@ autorun(() => {
     modalOverlay.style.visibility = 'visible';
     layout.style.filter = 'blur(3px)';
   } else {
-    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalOverlay = document.querySelector<HTMLElement>('.modal-overlay');
 
     document.body.style.overflow = '';
 
@@ -50,3 +50,5 @@ autorun(() => {
 });
 
 export default Modals;
+
+export type IModals = Instance<typeof Modals>;

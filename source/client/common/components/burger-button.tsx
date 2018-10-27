@@ -1,19 +1,18 @@
 import classNames from 'classnames';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const BurgerButton = ({ active, onClick }) => (
+interface IProps {
+  active?: boolean;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const BurgerButton: React.SFC<IProps> = ({ active, onClick }) => (
   <button className={classNames('burger-button', { active })} onClick={onClick}>
     <div className="burger-button-bar" />
     <div className="burger-button-bar" />
     <div className="burger-button-bar" />
   </button>
 );
-
-BurgerButton.propTypes = {
-  active: PropTypes.bool,
-  onClick: PropTypes.func.isRequired
-};
 
 BurgerButton.defaultProps = {
   active: false

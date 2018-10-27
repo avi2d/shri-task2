@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { Modal } from 'components';
 
-import { FILTERS, DEVICES_TYPES } from './constants/data-constants';
+import { FILTERS, DeviceType } from './constants/data-constants';
 
 import MainWidget from './containers/widgets/main';
 import ScenariosWidget from './containers/widgets/scenarios';
@@ -13,26 +13,26 @@ const SummaryPage = () => (
     <MainWidget />
     <ScenariosWidget />
     <DevicesWidget />
-    <Modal type={DEVICES_TYPES.lighting}>
+    <Modal type={DeviceType.lighting}>
       <DeviceForm
-        type={DEVICES_TYPES.lighting}
+        type={DeviceType.lighting}
         title="Xiaomi Yeelight LED Smart Bulb"
         scheduleInfo="Включится в 17:00"
         filters={FILTERS}
       />
     </Modal>
-    <Modal type={DEVICES_TYPES.temperature}>
+    <Modal type={DeviceType.temperature}>
       <DeviceForm
-        type={DEVICES_TYPES.temperature}
+        type={DeviceType.temperature}
         title="Elgato Eve Degree Connected"
         scheduleInfo="Включено"
         filters={FILTERS}
         devicePrevState="+23"
       />
     </Modal>
-    <Modal type={DEVICES_TYPES.temperatureCircular}>
+    <Modal type={DeviceType.temperatureCircular}>
       <DeviceForm
-        type={DEVICES_TYPES.temperatureCircular}
+        type={DeviceType.temperatureCircular}
         title="Elgato Eve Degree Connected"
         scheduleInfo="Включено"
         filters={FILTERS}

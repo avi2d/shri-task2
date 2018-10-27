@@ -1,10 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import classNames from 'classnames';
 
+// @ts-ignore
 import sprite from 'assets/svg/sprite.svg';
 
-const SvgIcon = ({ className, id, ...other }) => {
+interface IProps {
+  id: string;
+  className?: string;
+}
+
+const SvgIcon: React.SFC<IProps> = ({ className, id, ...other }) => {
   const classes = classNames('svg-icon', id, className);
 
   return (
@@ -12,11 +17,6 @@ const SvgIcon = ({ className, id, ...other }) => {
       <use xlinkHref={`${sprite}#${id}`} />
     </svg>
   );
-};
-
-SvgIcon.propTypes = {
-  id: PropTypes.string.isRequired,
-  className: PropTypes.string
 };
 
 export default SvgIcon;

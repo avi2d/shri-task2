@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { inject, observer } from 'mobx-react';
+import { IWindowsSize } from 'stores/windowSize';
 
 import { Slider, SwitchButtons, FiltersList } from '../../components';
 import { DEVICES_DATA, FILTERS } from '../../constants/data-constants';
@@ -9,20 +9,28 @@ const MAX_DEVICES_COUNT = 7;
 
 const isDevicesEnough = devicesCount => devicesCount > MAX_DEVICES_COUNT;
 
+interface IProps {
+  windowSize?: IWindowsSize;
+}
+
+interface ISliderApi {
+  slickPrev: () => void;
+  slickNext: () => void;
+}
+
 @inject('windowSize')
 @observer
-class DevicesWidget extends Component {
-  constructor(props) {
-    super(props);
+class DevicesWidget extends React.Component<IProps> {
+  sliderApi: ISliderApi = {
+    slickPrev: () => {},
+    slickNext: () => {}
+  };
 
-    this.sliderApi = {};
-
-    this.onSwitchSlidePrev = () => this.sliderApi.slickPrev();
-    this.onSwitchSlideNext = () => this.sliderApi.slickNext();
-  }
+  onSwitchSlidePrev = () => this.sliderApi.slickPrev();
+  onSwitchSlideNext = () => this.sliderApi.slickNext();
 
   render() {
-    const { isWidthLowerThen800 } = this.props.windowSize;
+    const { isWidthLowerThen800 } = this.props.windowSize!;
 
     return (
       <div className="devices-widget">
@@ -69,9 +77,5 @@ class DevicesWidget extends Component {
     );
   }
 }
-
-DevicesWidget.propTypes = {
-  windowSize: PropTypes.object
-};
 
 export default DevicesWidget;

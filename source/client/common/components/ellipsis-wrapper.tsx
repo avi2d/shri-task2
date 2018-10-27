@@ -1,12 +1,16 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const ellipseLastWord = text => text.replace(/\s([\wа-яА-Я]|\.{3})+$/, '...');
 
-class EllipsisWrapper extends Component {
-  ellipsedContainerRef = React.createRef();
-  ellipsedElementRef = React.createRef();
+interface IProps {
+  className?: string;
+  text: string;
+}
+
+class EllipsisWrapper extends React.Component<IProps> {
+  ellipsedContainerRef = React.createRef<HTMLDivElement>();
+  ellipsedElementRef = React.createRef<HTMLDivElement>();
 
   get ellipsedContainer() {
     return this.ellipsedContainerRef.current;
@@ -17,7 +21,7 @@ class EllipsisWrapper extends Component {
   }
 
   onEllipseElement = () => {
-    if (!this.ellipsedContainer) return;
+    if (!this.ellipsedContainer || !this.ellipsedElement) return;
 
     const ellipsedContainerHeight = this.ellipsedContainer.clientHeight;
     this.ellipsedElement.textContent = this.props.text;
@@ -51,10 +55,5 @@ class EllipsisWrapper extends Component {
     );
   }
 }
-
-EllipsisWrapper.propTypes = {
-  className: PropTypes.string,
-  text: PropTypes.string.isRequired
-};
 
 export default EllipsisWrapper;

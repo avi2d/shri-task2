@@ -1,31 +1,32 @@
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
+import { IModals } from 'stores/modals';
 
 import Button from './button';
 
+interface IProps {
+  type: string | number;
+  modals?: IModals;
+  children: JSX.Element[] | JSX.Element;
+}
+
 @inject('modals')
 @observer
-class Modal extends Component {
-  constructor(props) {
-    super(props);
+class Modal extends React.Component<IProps> {
+  onModalToggle = () => {
+    const { modalToggle, active } = this.props.modals!;
 
-    const { stateClear, modalToggle, active } = props.modals;
+    modalToggle(active);
+  };
 
-    this.componentWillUnmount = () => stateClear();
-
-    this.onModalToggle = () => modalToggle(active);
-  }
+  componentWillUnmount = () => this.props.modals!.stateClear();
 
   render() {
-    const {
-      modals: { active },
-      type,
-      children
-    } = this.props;
-    const opened = type === active;
+    const { type, children } = this.props;
+
+    const opened = type === this.props.modals!.active;
 
     return ReactDOM.createPortal(
       <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
@@ -39,15 +40,9 @@ class Modal extends Component {
           </div>
         </div>
       </div>,
-      document.querySelector('#root')
+      document.querySelector('#root') as Element
     );
   }
 }
-
-Modal.propTypes = {
-  type: PropTypes.string.isRequired,
-  modals: PropTypes.object,
-  children: PropTypes.node
-};
 
 export default Modal;

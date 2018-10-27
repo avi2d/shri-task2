@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { inject, observer } from 'mobx-react';
+import { IWindowsSize } from 'stores/windowSize';
 
 import { Slider, SwitchButtons } from '../../components';
 import { DEVICES_DATA } from '../../constants/data-constants';
@@ -25,30 +25,40 @@ const isSwitchRightDisabled = (currentSlide, isMedia) =>
     : MAX_SCENARIOS_COUNT + currentSlide * COLUMN_SCENARIOS_COUNT >=
       DEVICES_DATA.length;
 
+interface IProps {
+  windowSize?: IWindowsSize;
+}
+
+interface ISliderApi {
+  slickPrev: () => void;
+  slickNext: () => void;
+}
+
 @inject('windowSize')
 @observer
-class ScenariosWidget extends Component {
-  constructor(props) {
-    super(props);
+class ScenariosWidget extends React.Component<IProps> {
+  state = {
+    currentSlide: 0
+  };
 
-    this.state = {
-      currentSlide: 0
-    };
-    this.sliderApi = {};
+  sliderApi: ISliderApi = {
+    slickPrev: () => {},
+    slickNext: () => {}
+  };
 
-    this.onSwitchSlidePrev = () => {
-      this.setState({ currentSlide: this.state.currentSlide - 1 });
-      this.sliderApi.slickPrev();
-    };
-    this.onSwitchSlideNext = () => {
-      this.setState({ currentSlide: this.state.currentSlide + 1 });
-      this.sliderApi.slickNext();
-    };
-  }
+  onSwitchSlidePrev = () => {
+    this.setState({ currentSlide: this.state.currentSlide - 1 });
+    this.sliderApi.slickPrev();
+  };
+
+  onSwitchSlideNext = () => {
+    this.setState({ currentSlide: this.state.currentSlide + 1 });
+    this.sliderApi.slickNext();
+  };
 
   render() {
     const { currentSlide } = this.state;
-    const { isWidthLowerThen1070 } = this.props.windowSize;
+    const { isWidthLowerThen1070 } = this.props.windowSize!;
 
     const switchLeftDisabled = currentSlide === 0;
     const switchRightDisabled = isSwitchRightDisabled(
@@ -105,9 +115,5 @@ class ScenariosWidget extends Component {
     );
   }
 }
-
-ScenariosWidget.propTypes = {
-  windowSize: PropTypes.object
-};
 
 export default ScenariosWidget;
