@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import * as React from 'react';
 
-const ellipseLastWord = text => text.replace(/\s([\wа-яА-Я]|\.{3})+$/, '...');
+const ellipseLastWord = (text: string) =>
+  text.replace(/\s([\wа-яА-Я]|\.{3})+$/, '...');
 
 interface IProps {
   className?: string;

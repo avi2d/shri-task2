@@ -1,24 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { SvgIcon } from 'components';
 
-const DIRECTIONS = {
-  prev: 'prev',
-  next: 'next'
-};
+interface IProps {
+  switchTo?: 'prev' | 'next';
+}
 
-const StationCompositionSwitchButton = ({ switchTo }) => (
+const StationCompositionSwitchButton: React.SFC<IProps> = ({ switchTo }) => (
   <button className={`station-composition-switch-button switch-to-${switchTo}`}>
     <SvgIcon id="composition-switch" />
   </button>
 );
 
-StationCompositionSwitchButton.propTypes = {
-  switchTo: PropTypes.oneOf(Object.values(DIRECTIONS))
-};
-
 StationCompositionSwitchButton.defaultProps = {
-  switchTo: DIRECTIONS.next
+  switchTo: 'next'
 };
 
 export default StationCompositionSwitchButton;

@@ -1,11 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import CompositionSwitchButton from './composition-switch-button';
 import TrackLineRange from './track-line-range';
 import VolumeRange from './volume-range';
 
-const EventsSourceStation = ({ albumcover, artist, track, volume }) => {
+interface IProps {
+  albumcover: string;
+  artist: string;
+  track: { name: string; length: string };
+  volume: string | number;
+}
+
+const EventsSourceStation: React.SFC<IProps> = ({
+  albumcover,
+  artist,
+  track,
+  volume
+}) => {
   const compositionName = `${artist} - ${track.name}`;
 
   return (
@@ -34,13 +45,6 @@ const EventsSourceStation = ({ albumcover, artist, track, volume }) => {
       </div>
     </div>
   );
-};
-
-EventsSourceStation.propTypes = {
-  albumcover: PropTypes.string,
-  artist: PropTypes.string,
-  track: PropTypes.object,
-  volume: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 export default EventsSourceStation;

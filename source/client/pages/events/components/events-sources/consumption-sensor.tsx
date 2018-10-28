@@ -1,7 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const EventSourceConsumptionSensor = ({
+interface IProps {
+  image: string;
+  image2x: string;
+  image3x: string;
+  imageWebp: string;
+  imageWebp2x: string;
+  imageWebp3x: string;
+}
+
+const EventSourceConsumptionSensor: React.SFC<IProps> = ({
   image,
   image2x,
   image3x,
@@ -22,14 +30,5 @@ const EventSourceConsumptionSensor = ({
     </picture>
   </div>
 );
-
-EventSourceConsumptionSensor.propTypes = {
-  image: PropTypes.string.isRequired,
-  image2x: PropTypes.string,
-  image3x: PropTypes.string,
-  imageWebp: PropTypes.string,
-  imageWebp2x: PropTypes.string,
-  imageWebp3x: PropTypes.string
-};
 
 export default EventSourceConsumptionSensor;

@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 
-import { addEvents } from '../../decorators';
+import EventsService from '../../services/eventsService';
+import { ICamera } from '../../stores/camera';
 
-@addEvents
+interface IProps {
+  camera: ICamera;
+  image: string;
+}
+
 @inject('camera')
 @observer
-class EventSourceMotionSensor extends Component {
-  imageRef = React.createRef();
+class EventSourceMotionSensor extends React.Component<IProps> {
+  imageRef = React.createRef<HTMLImageElement>();
 
   get image() {
-    return this.imageRef.current;
+    return this.imageRef.current!;
   }
+
+  events = new EventsService();
 
   componentDidMount() {
     this.image.onload = () => {
@@ -32,24 +38,19 @@ class EventSourceMotionSensor extends Component {
     };
   }
 
-  onPointerDown = event => {
-    this.props.events.addEvent(event);
+  onPointerDown = (event: PointerEvent) => {
+    this.events.addEvent(event);
 
-    const { setScrollStartEvent, setRotateStartEvent } = this.props.events;
+    const { setScrollStartEvent, setRotateStartEvent } = this.events;
 
     setScrollStartEvent();
     setRotateStartEvent();
   };
 
-  onPointerMove = event => {
-    this.props.events.updateEvent(event);
+  onPointerMove = (event: PointerEvent) => {
+    this.events.updateEvent(event);
 
-    const {
-      eventsCount,
-      pinchDiff,
-      scrollDiff,
-      rotateDiff
-    } = this.props.events;
+    const { eventsCount, pinchDiff, scrollDiff, rotateDiff } = this.events;
     const { updateScale, updateOffset, updateBrightness } = this.props.camera;
 
     if (eventsCount === 2) {
@@ -64,8 +65,8 @@ class EventSourceMotionSensor extends Component {
     }
   };
 
-  onPointerUp = event => {
-    const { removeEvent, clearEventsAccounts } = this.props.events;
+  onPointerUp = (event: PointerEvent) => {
+    const { removeEvent, clearEventsAccounts } = this.events;
 
     removeEvent(event);
     clearEventsAccounts();
@@ -159,11 +160,5 @@ class EventSourceMotionSensor extends Component {
     );
   }
 }
-
-EventSourceMotionSensor.propTypes = {
-  camera: PropTypes.object,
-  events: PropTypes.object,
-  image: PropTypes.string.isRequired
-};
 
 export default EventSourceMotionSensor;

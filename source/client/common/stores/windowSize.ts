@@ -19,9 +19,9 @@ const WindowSize = types
     }
   }))
   .actions(self => ({
-    handleUpdateSize({ target }) {
-      self.width = target.innerWidth;
-      self.height = target.innerHeight;
+    handleUpdateSize({ target }: Event) {
+      self.width = (target as Window).innerWidth;
+      self.height = (target as Window).innerHeight;
     }
   }))
   .actions(self => ({

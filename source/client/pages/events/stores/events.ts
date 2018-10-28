@@ -1,16 +1,23 @@
-import { types, flow } from 'mobx-state-tree';
+import { types, flow, Instance } from 'mobx-state-tree';
 
 import eventsSource from '../sources/events';
+import { EventCardType, EventCardSize } from '../constants/data-constants';
 
 const Event = types.model({
-  type: types.enumeration('EventType', ['critical', 'info']),
+  type: types.enumeration<EventCardType>(
+    'EventType',
+    Object.values(EventCardType)
+  ),
+  size: types.enumeration<EventCardSize>(
+    'EventSize',
+    Object.values(EventCardSize)
+  ),
   title: types.string,
   source: types.string,
   time: types.string,
-  description: types.maybe(types.string),
+  description: types.maybeNull(types.string),
   icon: types.string,
-  size: types.string,
-  data: types.frozen
+  data: types.frozen()
 });
 
 const Events = types
@@ -28,3 +35,6 @@ const Events = types
   }));
 
 export default Events.create();
+
+export type IEvent = Instance<typeof Event>;
+export type IEvents = Instance<typeof Events>;

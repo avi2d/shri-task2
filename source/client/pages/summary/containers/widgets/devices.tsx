@@ -3,19 +3,21 @@ import { inject, observer } from 'mobx-react';
 import { IWindowsSize } from 'stores/windowSize';
 
 import { Slider, SwitchButtons, FiltersList } from '../../components';
-import { DEVICES_DATA, FILTERS } from '../../constants/data-constants';
+import { IDevice, IFilter } from '../../stores/devices';
+import { ISliderApi } from '../../types';
 
 const MAX_DEVICES_COUNT = 7;
 
-const isDevicesEnough = devicesCount => devicesCount > MAX_DEVICES_COUNT;
+const isDevicesEnough = (devicesCount: number) =>
+  devicesCount > MAX_DEVICES_COUNT;
+
+const defineSlidesToShow = (devicesCount: number) =>
+  isDevicesEnough(devicesCount) ? MAX_DEVICES_COUNT : devicesCount;
 
 interface IProps {
+  devices: IDevice[];
+  filters: IFilter[];
   windowSize?: IWindowsSize;
-}
-
-interface ISliderApi {
-  slickPrev: () => void;
-  slickNext: () => void;
 }
 
 @inject('windowSize')
@@ -31,17 +33,20 @@ class DevicesWidget extends React.Component<IProps> {
 
   render() {
     const { isWidthLowerThen800 } = this.props.windowSize!;
+    const { devices, filters } = this.props;
 
     return (
       <div className="devices-widget">
         <div className="widget-header">
           <span className="widget-header-title">Избранные устройства</span>
-          <FiltersList
-            vertical={isWidthLowerThen800}
-            data={FILTERS}
-            defaultValue={FILTERS[0]}
-          />
-          {isDevicesEnough(DEVICES_DATA.length) && (
+          {filters.length > 0 && (
+            <FiltersList
+              vertical={isWidthLowerThen800}
+              data={filters}
+              defaultValue={filters[0]}
+            />
+          )}
+          {isDevicesEnough(devices.length) && (
             <SwitchButtons
               onSwitchLeft={this.onSwitchSlidePrev}
               onSwitchRight={this.onSwitchSlideNext}
@@ -50,13 +55,11 @@ class DevicesWidget extends React.Component<IProps> {
         </div>
         <div className="widget-content">
           <Slider
-            data={DEVICES_DATA}
+            data={devices}
             settings={{
               swipe: false,
               infinite: true,
-              slidesToShow: isDevicesEnough(DEVICES_DATA.length)
-                ? MAX_DEVICES_COUNT
-                : DEVICES_DATA.length,
+              slidesToShow: defineSlidesToShow(devices.length),
               responsive: [
                 {
                   breakpoint: 800,
@@ -68,8 +71,8 @@ class DevicesWidget extends React.Component<IProps> {
                 }
               ]
             }}
-            sliderApi={actions => {
-              this.sliderApi = actions;
+            throwSliderApi={api => {
+              this.sliderApi = api;
             }}
           />
         </div>

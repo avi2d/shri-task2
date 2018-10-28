@@ -1,12 +1,12 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import Slider from 'rc-slider';
+import Slider, { Marks } from 'rc-slider';
 
 import InputCircularRange from './input-circular-range';
-import { DeviceType } from '../constants/data-constants';
-import utils from '../utils/index';
+import { DeviceType } from '../types';
+import utils from '../utils';
 
-const defineMarks = (min, max) => ({
+const defineMarks = (min: any, max: any): Marks => ({
   [min]: min,
   [max]: utils.formatNumberToOutput(max)
 });

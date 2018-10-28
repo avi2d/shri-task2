@@ -7,11 +7,13 @@ import 'pepjs';
 
 import App from './app';
 import eventsStores from './events/stores';
-import videoMonitoringStores from './video-monitoring/stores';
+import summaryStores from './summary/stores';
+// import videoMonitoringStores from './video-monitoring/stores';
 
 const stores = {
   ...commonStores,
-  // ...eventsStores,
+  ...eventsStores,
+  ...summaryStores,
   // ...videoMonitoringStores
 };
 

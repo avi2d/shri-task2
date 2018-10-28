@@ -7,7 +7,7 @@ interface IProps {
   shStyle?: Style;
   className?: string;
   children: JSX.Element[] | JSX.Element | string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.SFC<IProps> = ({

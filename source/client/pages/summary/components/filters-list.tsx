@@ -1,9 +1,12 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import Select from 'react-select';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
+import { observer } from 'mobx-react';
 
-const DEFAULT_SETTINGS = {
+import { IFilter } from '../stores/devices';
+
+const DEFAULT_SETTINGS: Settings = {
   arrows: false,
   infinite: false,
   variableWidth: true,
@@ -13,22 +16,18 @@ const DEFAULT_SETTINGS = {
   touchThreshold: 15
 };
 
-interface IDataItem {
-  label: string;
-  value: number;
-}
-
 interface IProps {
   vertical?: boolean;
   swipable?: boolean;
-  defaultValue: IDataItem;
-  data: IDataItem[];
+  defaultValue: IFilter;
+  data: IFilter[];
 }
 
 interface IState {
-  selectedValue: IDataItem;
+  selectedValue: IFilter;
 }
 
+@observer
 class FiltersList extends React.Component<IProps, IState> {
   static defaultProps = {
     vertical: false,
@@ -61,11 +60,11 @@ class FiltersList extends React.Component<IProps, IState> {
           {...DEFAULT_SETTINGS}
           className={classNames('filters-list', { swipable })}
         >
-          {data.map(({ label, value }, index) => (
-            <div key={value} className="item-wrapper">
+          {data.map(({ label, id }, index) => (
+            <div key={id} className="item-wrapper">
               <li
                 className={classNames({
-                  selected: index === selectedValue.value
+                  selected: index === selectedValue.id
                 })}
               >
                 {label}
@@ -78,10 +77,10 @@ class FiltersList extends React.Component<IProps, IState> {
 
     return (
       <ul className="filters-list">
-        {data.map(({ label, value }, index) => (
+        {data.map(({ label, id }, index) => (
           <li
-            key={value}
-            className={classNames({ selected: index === selectedValue.value })}
+            key={id}
+            className={classNames({ selected: index === selectedValue.id })}
           >
             {label}
           </li>

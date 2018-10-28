@@ -2,10 +2,11 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { BurgerButton } from 'components';
+import { IMenuItem } from 'constants/layout-constants';
 
 interface IProps {
-  vertical: boolean;
-  data: Array<{ title: string; to: string }>;
+  vertical?: boolean;
+  data: IMenuItem[];
 }
 
 class LayoutHeaderMenu extends React.Component<IProps> {
@@ -19,7 +20,7 @@ class LayoutHeaderMenu extends React.Component<IProps> {
 
   onMenuToggle = () => this.setState({ isOpen: !this.state.isOpen });
 
-  renderMenuItems(data) {
+  renderMenuItems(data: IMenuItem[]) {
     return data.map(({ title, to }) => (
       <li key={to}>
         <NavLink to={to}>{title}</NavLink>

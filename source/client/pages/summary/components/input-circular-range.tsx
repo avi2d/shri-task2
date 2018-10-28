@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { IPoint } from 'types';
 
-import utils from '../utils/index';
+import utils from '../utils';
 
 const DISABLED_ANGLE = 60;
 const DISABLED_PART = DISABLED_ANGLE / 360;
@@ -14,7 +15,7 @@ const STROKE_WIDTH = 24;
 const STROKE_WIDTH_HALF = STROKE_WIDTH / 2;
 const CIRCUMFERENCE = 2 * Math.PI * (RADIUS - STROKE_WIDTH_HALF);
 
-const defineAngle = (A, B, C) => {
+const defineAngle = (A: IPoint, B: IPoint, C: IPoint) => {
   const AB = Math.sqrt((B.x - A.x) ** 2 + (B.y - A.y) ** 2);
   const BC = Math.sqrt((B.x - C.x) ** 2 + (B.y - C.y) ** 2);
   const AC = Math.sqrt((C.x - A.x) ** 2 + (C.y - A.y) ** 2);
@@ -27,23 +28,35 @@ const defineAngle = (A, B, C) => {
   return Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB));
 };
 
-const toDegrees = angle => angle * (180 / Math.PI);
+const toDegrees = (angle: number) => angle * (180 / Math.PI);
 
-const defineValueByAngle = (angle, minValue, maxValue) => {
+const defineValueByAngle = (
+  angle: number,
+  minValue: number,
+  maxValue: number
+) => {
   const part = (-MIN_ANGLE + angle) / (MAX_ANGLE - MIN_ANGLE);
   const difference = maxValue - minValue;
 
   return Math.round(minValue + part * difference);
 };
 
-const defineAngleByValue = (value, minValue, maxValue) => {
+const defineAngleByValue = (
+  value: number,
+  minValue: number,
+  maxValue: number
+) => {
   const part = (-minValue + value) / (maxValue - minValue);
   const difference = MAX_ANGLE - MIN_ANGLE;
 
   return MIN_ANGLE + part * difference;
 };
 
-const defineDashOffset = (value, minValue, maxValue) => {
+const defineDashOffset = (
+  value: number,
+  minValue: number,
+  maxValue: number
+) => {
   const part = (-minValue + value) / (maxValue - minValue);
 
   return CIRCUMFERENCE * (1 - part);
@@ -70,13 +83,13 @@ class InputCircularRange extends React.Component<IProps> {
 
   state = {
     angle: defineAngleByValue(
-      this.props.defaultValue,
-      this.props.min,
-      this.props.max
+      this.props.defaultValue!,
+      this.props.min!,
+      this.props.max!
     )
   };
 
-  onUpdateAngle = angle => {
+  onUpdateAngle = (angle: number) => {
     if (angle >= MAX_ANGLE) {
       if (this.state.angle !== MAX_ANGLE) {
         this.setState({ angle: MAX_ANGLE });
@@ -90,7 +103,7 @@ class InputCircularRange extends React.Component<IProps> {
     }
   };
 
-  onUpdateAngleByPoint = (clientX, clientY) => {
+  onUpdateAngleByPoint = (clientX: number, clientY: number) => {
     const inputCircularRangeOffset = this.inputCircularRange.getBoundingClientRect();
 
     const mousePoint = {
@@ -123,27 +136,27 @@ class InputCircularRange extends React.Component<IProps> {
     this.onUpdateAngle(resultAngle);
   };
 
-  onMouseDown = event => {
+  onMouseDown = (event: React.MouseEvent<HTMLInputElement>) => {
     if (event.button !== 0) return;
 
     this.onUpdateAngleByPoint(event.clientX, event.clientY);
 
-    document.addEventListener('mousemove', this.mouseMove);
-    document.addEventListener('mouseup', this.mouseUp);
+    document.addEventListener('mousemove', this.onMouseMove);
+    document.addEventListener('mouseup', this.onMouseUp);
   };
 
-  mouseMove = event => {
+  onMouseMove = (event: MouseEvent) => {
     event.preventDefault();
 
     this.onUpdateAngleByPoint(event.clientX, event.clientY);
   };
 
-  mouseUp = () => {
-    document.removeEventListener('mousemove', this.mouseMove);
-    document.removeEventListener('mouseup', this.mouseUp);
+  onMouseUp = () => {
+    document.removeEventListener('mousemove', this.onMouseMove);
+    document.removeEventListener('mouseup', this.onMouseUp);
   };
 
-  onTouchStart = event => {
+  onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     this.onUpdateAngleByPoint(
       event.touches[0].clientX,
       event.touches[0].clientY
@@ -159,7 +172,7 @@ class InputCircularRange extends React.Component<IProps> {
     });
   };
 
-  onTouchMove = event => {
+  onTouchMove = (event: TouchEvent) => {
     event.preventDefault();
 
     this.onUpdateAngleByPoint(
@@ -168,7 +181,7 @@ class InputCircularRange extends React.Component<IProps> {
     );
   };
 
-  onTouchEnd = event => {
+  onTouchEnd = (event: TouchEvent) => {
     event.preventDefault();
 
     this.inputCircularRange.removeEventListener('touchmove', this.onTouchMove);
@@ -179,8 +192,8 @@ class InputCircularRange extends React.Component<IProps> {
     const { angle } = this.state;
     const { min, max } = this.props;
 
-    const value = defineValueByAngle(angle, min, max);
-    const dashOffset = defineDashOffset(value, min, max);
+    const value = defineValueByAngle(angle, min!, max!);
+    const dashOffset = defineDashOffset(value, min!, max!);
 
     return (
       <div

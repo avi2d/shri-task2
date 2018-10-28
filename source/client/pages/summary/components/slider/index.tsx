@@ -1,10 +1,13 @@
 import classNames from 'classnames';
 import * as React from 'react';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
+import { observer } from 'mobx-react';
 
 import SliderItem from './item';
+import { IDevice } from '../../stores/devices';
+import { ISliderApi } from '../../types';
 
-const DEFAULT_SETTINGS = {
+const DEFAULT_SETTINGS: Settings = {
   arrows: false,
   infinite: false,
   speed: 400,
@@ -12,27 +15,31 @@ const DEFAULT_SETTINGS = {
 };
 
 interface IProps {
-  data: any[];
-  settings: object;
-  sliderApi?: (slider: Slider) => void;
+  data: IDevice[];
+  settings: Settings;
+  throwSliderApi?: (sliderApi: ISliderApi) => void;
 }
 
+@observer
 class SimpleSlider extends React.Component<IProps> {
-  static defaultProps = {
-    sliderApi: () => {}
-  };
-
   sliderRef = React.createRef<Slider>();
 
   get slider() {
-    return this.sliderRef.current;
+    return this.sliderRef.current!;
   }
 
   componentDidMount = () => {
-    this.props.sliderApi!(this.slider);
+    if (!this.props.throwSliderApi) return;
+
+    const sliderApi: ISliderApi = {
+      slickPrev: this.slider.slickPrev,
+      slickNext: this.slider.slickNext
+    };
+
+    this.props.throwSliderApi(sliderApi);
   };
 
-  renderSliderItems(data) {
+  renderSliderItems(data: IDevice[]) {
     return data.map((item, index) => (
       <SliderItem
         key={index}

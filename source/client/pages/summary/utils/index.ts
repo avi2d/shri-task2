@@ -1,7 +1,7 @@
-import { DeviceType } from '../constants/data-constants';
+import { DeviceType } from '../types';
 
 export default {
-  defineIcon(type, turnedOn = false) {
+  defineIcon(type: string, turnedOn: boolean | null = false) {
     if (type !== DeviceType.scheduled) {
       return `state-${type}-${turnedOn ? 'on' : 'off'}`;
     }
@@ -9,7 +9,7 @@ export default {
     return `state-${type}`;
   },
 
-  formatNumberToOutput(value) {
-    return value > 0 ? `+${value}` : value;
+  formatNumberToOutput(value: number | string): string {
+    return value > 0 ? `+${value}` : `${value}`;
   }
 };

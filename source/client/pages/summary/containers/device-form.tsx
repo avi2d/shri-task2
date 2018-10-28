@@ -4,17 +4,13 @@ import { SvgIcon } from 'components';
 import { IWindowsSize } from 'stores/windowSize';
 
 import { InputRange, FiltersList } from '../components';
-import { DeviceType } from '../constants/data-constants';
-import utils from '../utils/index';
-
-interface IFilterItem {
-  label: string;
-  value: number;
-}
+import { IFilter } from '../stores/devices';
+import { DeviceType } from '../types';
+import utils from '../utils';
 
 interface IProps {
   windowSize?: IWindowsSize;
-  filters: IFilterItem[];
+  filters: IFilter[];
   type: DeviceType;
   title: string;
   scheduleInfo: string;
@@ -40,9 +36,10 @@ class DeviceForm extends React.Component<IProps> {
           )}
         </div>
         <div className="device-schedule-info">{scheduleInfo}</div>
-        {type !== DeviceType.temperatureCircular && (
-          <FiltersList swipable data={filters} defaultValue={filters[0]} />
-        )}
+        {type !== DeviceType.temperatureCircular &&
+          filters.length > 0 && (
+            <FiltersList swipable data={filters} defaultValue={filters[0]} />
+          )}
         <div className="device-form-content">
           <InputRange vertical={isWidthLowerThen500} type={type} />
         </div>

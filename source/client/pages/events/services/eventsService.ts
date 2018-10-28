@@ -1,34 +1,39 @@
 import _ from 'lodash';
+import { IPoint } from 'types';
 
-const sameId = (event1, event2) => event1.pointerId === event2.pointerId;
+const sameId = (event1: PointerEvent, event2: PointerEvent) =>
+  event1.pointerId === event2.pointerId;
 
-const sameSign = (number1, number2) => number1 * number2 > 0;
+const sameSign = (number1: number, number2: number) => number1 * number2 > 0;
 
-const toDegrees = angle => angle * (180 / Math.PI);
+const toDegrees = (angle: number) => angle * (180 / Math.PI);
 
-const defineAngle = (point1, point2) =>
+const defineAngle = (point1: IPoint, point2: IPoint) =>
   Math.atan2(point2.y - point1.y, point2.x - point1.x);
 
-const defineEventsDiff = (event1, event2) => ({
+const defineEventsDiff = (
+  event1: PointerEvent,
+  event2: PointerEvent
+): IPoint => ({
   x: event2.clientX - event1.clientX,
   y: event2.clientY - event1.clientY
 });
 
-const defineMidpoint = ([event1, event2]) => ({
+const defineMidpoint = ([event1, event2]: PointerEvent[]): IPoint => ({
   x: (event1.clientX + event2.clientX) / 2,
   y: (event1.clientY + event2.clientY) / 2
 });
 
 class EventsService {
-  events = [];
+  events: PointerEvent[] = [];
 
-  scrollStartEvent = null;
+  scrollStartEvent: PointerEvent | null = null;
 
-  prevPinchDistance = undefined;
+  prevPinchDistance: number | undefined = undefined;
 
-  prevRotateMidpoint = null;
-  prevRotatePoint = null;
-  prevRotateAngle = undefined;
+  prevRotateMidpoint: IPoint | null = null;
+  prevRotatePoint: IPoint | null = null;
+  prevRotateAngle: number | undefined = undefined;
 
   get eventsCount() {
     return this.events.length;
@@ -59,7 +64,7 @@ class EventsService {
     if (this.events.length !== 2) return undefined;
 
     return toDegrees(
-      defineAngle(this.curRotateMidpoint, this.curRotateRightPoint)
+      defineAngle(this.curRotateMidpoint!, this.curRotateRightPoint!)
     );
   }
 
@@ -73,7 +78,7 @@ class EventsService {
     let pinchDistanceDiff = 0;
 
     if (this.prevPinchDistance !== undefined) {
-      pinchDistanceDiff = this.curPinchDistance - this.prevPinchDistance;
+      pinchDistanceDiff = this.curPinchDistance! - this.prevPinchDistance;
     }
 
     this.prevPinchDistance = this.curPinchDistance;
@@ -89,10 +94,10 @@ class EventsService {
       this.prevRotatePoint &&
       this.prevRotateAngle !== undefined
     ) {
-      if (!sameSign(this.curRotateAngle, this.prevRotateAngle)) {
+      if (!sameSign(this.curRotateAngle!, this.prevRotateAngle)) {
         rotateDiff = 0;
       } else {
-        rotateDiff = this.curRotateAngle - this.prevRotateAngle;
+        rotateDiff = this.curRotateAngle! - this.prevRotateAngle;
       }
     }
 
@@ -137,18 +142,18 @@ class EventsService {
     this.clearScroll();
   };
 
-  addEvent = event => {
+  addEvent = (event: PointerEvent) => {
     this.events.push(event);
   };
 
-  updateEvent = event => {
+  updateEvent = (event: PointerEvent) => {
     this.events = _.map(
       this.events,
       item => (sameId(item, event) ? event : item)
     );
   };
 
-  removeEvent = event => {
+  removeEvent = (event: PointerEvent) => {
     _.remove(this.events, { pointerId: event.pointerId });
   };
 }

@@ -2,9 +2,13 @@ import * as React from 'react';
 import { SvgIcon } from 'components';
 
 import { Slider } from '../../components';
-import { DEVICES_DATA } from '../../constants/data-constants';
+import { IDevice } from '../../stores/devices';
 
-const MainWidget = () => (
+interface IProps {
+  devices: IDevice[];
+}
+
+const MainWidget: React.SFC<IProps> = ({ devices }) => (
   <div className="main-widget">
     <div className="widget-header">
       <span className="widget-header-title">Главное</span>
@@ -30,18 +34,16 @@ const MainWidget = () => (
         </div>
       </div>
       <Slider
-        data={DEVICES_DATA}
+        data={devices}
         settings={{
           vertical: true,
           swipeToSlide: true,
-          verticalSwiping: true,
           slidesToShow: 3,
           responsive: [
             {
               breakpoint: 1320,
               settings: {
                 vertical: false,
-                verticalSwiping: false,
                 infinite: true
               }
             },
@@ -49,7 +51,6 @@ const MainWidget = () => (
               breakpoint: 800,
               settings: {
                 vertical: false,
-                verticalSwiping: false,
                 infinite: true,
                 slidesToShow: 4
               }

@@ -16,6 +16,7 @@
           "containers": "./common/containers",
           "constants": "./common/constants",
           "stores": "./common/stores",
+          "types": "./common/types",
           "assets": "./static/assets",
           "extensions": [".js", ".jsx", "ts", ".tsx", ".jpg", ".jpeg", ".svg", ".webp"]
         }

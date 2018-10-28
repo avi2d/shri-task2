@@ -1,4 +1,5 @@
-import { types } from 'mobx-state-tree';
+import { Instance, types } from 'mobx-state-tree';
+import { IPoint } from 'types';
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
@@ -6,7 +7,8 @@ const MAX_SCALE = 4;
 const MIN_BRIGHTNESS = 0;
 const MAX_BRIGHTNESS = 2;
 
-const clamp = (value, min, max) => Math.min(Math.max(min, value), max);
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(min, value), max);
 
 const Camera = types
   .model('camera', {
@@ -40,7 +42,37 @@ const Camera = types
     }
   }))
   .actions(self => ({
-    performInitialData(imageWidth, imageHeight) {
+    updateRange() {
+      const scaledImageWidth =
+        self.containerDefaultWidth * self.imageCurrentScale;
+      const scaledImageHeight =
+        self.containerDefaultHeight * self.imageCurrentScale;
+
+      self.rangeX = Math.max(0, scaledImageWidth - self.containerWidth);
+      self.rangeY = Math.max(0, scaledImageHeight - self.containerHeight);
+
+      self.rangeMaxX = self.rangeX / 2;
+      self.rangeMinX = 0 - self.rangeMaxX;
+
+      self.rangeMaxY = self.rangeY / 2;
+      self.rangeMinY = 0 - self.rangeMaxY;
+    },
+
+    updateOffset(scrollDiff: IPoint) {
+      self.imageCurrentX = clamp(
+        self.imageStartX + scrollDiff.x,
+        self.rangeMinX,
+        self.rangeMaxX
+      );
+      self.imageCurrentY = clamp(
+        self.imageStartY + scrollDiff.y,
+        self.rangeMinY,
+        self.rangeMaxY
+      );
+    }
+  }))
+  .actions(self => ({
+    performInitialData(imageWidth: number, imageHeight: number) {
       self.containerWidth = imageWidth;
       self.containerHeight = imageHeight;
       self.containerDefaultWidth = imageWidth;
@@ -60,7 +92,7 @@ const Camera = types
       );
     },
 
-    updateScale(pinchDiff) {
+    updateScale(pinchDiff: number) {
       const newScale = self.imageStartScale + pinchDiff / 100;
 
       self.imageStartScale = clamp(newScale, MIN_SCALE, MAX_SCALE);
@@ -80,36 +112,7 @@ const Camera = types
       );
     },
 
-    updateRange() {
-      const scaledImageWidth =
-        self.containerDefaultWidth * self.imageCurrentScale;
-      const scaledImageHeight =
-        self.containerDefaultHeight * self.imageCurrentScale;
-
-      self.rangeX = Math.max(0, scaledImageWidth - self.containerWidth);
-      self.rangeY = Math.max(0, scaledImageHeight - self.containerHeight);
-
-      self.rangeMaxX = self.rangeX / 2;
-      self.rangeMinX = 0 - self.rangeMaxX;
-
-      self.rangeMaxY = self.rangeY / 2;
-      self.rangeMinY = 0 - self.rangeMaxY;
-    },
-
-    updateOffset(scrollDiff) {
-      self.imageCurrentX = clamp(
-        self.imageStartX + scrollDiff.x,
-        self.rangeMinX,
-        self.rangeMaxX
-      );
-      self.imageCurrentY = clamp(
-        self.imageStartY + scrollDiff.y,
-        self.rangeMinY,
-        self.rangeMaxY
-      );
-    },
-
-    updateBrightness(rotateDiff) {
+    updateBrightness(rotateDiff: number) {
       const newBrightness = self.imageStartBrightness + rotateDiff / 100;
 
       self.imageStartBrightness = clamp(
@@ -128,3 +131,5 @@ const Camera = types
   }));
 
 export default Camera.create();
+
+export type ICamera = Instance<typeof Camera>;

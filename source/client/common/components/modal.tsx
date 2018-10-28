@@ -3,11 +3,12 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { inject, observer } from 'mobx-react';
 import { IModals } from 'stores/modals';
+import { ModalActive } from 'types';
 
 import Button from './button';
 
 interface IProps {
-  type: string | number;
+  type: ModalActive;
   modals?: IModals;
   children: JSX.Element[] | JSX.Element;
 }

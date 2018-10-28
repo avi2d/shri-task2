@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 
 import EventCard from './components/event-card';
+import { IEvents } from './stores/events';
+
+interface IProps {
+  events: IEvents;
+}
 
 @inject('events')
 @observer
-class EventsPage extends Component {
-  componentDidMount() {
-    this.props.events.fetchEvents();
+class EventsPage extends React.Component<IProps> {
+  async componentDidMount() {
+    await this.props.events.fetchEvents();
   }
 
   render() {
@@ -26,9 +30,5 @@ class EventsPage extends Component {
     );
   }
 }
-
-EventCard.propTypes = {
-  events: PropTypes.object
-};
 
 export default EventsPage;

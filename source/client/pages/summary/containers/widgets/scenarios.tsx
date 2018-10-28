@@ -3,35 +3,36 @@ import { inject, observer } from 'mobx-react';
 import { IWindowsSize } from 'stores/windowSize';
 
 import { Slider, SwitchButtons } from '../../components';
-import { DEVICES_DATA } from '../../constants/data-constants';
+import { IDevice } from '../../stores/devices';
+import { ISliderApi } from '../../types';
 
 const MAX_SCENARIOS_COUNT = 9;
 const MAX_SCENARIOS_COUNT_MEDIA = 6;
 const COLUMN_SCENARIOS_COUNT = 3;
 
-const isScenariosEnough = scenariosCount =>
+const isScenariosEnough = (scenariosCount: number) =>
   scenariosCount > MAX_SCENARIOS_COUNT;
 
-const defineSlidesToShow = scenariosCount => {
+const defineSlidesToShow = (scenariosCount: number) => {
   if (scenariosCount > 6) return 3;
   if (scenariosCount > 3) return 2;
   return 1;
 };
 
-const isSwitchRightDisabled = (currentSlide, isMedia) =>
+const isSwitchRightDisabled = (
+  devices: IDevice[],
+  currentSlide: number,
+  isMedia: boolean
+) =>
   isMedia
     ? MAX_SCENARIOS_COUNT_MEDIA + currentSlide * COLUMN_SCENARIOS_COUNT >=
-      DEVICES_DATA.length
+      devices.length
     : MAX_SCENARIOS_COUNT + currentSlide * COLUMN_SCENARIOS_COUNT >=
-      DEVICES_DATA.length;
+      devices.length;
 
 interface IProps {
+  devices: IDevice[];
   windowSize?: IWindowsSize;
-}
-
-interface ISliderApi {
-  slickPrev: () => void;
-  slickNext: () => void;
 }
 
 @inject('windowSize')
@@ -59,9 +60,11 @@ class ScenariosWidget extends React.Component<IProps> {
   render() {
     const { currentSlide } = this.state;
     const { isWidthLowerThen1070 } = this.props.windowSize!;
+    const { devices } = this.props;
 
     const switchLeftDisabled = currentSlide === 0;
     const switchRightDisabled = isSwitchRightDisabled(
+      devices,
       currentSlide,
       isWidthLowerThen1070
     );
@@ -70,7 +73,7 @@ class ScenariosWidget extends React.Component<IProps> {
       <div className="scenarios-widget">
         <div className="widget-header">
           <span className="widget-header-title">Избранные сценарии</span>
-          {isScenariosEnough(DEVICES_DATA.length) && (
+          {isScenariosEnough(devices.length) && (
             <SwitchButtons
               disabledLeft={switchLeftDisabled}
               disabledRight={switchRightDisabled}
@@ -81,11 +84,11 @@ class ScenariosWidget extends React.Component<IProps> {
         </div>
         <div className="widget-content">
           <Slider
-            data={DEVICES_DATA}
+            data={devices}
             settings={{
               swipe: false,
               rows: 3,
-              slidesToShow: defineSlidesToShow(DEVICES_DATA.length),
+              slidesToShow: defineSlidesToShow(devices.length),
               responsive: [
                 {
                   breakpoint: 1070,
@@ -106,8 +109,8 @@ class ScenariosWidget extends React.Component<IProps> {
                 }
               ]
             }}
-            sliderApi={actions => {
-              this.sliderApi = actions;
+            throwSliderApi={api => {
+              this.sliderApi = api;
             }}
           />
         </div>

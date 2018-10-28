@@ -1,23 +1,14 @@
 import * as React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, RouteComponentProps } from 'react-router';
 import { inject, observer } from 'mobx-react';
 import { SvgIcon } from 'components';
 import { IWindowsSize } from 'stores/windowSize';
+import {
+  FOOTER_MENU_ITEMS,
+  HEADER_MENU_ITEMS
+} from 'constants/layout-constants';
 
 import HeaderMenu from './header-menu';
-
-const HEADER_MENU_ITEMS = [
-  { title: 'События', to: '/events' },
-  { title: 'Сводка', to: '/summary' },
-  { title: 'Видеонаблюдение', to: '/video-monitoring' }
-];
-
-const FOOTER_MENU_ITEMS = [
-  'Помощь',
-  'Обратная связь',
-  'Разработчикам',
-  'Условия использования'
-];
 
 interface IProps {
   windowSize?: IWindowsSize;
@@ -26,7 +17,7 @@ interface IProps {
 
 @inject('windowSize')
 @observer
-class Layout extends React.Component<IProps> {
+class Layout extends React.Component<IProps & RouteComponentProps> {
   render() {
     const { isWidthLowerThen800 } = this.props.windowSize!;
 
@@ -44,9 +35,9 @@ class Layout extends React.Component<IProps> {
         <div className="layout-content">{this.props.children}</div>
         <div className="layout-footer">
           <ul className="layout-footer-menu">
-            {FOOTER_MENU_ITEMS.map(item => (
-              <li key={item}>
-                <a href="#">{item}</a>
+            {FOOTER_MENU_ITEMS.map(({ title, to }) => (
+              <li key={title}>
+                <a href={to}>{title}</a>
               </li>
             ))}
           </ul>

@@ -3,38 +3,33 @@ import * as React from 'react';
 import { SvgIcon } from 'components';
 import { inject, observer } from 'mobx-react';
 import { IModals } from 'stores/modals';
+import { IPoint } from 'types';
 
-import { DeviceType } from '../../constants/data-constants';
-import utils from '../../utils/index';
+import { DeviceType } from '../../types';
+import { IDevice } from '../../stores/devices';
+import utils from '../../utils';
 
 interface IProps {
-  turnedOn: boolean;
-  type: DeviceType;
+  modals?: IModals;
   className?: string;
-  title: string;
-  stateInfo: string;
-  modals: IModals;
 }
 
 interface IState {
-  point: {
-    x: number;
-    y: number;
-  };
+  point: IPoint;
 }
 
 @inject('modals')
 @observer
-class SliderItem extends React.Component<IProps, IState> {
+class SliderItem extends React.Component<IProps & IDevice, IState> {
   state = {
     point: { x: -1, y: -1 }
   };
 
-  onMouseDown = ({ pageX, pageY }) => {
+  onMouseDown = ({ pageX, pageY }: React.MouseEvent<HTMLDivElement>) => {
     this.setState({ point: { x: pageX, y: pageY } });
   };
 
-  onTouchStart = ({ touches }) => {
+  onTouchStart = ({ touches }: React.TouchEvent<HTMLDivElement>) => {
     if (touches.length === 0) return;
 
     this.setState({
@@ -42,7 +37,11 @@ class SliderItem extends React.Component<IProps, IState> {
     });
   };
 
-  onMouseUp = type => ({ pageX, pageY, button }) => {
+  onMouseUp = (type: DeviceType) => ({
+    pageX,
+    pageY,
+    button
+  }: React.MouseEvent<HTMLDivElement>) => {
     const { point } = this.state;
 
     if (button !== 0) return;
@@ -52,11 +51,13 @@ class SliderItem extends React.Component<IProps, IState> {
     }
 
     if (type !== DeviceType.scheduled) {
-      this.props.modals.modalToggle(type);
+      this.props.modals!.modalToggle(type);
     }
   };
 
-  onTouchEnd = type => ({ touches }) => {
+  onTouchEnd = (type: DeviceType) => ({
+    touches
+  }: React.TouchEvent<HTMLDivElement>) => {
     const { point } = this.state;
 
     if (touches.length === 0) return;
@@ -68,7 +69,7 @@ class SliderItem extends React.Component<IProps, IState> {
     }
 
     if (type !== DeviceType.scheduled) {
-      this.props.modals.modalToggle(type);
+      this.props.modals!.modalToggle(type);
     }
   };
 

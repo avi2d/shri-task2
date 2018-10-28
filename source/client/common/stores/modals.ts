@@ -1,12 +1,13 @@
 import { Instance, types } from 'mobx-state-tree';
 import { autorun } from 'mobx';
+import { ModalActive } from 'types';
 
 const Modals = types
   .model('modals', {
-    active: types.maybe(types.union(types.string, types.number, types.null))
+    active: types.maybeNull(types.union(types.string, types.number))
   })
   .actions(self => ({
-    modalToggle(modal) {
+    modalToggle(modal: ModalActive) {
       if (self.active === modal) {
         self.active = null;
         return;
