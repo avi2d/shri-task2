@@ -1,34 +1,31 @@
-import { types } from 'mobx-state-tree';
+import { Instance, types } from 'mobx-state-tree';
 
 import { VIDEOS } from '../constants/data-constants';
 
 const VideosExpanding = types
   .model('videosExpanding', {
     isVideoScaling: false,
-    expandedVideoName: types.maybe(
+    expandedVideoName: types.maybeNull(
       types.enumeration(VIDEOS.map(({ name }) => name))
     )
   })
-  .volatile(self => ({
-    expandedVideoAnalyzer: null
-  }))
   .views(self => ({
-    isExpanded(videoName) {
+    isExpanded(videoName: string) {
       return videoName === self.expandedVideoName;
     }
   }))
   .actions(self => ({
-    setExpandedVideo(videoName, videoAnalyzer) {
+    setExpandedVideo(videoName: string) {
       self.expandedVideoName =
         videoName === self.expandedVideoName ? null : videoName;
-      self.expandedVideoAnalyzer =
-        videoName === self.expandedVideoAnalyzer ? null : videoAnalyzer;
       self.isVideoScaling = true;
     },
 
-    accountVideoScaling(isScaling) {
+    accountVideoScaling(isScaling: boolean) {
       self.isVideoScaling = isScaling;
     }
   }));
 
 export default VideosExpanding.create();
+
+export type IVideosExpanding = Instance<typeof VideosExpanding>;

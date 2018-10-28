@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { types } from 'mobx-state-tree';
+import { Instance, types } from 'mobx-state-tree';
 
 import {
   DEFAULT_BRIGHTNESS,
@@ -24,14 +24,14 @@ const VideosFilters = types
     videos: types.optional(types.array(VideoFilter), DEFAULT_VIDEOS)
   })
   .views(self => ({
-    getVideoBrightness(videoName) {
+    getVideoBrightness(videoName: string) {
       return _.chain(self.videos)
         .find({ videoName })
         .get('currentBrightness', null)
         .value();
     },
 
-    getVideoContrast(videoName) {
+    getVideoContrast(videoName: string) {
       return _.chain(self.videos)
         .find({ videoName })
         .get('currentContrast', null)
@@ -39,7 +39,7 @@ const VideosFilters = types
     }
   }))
   .actions(self => ({
-    setVideoBrightness(videoName, brightness) {
+    setVideoBrightness(videoName: string, brightness: number) {
       const videoIndex = _.findIndex(self.videos, { videoName });
 
       if (videoIndex === -1) return;
@@ -47,7 +47,7 @@ const VideosFilters = types
       _.set(self.videos, `[${videoIndex}].currentBrightness`, brightness);
     },
 
-    setVideoContrast(videoName, contrast) {
+    setVideoContrast(videoName: string, contrast: number) {
       const videoIndex = _.findIndex(self.videos, { videoName });
 
       if (videoIndex === -1) return;
@@ -57,3 +57,5 @@ const VideosFilters = types
   }));
 
 export default VideosFilters.create();
+
+export type IVideosFilters = Instance<typeof VideosFilters>;

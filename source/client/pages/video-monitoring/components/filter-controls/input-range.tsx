@@ -1,8 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Slider from 'rc-slider';
 
-const FilterControlsInputRange = ({
+interface IProps {
+  min?: number;
+  max?: number;
+  step?: number;
+  value?: number;
+  defaultValue?: number;
+  onChange: (value: number) => void;
+}
+
+const FilterControlsInputRange: React.SFC<IProps> = ({
   min,
   max,
   step,
@@ -20,15 +28,6 @@ const FilterControlsInputRange = ({
     onChange={onChange}
   />
 );
-
-FilterControlsInputRange.propTypes = {
-  min: PropTypes.number,
-  max: PropTypes.number,
-  step: PropTypes.number,
-  value: PropTypes.number,
-  defaultValue: PropTypes.number,
-  onChange: PropTypes.func.isRequired
-};
 
 FilterControlsInputRange.defaultProps = {
   min: 0,

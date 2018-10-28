@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 
 import utils from '../utils';
@@ -7,26 +6,37 @@ import {
   INITIAL_Z_INDEX,
   VIDEO_Z_INDEX_DIFF
 } from '../constants/data-constants';
+import { IVideosExpanding } from '../stores/videosExpanding';
+import { IVideosFilters } from '../stores/videosFilters';
+
+interface IProps {
+  videoName: string;
+  videoOrigin: string;
+  audioContext: AudioContext;
+  analyser: AnalyserNode;
+  videosFilters?: IVideosFilters;
+  videosExpanding?: IVideosExpanding;
+  getContainer: () => HTMLDivElement;
+}
 
 @inject('videosFilters', 'videosExpanding')
 @observer
-class VideoFrame extends Component {
-  videoFrameRef = React.createRef();
-  videoRef = React.createRef();
+class VideoFrame extends React.Component<IProps> {
+  videoFrameRef = React.createRef<HTMLDivElement>();
+  videoRef = React.createRef<HTMLVideoElement>();
 
-  videoSource = null;
-  analyser = null;
+  videoSource: MediaElementAudioSourceNode | null = null;
 
   get video() {
-    return this.videoRef.current;
+    return this.videoRef.current!;
   }
 
   get videoFrame() {
-    return this.videoFrameRef.current;
+    return this.videoFrameRef.current!;
   }
 
   get isExpanded() {
-    return this.props.videosExpanding.isExpanded(this.props.videoName);
+    return this.props.videosExpanding!.isExpanded(this.props.videoName);
   }
 
   get currentZIndex() {
@@ -60,15 +70,10 @@ class VideoFrame extends Component {
   }
 
   initAudioConfigs = () => {
-    const { audioContext } = this.props;
-
-    this.analyser = audioContext.createAnalyser();
-    this.analyser.smoothingTimeConstant = 0.9;
-    this.analyser.fftSize = 256;
+    const { audioContext, analyser } = this.props;
 
     this.videoSource = audioContext.createMediaElementSource(this.video);
-    this.videoSource.connect(this.analyser);
-    this.analyser.connect(audioContext.destination);
+    this.videoSource.connect(analyser);
   };
 
   defineDefaultStyle = () => {
@@ -90,7 +95,7 @@ class VideoFrame extends Component {
   }
 
   defineFiltersStyle() {
-    const { getVideoBrightness, getVideoContrast } = this.props.videosFilters;
+    const { getVideoBrightness, getVideoContrast } = this.props.videosFilters!;
     const { videoName } = this.props;
 
     return {
@@ -102,15 +107,15 @@ class VideoFrame extends Component {
   }
 
   onExpand = () => {
-    const { setExpandedVideo } = this.props.videosExpanding;
+    const { setExpandedVideo } = this.props.videosExpanding!;
 
     this.setState({ isInitialScale: false });
 
-    setExpandedVideo(this.props.videoName, this.analyser);
+    setExpandedVideo(this.props.videoName!);
   };
 
   onScaleEnded = () => {
-    const { accountVideoScaling } = this.props.videosExpanding;
+    const { accountVideoScaling } = this.props.videosExpanding!;
 
     if (!this.isExpanded) {
       this.setState({ isInitialScale: true });
@@ -140,14 +145,5 @@ class VideoFrame extends Component {
     );
   }
 }
-
-VideoFrame.propTypes = {
-  videoName: PropTypes.string.isRequired,
-  videoOrigin: PropTypes.string.isRequired,
-  audioContext: PropTypes.object,
-  videosFilters: PropTypes.object,
-  videosExpanding: PropTypes.object,
-  getContainer: PropTypes.func.isRequired
-};
 
 export default VideoFrame;

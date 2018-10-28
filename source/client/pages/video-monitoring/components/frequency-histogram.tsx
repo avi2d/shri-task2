@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { inject, observer } from 'mobx-react';
+
+import { IVideosExpanding } from '../stores/videosExpanding';
 
 import {
   HISTOGRAM_Z_INDEX_DIFF,
@@ -10,17 +11,22 @@ import {
 const CANVAS_WIDTH = 128;
 const CANVAS_HEIGHT = 64;
 
+interface IProps {
+  analyser: AnalyserNode;
+  videosExpanding?: IVideosExpanding;
+}
+
 @inject('videosExpanding')
 @observer
-class FrequencyHistogram extends Component {
-  canvasRef = React.createRef();
+class FrequencyHistogram extends React.Component<IProps> {
+  canvasRef = React.createRef<HTMLCanvasElement>();
 
   get canvasContext() {
-    return this.canvasRef.current.getContext('2d');
+    return this.canvasRef.current!.getContext('2d')!;
   }
 
   get isHistogramVisible() {
-    const { expandedVideoName, isVideoScaling } = this.props.videosExpanding;
+    const { expandedVideoName, isVideoScaling } = this.props.videosExpanding!;
 
     return expandedVideoName !== null && !isVideoScaling;
   }
@@ -34,13 +40,11 @@ class FrequencyHistogram extends Component {
 
     if (!this.isHistogramVisible) return;
 
-    const { expandedVideoAnalyzer } = this.props.videosExpanding;
+    const frequencies = new Uint8Array(this.props.analyser.frequencyBinCount);
 
-    const frequencies = new Uint8Array(expandedVideoAnalyzer.frequencyBinCount);
+    this.props.analyser.getByteFrequencyData(frequencies);
 
-    expandedVideoAnalyzer.getByteFrequencyData(frequencies);
-
-    frequencies.map((frequency, index) => {
+    frequencies.forEach((frequency, index) => {
       const barHeight = frequency / 2;
 
       this.canvasContext.fillStyle = '#ff0';
@@ -55,7 +59,7 @@ class FrequencyHistogram extends Component {
     window.requestAnimationFrame(this.drawHistogram);
   };
 
-  defineStyle = () => {
+  defineStyle = (): React.CSSProperties => {
     return {
       visibility: this.isHistogramVisible ? 'visible' : 'hidden',
       zIndex: INITIAL_Z_INDEX + HISTOGRAM_Z_INDEX_DIFF
@@ -74,9 +78,5 @@ class FrequencyHistogram extends Component {
     );
   }
 }
-
-FrequencyHistogram.propTypes = {
-  videosExpanding: PropTypes.object
-};
 
 export default FrequencyHistogram;
