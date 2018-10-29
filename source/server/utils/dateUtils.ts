@@ -1,4 +1,4 @@
-function defineTimeDiff(first, second) {
+export function defineTimeDiff(first: number, second: number) {
   let delta = Math.abs(second - first) / 1000;
 
   const hours = Math.floor(delta / 3600) % 24;
@@ -11,5 +11,3 @@ function defineTimeDiff(first, second) {
 
   return { hours, minutes, seconds };
 }
-
-module.exports = { defineTimeDiff };

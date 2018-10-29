@@ -1,12 +1,10 @@
-const fs = require('fs');
-const { promisify } = require('util');
+import * as fs from 'fs';
+import { promisify } from 'util';
 
 const readFileAsync = promisify(fs.readFile);
 
-function readFileAsJson(filePath) {
+export function readFileAsJson(filePath: string) {
   return readFileAsync(filePath, { encoding: 'utf8' })
     .then(data => JSON.parse(data))
     .catch(err => err);
 }
-
-module.exports = { readFileAsJson };

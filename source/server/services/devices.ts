@@ -1,9 +1,9 @@
-const _ = require('lodash');
-const path = require('path');
+import _ from 'lodash';
+import path from 'path';
 
-const { readFileAsJson } = require('../utils/fileUtils');
+import { readFileAsJson } from '../utils/fileUtils';
 
-async function getDevices(offset = 0, count, type) {
+async function getDevices(offset = 0, count: number, type: number) {
   const fileName = path.join(__dirname, '../database/devices.json');
   const devices = await readFileAsJson(fileName);
   const totalCount = devices.length;
@@ -24,7 +24,7 @@ async function getDevices(offset = 0, count, type) {
   };
 }
 
-async function getFilters(offset = 0, count) {
+async function getFilters(offset = 0, count: number) {
   const fileName = path.join(__dirname, '../database/filters.json');
   let filters = await readFileAsJson(fileName);
   const totalCount = filters.length;
@@ -43,7 +43,7 @@ async function getFilters(offset = 0, count) {
   };
 }
 
-module.exports = {
+export default {
   getDevices,
-  getFilters,
+  getFilters
 };

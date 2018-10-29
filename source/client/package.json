@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start-client": "parcel ./static/index.html --no-cache --no-hmr --out-dir ../../dist",
+    "start-client": "parcel ./static/index.html --no-cache --no-hmr --out-dir ../../client-dist",
     "build-client": "rimraf ../../docs && parcel build ./static/index.html --out-dir ../../docs --public-url ./ --no-minify --no-cache",
     "generate-svg-sprite": "node sprite.generator.js",
     "install-modules": "yarn",

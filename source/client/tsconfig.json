@@ -8,7 +8,7 @@
     "esModuleInterop": true,
 
     "jsx": "react",
-    "outDir": "../../dist",
+    "outDir": "../../client-dist",
 
     // aliases
     "baseUrl": ".",

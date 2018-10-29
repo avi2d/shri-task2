@@ -1,10 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
 
-const swaggerMiddleware = require('./middlewares/swagger');
-const eventsController = require('./controllers/events');
-const devicesController = require('./controllers/devices');
+import swaggerMiddleware from './middlewares/swagger';
+import eventsController from './controllers/events';
+import devicesController from './controllers/devices';
 
 const app = express();
 const port = 5001;

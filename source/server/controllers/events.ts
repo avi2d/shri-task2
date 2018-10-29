@@ -1,8 +1,9 @@
-const _ = require('lodash');
+import _ from 'lodash';
+import * as Express from 'express';
 
-const eventsController = require('../services/events');
+import eventsController from '../services/events';
 
-module.exports = function(app) {
+export default (app: Express.Application) => {
   /**
    * @swagger
    * /status:
@@ -16,7 +17,7 @@ module.exports = function(app) {
    *       200:
    *         description: Строка со временем в формате hh:mm:ss
    */
-  app.get('/status', (req, res) => {
+  app.get('/status', (req: Express.Request, res: Express.Response) => {
     res.send(eventsController.getServerWorkingTime(app.get('serverStartTime')));
   });
 
@@ -49,7 +50,7 @@ module.exports = function(app) {
    *       200:
    *         description: Массив событий
    */
-  app.get('/events', async (req, res) => {
+  app.get('/events', async (req: Express.Request, res: Express.Response) => {
     const { offset, count, type } = _.get(req, 'query', {});
 
     res.send(await eventsController.getEvents(offset, count, type));

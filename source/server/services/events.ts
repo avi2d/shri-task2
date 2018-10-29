@@ -1,10 +1,10 @@
-const _ = require('lodash');
-const path = require('path');
+import _ from 'lodash';
+import path from 'path';
 
-const { defineTimeDiff } = require('../utils/dateUtils');
-const { readFileAsJson } = require('../utils/fileUtils');
+import { defineTimeDiff } from '../utils/dateUtils';
+import { readFileAsJson } from '../utils/fileUtils';
 
-function getServerWorkingTime(serverStartTime) {
+function getServerWorkingTime(serverStartTime: number) {
   const { hours, minutes, seconds } = defineTimeDiff(
     serverStartTime,
     Date.now()
@@ -13,7 +13,7 @@ function getServerWorkingTime(serverStartTime) {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-async function getEvents(offset = 0, count, type) {
+async function getEvents(offset = 0, count: number, type: number) {
   const fileName = path.join(__dirname, '../database/events.json');
   const events = await readFileAsJson(fileName);
   const totalCount = events.length;
@@ -34,7 +34,4 @@ async function getEvents(offset = 0, count, type) {
   };
 }
 
-module.exports = {
-  getServerWorkingTime,
-  getEvents
-};
+export default { getServerWorkingTime, getEvents };
