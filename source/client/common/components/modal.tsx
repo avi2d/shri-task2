@@ -1,14 +1,16 @@
-import classNames from 'classnames';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import { cn } from '@bem-react/classname';
 import { inject, observer } from 'mobx-react';
 import { IModals } from 'stores/modals';
 import { ModalActive } from 'types';
 
 import Button from './button';
+const block = cn('Modal');
 
 interface IProps {
   type: ModalActive;
+  effect?: 'default';
   modals?: IModals;
   children: JSX.Element[] | JSX.Element;
 }
@@ -16,6 +18,10 @@ interface IProps {
 @inject('modals')
 @observer
 class Modal extends React.Component<IProps> {
+  static defaultProps = {
+    effect: 'default'
+  };
+
   onModalToggle = () => {
     const { modalToggle, active } = this.props.modals!;
 
@@ -25,19 +31,25 @@ class Modal extends React.Component<IProps> {
   componentWillUnmount = () => this.props.modals!.stateClear();
 
   render() {
-    const { type, children } = this.props;
+    const { type, effect, children } = this.props;
 
     const opened = type === this.props.modals!.active;
 
     return ReactDOM.createPortal(
-      <div className={classNames('modal-wrapper', 'modal-effect', { opened })}>
-        <div className={classNames('modal')}>
-          <div className="modal-content">{children}</div>
-          <div className="modal-footer">
-            <Button shStyle="primary" onClick={this.onModalToggle}>
+      <div className={block({ opened, effect })}>
+        <div className={block('Container')}>
+          <div className={block('Content')}>{children}</div>
+          <div className={block('Footer')}>
+            <Button
+              shStyle="primary"
+              mixes={block('Footer')}
+              onClick={this.onModalToggle}
+            >
               Применить
             </Button>
-            <Button onClick={this.onModalToggle}>Закрыть</Button>
+            <Button mixes={block('Footer')} onClick={this.onModalToggle}>
+              Закрыть
+            </Button>
           </div>
         </div>
       </div>,

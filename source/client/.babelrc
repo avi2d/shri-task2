@@ -17,6 +17,7 @@
           "constants": "./common/constants",
           "stores": "./common/stores",
           "types": "./common/types",
+          "utils": "./common/utils",
           "assets": "./static/assets",
           "extensions": [".js", ".jsx", "ts", ".tsx", ".jpg", ".jpeg", ".svg", ".webp"]
         }
