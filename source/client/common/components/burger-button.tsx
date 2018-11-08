@@ -1,5 +1,7 @@
-import classNames from 'classnames';
 import * as React from 'react';
+import { cn } from '@bem-react/classname';
+
+const block = cn('BurgerButton');
 
 interface IProps {
   active?: boolean;
@@ -7,10 +9,10 @@ interface IProps {
 }
 
 const BurgerButton: React.SFC<IProps> = ({ active, onClick }) => (
-  <button className={classNames('burger-button', { active })} onClick={onClick}>
-    <div className="burger-button-bar" />
-    <div className="burger-button-bar" />
-    <div className="burger-button-bar" />
+  <button className={block({ active })} onClick={onClick}>
+    <div className={block('Bar')} />
+    <div className={block('Bar')} />
+    <div className={block('Bar')} />
   </button>
 );
 

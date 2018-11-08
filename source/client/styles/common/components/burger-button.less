@@ -3,7 +3,7 @@
 @burger-bar-indent: 4px;
 @burger-bar-background: @gray-300;
 
-.burger-button {
+.BurgerButton {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   background: transparent;
   cursor: pointer;
 
-  .burger-button-bar {
+  .BurgerButton-Bar {
     border-radius: 2px;
     width: @burger-bar-width;
     height: @burger-bar-height;
@@ -22,8 +22,8 @@
     transform-origin: left center;
   }
 
-  &.active {
-    .burger-button-bar {
+  &_active {
+    .BurgerButton-Bar {
       border-radius: 0;
 
       &:nth-child(1) {

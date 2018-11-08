@@ -1,4 +1,4 @@
-.btn {
+.Button {
   .button-base();
 
   border-radius: @border-radius;
@@ -13,26 +13,28 @@
   font-weight: bold;
   color: @text-color;
 
-  &.default {
-    background: @white;
+  &_shStyle {
+    &_default {
+      background: @white;
 
-    &:hover,
-    &:focus,
-    &:active,
-    &:active:focus {
-      color: @black;
+      &:hover,
+      &:focus,
+      &:active,
+      &:active:focus {
+        color: @black;
+      }
     }
-  }
 
-  &.primary {
-    background: @primary;
-    color: @black;
+    &_primary {
+      background: @primary;
+      color: @black;
 
-    &:hover,
-    &:focus,
-    &:active,
-    &:active:focus {
-      background-color: @primary-dark;
+      &:hover,
+      &:focus,
+      &:active,
+      &:active:focus {
+        background-color: @primary-dark;
+      }
     }
   }
 }
