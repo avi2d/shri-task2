@@ -1,9 +1,12 @@
 {
-  "presets": ["env", "react"],
+  "presets": [
+    "@babel/env",
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ],
   "plugins": [
-    "transform-object-rest-spread",
-    "transform-decorators-legacy",
-    "transform-class-properties",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose" : true }],
     [
       "module-resolver",
       {
@@ -12,8 +15,10 @@
           "components": "./common/components",
           "containers": "./common/containers",
           "constants": "./common/constants",
+          "stores": "./common/stores",
+          "types": "./common/types",
           "assets": "./static/assets",
-          "extensions": [".js", ".jsx", ".jpg", ".jpeg", ".svg", ".webp"]
+          "extensions": [".js", ".jsx", "ts", ".tsx", ".jpg", ".jpeg", ".svg", ".webp"]
         }
       }
     ]

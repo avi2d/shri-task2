@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "strict": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+
+    "jsx": "react",
+    "outDir": "../../client-dist",
+
+    // aliases
+    "baseUrl": ".",
+    "paths": {
+      "components": ["./common/components"],
+      "containers/*": ["./common/containers/*"],
+      "constants/*": ["./common/constants/*"],
+      "stores": ["./common/stores"],
+      "stores/*": ["./common/stores/*"],
+      "types": ["./common/types"]
+    }
+  },
+
+  "include": [
+    "./**/*"
+  ],
+  "exclude": ["./node_modules/**/*"]
+}

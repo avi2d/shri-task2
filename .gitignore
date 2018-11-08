@@ -1,6 +1,6 @@
 # Parcel cache and bundle
 .cache
-dist
+client-dist
 
 # Dependency directories
 node_modules/
