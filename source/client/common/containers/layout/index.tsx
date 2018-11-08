@@ -25,7 +25,7 @@ class Layout extends React.Component<IProps & RouteComponentProps> {
       <div className="layout">
         <div className="layout-header">
           <div className="layout-header-content">
-            <SvgIcon className="header-content-logo" id="logo" />
+            <SvgIcon id="logo" />
             <HeaderMenu
               vertical={isWidthLowerThen800}
               data={HEADER_MENU_ITEMS}
