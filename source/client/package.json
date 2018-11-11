@@ -17,7 +17,6 @@
     "mobx-react": "^5.2.3",
     "mobx-state-tree": "^3.7.1",
     "pepjs": "^0.4.3",
-    "prop-types": "^15.6.2",
     "rc-slider": "^8.6.1",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
