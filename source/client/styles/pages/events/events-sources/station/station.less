@@ -1,75 +1,70 @@
 @color: rgba(161, 161, 161, 0.84);
 
-.event-source-station {
-  .composition-info {
-    display: flex;
-    margin-bottom: 20px;
+.Station-CompositionInfo {
+  display: flex;
+  margin-bottom: 20px;
 
-    img {
-      margin-right: 15px;
-      border-radius: 5px;
-      width: 52px;
-      height: 52px;
-      vertical-align: top;
-    }
-
-    .composition-info-panel {
-      width: calc(100% - 52px - 15px);
-
-      .panel-composition-name {
-        .text-ellipsis();
-
-        height: 50%;
-        color: @black;
-      }
-
-      .panel-track-line {
-        display: flex;
-        align-items: center;
-        height: 50%;
-
-        .station-track-line-range {
-          //border-radius: 5px;
-          width: calc(100% - 40px);
-          //height: 1px;
-          //background: #979797;
-        }
-
-        .track-line-length {
-          width: 40px;
-          font-size: 14px;
-          text-align: right;
-          color: @color;
-        }
-      }
-    }
+  img {
+    margin-right: 15px;
+    border-radius: 5px;
+    width: 52px;
+    height: 52px;
+    vertical-align: top;
   }
+}
 
-  .composition-controls {
-    display: flex;
-    justify-content: space-between;
+.Station-CompositionInfoPanel {
+  width: calc(100% - 52px - 15px);
+}
 
-    .controls-switch-buttons {
-      display: flex;
-      justify-content: space-between;
-      width: 120px;
-    }
+.Station-CompositionInfoPanelCompositionName {
+  .text-ellipsis();
 
-    .controls-volume {
-      display: flex;
-      align-items: center;
-      width: calc(100% - 120px - 15px);
+  height: 50%;
+  color: @black;
+}
 
-      .station-volume-range {
-        width: calc(100% - 40px);
-      }
+.Station-CompositionInfoPanelTrackLine {
+  display: flex;
+  align-items: center;
+  height: 50%;
+}
 
-      .volume-value {
-        width: 40px;
-        font-size: 14px;
-        text-align: right;
-        color: @color;
-      }
-    }
-  }
+.Station-CompositionInfoPanelTrackLineRange {
+  width: calc(100% - 40px);
+}
+
+.Station-CompositionInfoPanelTrackLineLength {
+  width: 40px;
+  font-size: 14px;
+  text-align: right;
+  color: @color;
+}
+
+.Station-CompositionControls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Station-CompositionControlsSwitchButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 120px;
+}
+
+.Station-CompositionControlsVolume {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 120px - 15px);
+}
+
+.Station-CompositionControlsVolumeRange {
+  width: calc(100% - 40px);
+}
+
+.Station-CompositionControlsVolumeValue {
+  width: 40px;
+  font-size: 14px;
+  text-align: right;
+  color: @color;
 }

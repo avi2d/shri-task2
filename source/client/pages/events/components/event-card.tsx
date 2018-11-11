@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import * as React from 'react';
 import { SvgIcon, EllipsisWrapper } from 'components';
+import { cn } from '@bem-react/classname';
 
 import EventsSources from './events-sources';
 import {
@@ -9,7 +10,13 @@ import {
 } from '../constants/data-constants';
 import { IEvent } from '../stores/events';
 
-class EventCard extends React.Component<IEvent> {
+const block = cn('EventCard');
+
+interface IProps extends IEvent {
+  className?: string;
+}
+
+class EventCard extends React.Component<IProps> {
   static defaultProps = {
     type: EventCardType.info
   };
@@ -28,7 +35,9 @@ class EventCard extends React.Component<IEvent> {
     if (!component) return null;
 
     return (
-      <div className="content-data">{React.createElement(component, data)}</div>
+      <div className={block('ContentData')}>
+        {React.createElement(component, data)}
+      </div>
     );
   }
 
@@ -38,6 +47,7 @@ class EventCard extends React.Component<IEvent> {
       type,
       icon,
       title,
+      className,
       source,
       time,
       description,
@@ -45,28 +55,31 @@ class EventCard extends React.Component<IEvent> {
     } = this.props;
 
     return (
-      <div className={`event-card ${size}-size ${type}-type`}>
-        <div className="event-card-header">
-          <div className="header-title" title={title}>
-            <SvgIcon id={icon} />
-            <EllipsisWrapper className="header-title-text" text={title} />
+      <div className={block({ size, type }, [className])}>
+        <div className={block('Header')}>
+          <div className={block('HeaderTitle')} title={title}>
+            <SvgIcon id={icon} className={block('HeaderTitleSvgIcon')} />
+            <EllipsisWrapper
+              className={block('HeaderTitleText')}
+              text={title}
+            />
           </div>
-          <div className="header-info">
-            <div className="header-info-source">{source}</div>
-            <div className="header-info-time">{time}</div>
+          <div className={block('HeaderInfo')}>
+            <div className={block('HeaderInfoSource')}>{source}</div>
+            <div className={block('HeaderInfoTime')}>{time}</div>
           </div>
         </div>
         {description && (
-          <div className="event-card-content">
-            <div className="content-description">{description}</div>
+          <div className={block('Content')}>
+            <div className={block('ContentDescription')}>{description}</div>
             {this.renderData(source, data)}
           </div>
         )}
-        <button className="event-card-cross-button">
-          <SvgIcon id="cross" />
+        <button className={block('CrossButton')}>
+          <SvgIcon id="cross" className={block('CrossButtonSvgIcon')} />
         </button>
-        <button className="event-card-next-button">
-          <SvgIcon id="next" />
+        <button className={block('NextButton')}>
+          <SvgIcon id="next" className={block('NextButtonSvgIcon')} />
         </button>
       </div>
     );

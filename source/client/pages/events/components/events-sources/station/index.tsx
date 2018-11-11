@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { cn } from '@bem-react/classname';
 
 import CompositionSwitchButton from './composition-switch-button';
 import TrackLineRange from './track-line-range';
 import VolumeRange from './volume-range';
+
+const block = cn('Station');
 
 interface IProps {
   albumcover: string;
@@ -20,27 +23,42 @@ const EventsSourceStation: React.SFC<IProps> = ({
   const compositionName = `${artist} - ${track.name}`;
 
   return (
-    <div className="event-source-station">
-      <div className="composition-info">
+    <div className={block()}>
+      <div className={block('CompositionInfo')}>
         <img src={albumcover} alt="Альбом" />
-        <div className="composition-info-panel">
-          <div className="panel-composition-name" title={compositionName}>
+        <div className={block('CompositionInfoPanel')}>
+          <div
+            className={block('CompositionInfoPanelCompositionName')}
+            title={compositionName}
+          >
             {compositionName}
           </div>
-          <div className="panel-track-line">
-            <TrackLineRange />
-            <div className="track-line-length">{track.length}</div>
+          <div className={block('CompositionInfoPanelTrackLine')}>
+            <TrackLineRange
+              className={block('CompositionInfoPanelTrackLineRange')}
+            />
+            <div className={block('CompositionInfoPanelTrackLineLength')}>
+              {track.length}
+            </div>
           </div>
         </div>
       </div>
-      <div className="composition-controls">
-        <div className="controls-switch-buttons">
-          <CompositionSwitchButton switchTo="prev" />
-          <CompositionSwitchButton switchTo="next" />
+      <div className={block('CompositionControls')}>
+        <div className={block('CompositionControlsSwitchButtons')}>
+          <CompositionSwitchButton
+            className={block('CompositionControlsSwitchButton')}
+            switchTo="prev"
+          />
+          <CompositionSwitchButton
+            className={block('CompositionControlsSwitchButton')}
+            switchTo="next"
+          />
         </div>
-        <div className="controls-volume">
-          <VolumeRange />
-          <div className="volume-value">{volume}%</div>
+        <div className={block('CompositionControlsVolume')}>
+          <VolumeRange className={block('CompositionControlsVolumeRange')} />
+          <div className={block('CompositionControlsVolumeValue')}>
+            {volume}%
+          </div>
         </div>
       </div>
     </div>
