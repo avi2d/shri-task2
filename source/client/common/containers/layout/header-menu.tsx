@@ -1,11 +1,12 @@
-import classNames from 'classnames';
 import * as React from 'react';
+import { ClassNameFormatter } from '@bem-react/classname';
 import { NavLink } from 'react-router-dom';
 import { BurgerButton } from 'components';
 import { IMenuItem } from 'constants/layout-constants';
 
 interface IProps {
   vertical?: boolean;
+  block: ClassNameFormatter;
   data: IMenuItem[];
 }
 
@@ -30,16 +31,20 @@ class LayoutHeaderMenu extends React.Component<IProps> {
 
   render() {
     const { isOpen } = this.state;
-    const { vertical, data } = this.props;
+    const { vertical, block, data } = this.props;
 
     return (
       <React.Fragment>
         {vertical && (
-          <BurgerButton active={isOpen} onClick={this.onMenuToggle} />
+          <BurgerButton
+            active={isOpen}
+            className={block('HeaderContentBurgerButton')}
+            onClick={this.onMenuToggle}
+          />
         )}
 
         <ul
-          className={classNames('layout-header-menu', {
+          className={block('HeaderContentMenu', {
             vertical,
             opened: isOpen
           })}

@@ -1,30 +1,28 @@
 import * as React from 'react';
 import { cn } from '@bem-react/classname';
-import { Mixes } from 'types';
-import { defineMixes } from 'utils/bemUtils';
 
 const block = cn('Button');
 
 interface IProps {
   shStyle?: 'default' | 'primary';
-  mixes?: Mixes;
   className?: string;
   children: JSX.Element[] | JSX.Element | string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: React.MouseEventHandler;
 }
 
-const Button: React.SFC<IProps> = ({ shStyle, mixes, children, onClick }) => (
-  <button
-    className={block({ shStyle }, defineMixes(mixes!, block()))}
-    onClick={onClick}
-  >
+const Button: React.SFC<IProps> = ({
+  shStyle,
+  className,
+  children,
+  onClick
+}) => (
+  <button className={block({ shStyle }, [className])} onClick={onClick}>
     {children}
   </button>
 );
 
 Button.defaultProps = {
-  shStyle: 'default',
-  mixes: ''
+  shStyle: 'default'
 };
 
 export default Button;

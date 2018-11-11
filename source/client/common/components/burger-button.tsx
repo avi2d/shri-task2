@@ -5,11 +5,12 @@ const block = cn('BurgerButton');
 
 interface IProps {
   active?: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
+  onClick: React.MouseEventHandler;
 }
 
-const BurgerButton: React.SFC<IProps> = ({ active, onClick }) => (
-  <button className={block({ active })} onClick={onClick}>
+const BurgerButton: React.SFC<IProps> = ({ active, className, onClick }) => (
+  <button className={block({ active }, [className])} onClick={onClick}>
     <div className={block('Bar')} />
     <div className={block('Bar')} />
     <div className={block('Bar')} />

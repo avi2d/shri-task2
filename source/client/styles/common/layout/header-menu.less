@@ -1,8 +1,8 @@
-.layout-header-menu {
+.Layout-HeaderContentMenu {
   margin-left: 50px;
   background: @white;
 
-  &.vertical {
+  &_vertical {
     visibility: hidden;
     position: fixed;
     top: 0;
@@ -16,23 +16,23 @@
     transition: @transition;
     z-index: @layout-initial-z-index + 20;
 
-    &.opened {
+    &.Layout-HeaderContentMenu_opened {
       visibility: visible;
       right: 0;
-    }
 
-    li {
-      display: block;
-      margin: 0;
+      li {
+        display: block;
+        margin: 0;
 
-      a {
-        display: inline-block;
-        padding: 5px 40px;
-        width: 100%;
-        font-size: 17px;
+        a {
+          display: inline-block;
+          padding: 5px 40px;
+          width: 100%;
+          font-size: 17px;
 
-        &.active {
-          box-shadow: inset 3px 0 0 0 @primary;
+          &.active {
+            box-shadow: inset 3px 0 0 0 @primary;
+          }
         }
       }
     }

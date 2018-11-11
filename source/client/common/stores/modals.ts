@@ -23,7 +23,7 @@ const Modals = types
   .create();
 
 autorun(() => {
-  const layout = document.querySelector<HTMLElement>('.layout')!;
+  const layout = document.querySelector<HTMLElement>('.Layout')!;
 
   if (Modals.active) {
     const modalOverlay = document.createElement('div');

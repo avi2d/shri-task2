@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { cn } from '@bem-react/classname';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { inject, observer } from 'mobx-react';
 import { SvgIcon } from 'components';
@@ -9,6 +10,8 @@ import {
 } from 'constants/layout-constants';
 
 import HeaderMenu from './header-menu';
+
+const block = cn('Layout');
 
 interface IProps {
   windowSize?: IWindowsSize;
@@ -22,26 +25,27 @@ class Layout extends React.Component<IProps & RouteComponentProps> {
     const { isWidthLowerThen800 } = this.props.windowSize!;
 
     return (
-      <div className="layout">
-        <div className="layout-header">
-          <div className="layout-header-content">
-            <SvgIcon id="logo" />
+      <div className={block()}>
+        <div className={block('Header')}>
+          <div className={block('HeaderContent')}>
+            <SvgIcon id="logo" className={block('HeaderContentSvgIcon')} />
             <HeaderMenu
+              block={block}
               vertical={isWidthLowerThen800}
               data={HEADER_MENU_ITEMS}
             />
           </div>
         </div>
-        <div className="layout-content">{this.props.children}</div>
-        <div className="layout-footer">
-          <ul className="layout-footer-menu">
+        <div className={block('Content')}>{this.props.children}</div>
+        <div className={block('Footer')}>
+          <ul className={block('FooterMenu')}>
             {FOOTER_MENU_ITEMS.map(({ title, to }) => (
               <li key={title}>
                 <a href={to}>{title}</a>
               </li>
             ))}
           </ul>
-          <div className="layout-footer-copyright">
+          <div className={block('FooterCopyright')}>
             © 2001–2017 ООО «Яндекс»
           </div>
         </div>

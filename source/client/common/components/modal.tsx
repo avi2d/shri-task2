@@ -6,6 +6,7 @@ import { IModals } from 'stores/modals';
 import { ModalActive } from 'types';
 
 import Button from './button';
+
 const block = cn('Modal');
 
 interface IProps {
@@ -42,12 +43,15 @@ class Modal extends React.Component<IProps> {
           <div className={block('Footer')}>
             <Button
               shStyle="primary"
-              mixes={block('Footer')}
+              className={block('FooterButton')}
               onClick={this.onModalToggle}
             >
               Применить
             </Button>
-            <Button mixes={block('Footer')} onClick={this.onModalToggle}>
+            <Button
+              className={block('FooterButton')}
+              onClick={this.onModalToggle}
+            >
               Закрыть
             </Button>
           </div>

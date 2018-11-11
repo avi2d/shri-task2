@@ -11,8 +11,8 @@ interface IProps {
   className?: string;
 }
 
-const SvgIcon: React.SFC<IProps> = ({ className, id, ...props }) => (
-  <svg {...props} className={block({ id })}>
+const SvgIcon: React.SFC<IProps> = ({ className, id }) => (
+  <svg className={block({ id }, [className])}>
     <use xlinkHref={`${sprite}#${id}`} />
   </svg>
 );
