@@ -3,12 +3,13 @@ import * as React from 'react';
 import { SvgIcon, EllipsisWrapper } from 'components';
 import { cn } from '@bem-react/classname';
 
-import EventsSources from './events-sources';
+import EventsSources from '../events-sources';
 import {
   EVENT_VALID_SOURCES,
   EventCardType
-} from '../constants/data-constants';
-import { IEvent } from '../stores/events';
+} from '../../constants/data-constants';
+import { IEvent } from '../../stores/events';
+import './event-card.less';
 
 const block = cn('EventCard');
 
@@ -86,4 +87,4 @@ class EventCard extends React.Component<IProps> {
   }
 }
 
-export default EventCard;
+export { block as cnEventCard, IProps as IEventCardProps, EventCard };
