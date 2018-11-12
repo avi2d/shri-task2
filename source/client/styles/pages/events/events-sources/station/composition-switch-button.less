@@ -1,4 +1,4 @@
-.station-composition-switch-button {
+.Station-CompositionControlsSwitchButton {
   .button-base();
 
   position: relative;
@@ -7,26 +7,26 @@
   height: 50px;
   background: @gray-200;
 
-  &.switch-to-next {
-    .svg-icon {
+  &_switchTo_next {
+    .Station-CompositionControlsSwitchButtonSvgIcon {
       transform: translate(-50%, -50%) rotate(180deg);
     }
-  }
-
-  .svg-icon {
-    .absolute-center();
-
-    fill: #8c8b8b;
-    width: 50px;
-    height: 50px;
   }
 
   &:hover,
   &:focus,
   &:active,
   &:active:focus {
-    .svg-icon {
+    .Station-CompositionControlsSwitchButtonSvgIcon {
       fill: @red;
     }
   }
+}
+
+.Station-CompositionControlsSwitchButtonSvgIcon {
+  .absolute-center();
+
+  fill: #8c8b8b;
+  width: 50px;
+  height: 50px;
 }

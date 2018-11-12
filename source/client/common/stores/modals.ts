@@ -23,11 +23,11 @@ const Modals = types
   .create();
 
 autorun(() => {
-  const layout = document.querySelector<HTMLElement>('.layout')!;
+  const layout = document.querySelector<HTMLElement>('.Layout')!;
 
   if (Modals.active) {
     const modalOverlay = document.createElement('div');
-    modalOverlay.className = 'modal-overlay';
+    modalOverlay.className = 'ModalOverlay';
     layout.appendChild(modalOverlay);
 
     document.body.style.overflow = 'hidden';
@@ -36,7 +36,7 @@ autorun(() => {
     modalOverlay.style.visibility = 'visible';
     layout.style.filter = 'blur(3px)';
   } else {
-    const modalOverlay = document.querySelector<HTMLElement>('.modal-overlay');
+    const modalOverlay = document.querySelector<HTMLElement>('.ModalOverlay');
 
     document.body.style.overflow = '';
 

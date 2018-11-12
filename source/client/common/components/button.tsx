@@ -1,22 +1,22 @@
-import classNames from 'classnames';
 import * as React from 'react';
+import { cn } from '@bem-react/classname';
 
-type Style = 'default' | 'primary';
+const block = cn('Button');
 
 interface IProps {
-  shStyle?: Style;
+  shStyle?: 'default' | 'primary';
   className?: string;
   children: JSX.Element[] | JSX.Element | string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: React.MouseEventHandler;
 }
 
 const Button: React.SFC<IProps> = ({
   shStyle,
   className,
   children,
-  ...props
+  onClick
 }) => (
-  <button {...props} className={classNames('btn', className, shStyle)}>
+  <button className={block({ shStyle }, [className])} onClick={onClick}>
     {children}
   </button>
 );

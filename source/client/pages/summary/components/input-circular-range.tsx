@@ -136,7 +136,7 @@ class InputCircularRange extends React.Component<IProps> {
     this.onUpdateAngle(resultAngle);
   };
 
-  onMouseDown = (event: React.MouseEvent<HTMLInputElement>) => {
+  onMouseDown: React.MouseEventHandler = event => {
     if (event.button !== 0) return;
 
     this.onUpdateAngleByPoint(event.clientX, event.clientY);
@@ -156,7 +156,7 @@ class InputCircularRange extends React.Component<IProps> {
     document.removeEventListener('mouseup', this.onMouseUp);
   };
 
-  onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+  onTouchStart: React.TouchEventHandler = event => {
     this.onUpdateAngleByPoint(
       event.touches[0].clientX,
       event.touches[0].clientY

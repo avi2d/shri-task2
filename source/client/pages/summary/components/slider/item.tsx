@@ -25,11 +25,11 @@ class SliderItem extends React.Component<IProps & IDevice, IState> {
     point: { x: -1, y: -1 }
   };
 
-  onMouseDown = ({ pageX, pageY }: React.MouseEvent<HTMLDivElement>) => {
+  onMouseDown: React.MouseEventHandler = ({ pageX, pageY }) => {
     this.setState({ point: { x: pageX, y: pageY } });
   };
 
-  onTouchStart = ({ touches }: React.TouchEvent<HTMLDivElement>) => {
+  onTouchStart: React.TouchEventHandler = ({ touches }) => {
     if (touches.length === 0) return;
 
     this.setState({

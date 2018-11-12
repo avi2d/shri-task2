@@ -18,7 +18,8 @@
       "constants/*": ["./common/constants/*"],
       "stores": ["./common/stores"],
       "stores/*": ["./common/stores/*"],
-      "types": ["./common/types"]
+      "types": ["./common/types"],
+      "utils/*": ["./common/utils/*"]
     }
   },
 

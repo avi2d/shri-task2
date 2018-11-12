@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { cn } from '@bem-react/classname';
 import { inject, observer } from 'mobx-react';
 
 import EventsService from '../../services/eventsService';
 import { ICamera } from '../../stores/camera';
+
+const block = cn('MotionSensor');
 
 interface IProps {
   camera: ICamera;
@@ -142,8 +145,8 @@ class EventSourceMotionSensor extends React.Component<IProps> {
     const { imageCurrentScale, imageBrightnessProgress } = this.props.camera;
 
     return (
-      <div className="event-source-motion-sensor" touch-action="none">
-        <div className="motion-sensor-container">
+      <div className={block()} touch-action="none">
+        <div className={block('Container')}>
           <img
             ref={this.imageRef}
             src={this.props.image}
@@ -151,7 +154,7 @@ class EventSourceMotionSensor extends React.Component<IProps> {
             style={this.defineImageStyle()}
           />
         </div>
-        <div className="motion-sensor-indicators">
+        <div className={block('Indicators')}>
           <span>Приближение: {imageCurrentScale.toFixed(1)}</span>
           <span>Яркость: {imageBrightnessProgress.toFixed(0)}%</span>
         </div>

@@ -1,4 +1,4 @@
-.station-track-line-range {
+.Station-CompositionInfoPanelTrackLineRange {
   margin: 0 auto;
   padding: 0;
   width: 100%;
@@ -39,6 +39,10 @@
       width: 10px;
       height: 20px;
       background: #d8d8d8;
+
+      @media (max-width: 800px) {
+        width: 5px;
+      }
     }
 
     &:focus,
@@ -47,16 +51,6 @@
 
       &::before {
         background: @red;
-      }
-    }
-  }
-}
-
-@media (max-width: 800px) {
-  .station-track-line-range {
-    .rc-slider-handle {
-      &::before {
-        width: 5px;
       }
     }
   }

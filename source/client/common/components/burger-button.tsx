@@ -1,16 +1,19 @@
-import classNames from 'classnames';
 import * as React from 'react';
+import { cn } from '@bem-react/classname';
+
+const block = cn('BurgerButton');
 
 interface IProps {
   active?: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
+  onClick: React.MouseEventHandler;
 }
 
-const BurgerButton: React.SFC<IProps> = ({ active, onClick }) => (
-  <button className={classNames('burger-button', { active })} onClick={onClick}>
-    <div className="burger-button-bar" />
-    <div className="burger-button-bar" />
-    <div className="burger-button-bar" />
+const BurgerButton: React.SFC<IProps> = ({ active, className, onClick }) => (
+  <button className={block({ active }, [className])} onClick={onClick}>
+    <div className={block('Bar')} />
+    <div className={block('Bar')} />
+    <div className={block('Bar')} />
   </button>
 );
 

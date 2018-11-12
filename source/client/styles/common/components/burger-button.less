@@ -3,7 +3,7 @@
 @burger-bar-indent: 4px;
 @burger-bar-background: @gray-300;
 
-.burger-button {
+.BurgerButton {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,17 +13,8 @@
   background: transparent;
   cursor: pointer;
 
-  .burger-button-bar {
-    border-radius: 2px;
-    width: @burger-bar-width;
-    height: @burger-bar-height;
-    background: @burger-bar-background;
-    transition: all 0.2s ease-in-out;
-    transform-origin: left center;
-  }
-
-  &.active {
-    .burger-button-bar {
+  &_active {
+    .BurgerButton-Bar {
       border-radius: 0;
 
       &:nth-child(1) {
@@ -40,4 +31,13 @@
       }
     }
   }
+}
+
+.BurgerButton-Bar {
+  border-radius: 2px;
+  width: @burger-bar-width;
+  height: @burger-bar-height;
+  background: @burger-bar-background;
+  transition: all 0.2s ease-in-out;
+  transform-origin: left center;
 }

@@ -1,0 +1,37 @@
+@import "../../../../common/styles/variables.less";
+
+@info-color-hover: #f3f3f3;
+
+.EventCard {
+  &:hover {
+    background: @info-color-hover;
+    box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.5);
+
+    &_type_critical {
+      .EventCard-Header {
+        background: @red;
+      }
+
+      .EventCard-Content {
+        background: @info-color-hover;
+      }
+    }
+
+    .EventCard-NextButton {
+      visibility: visible;
+      background: @info-color-hover;
+    }
+
+    .EventCard-CrossButton {
+      visibility: visible;
+    }
+  }
+}
+
+.EventCard-CrossButton {
+  visibility: hidden;
+}
+
+.EventCard-NextButton {
+  visibility: hidden;
+}

@@ -1,21 +1,17 @@
-.event-source-microclimate-sensor {
+.MicroclimateSensor {
   display: flex;
+}
 
-  .temperature,
-  .humidity {
-    display: inline-block;
-  }
+.MicroclimateSensor-Temperature,
+.MicroclimateSensor-Humidity {
+  display: inline-block;
 
-  .temperature {
-    margin-right: 30px;
+  @media (max-width: 800px) {
+    font-size: 14px;
   }
 }
 
-@media (max-width: 800px) {
-  .event-source-microclimate-sensor {
-    .temperature,
-    .humidity {
-      font-size: 14px;
-    }
-  }
+.MicroclimateSensor-Temperature {
+  margin-right: 30px;
 }
+

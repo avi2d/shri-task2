@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { cn } from '@bem-react/classname';
+
+const block = cn('ConsumptionSensor');
 
 interface IProps {
   image: string;
@@ -17,7 +20,7 @@ const EventSourceConsumptionSensor: React.SFC<IProps> = ({
   imageWebp2x,
   imageWebp3x
 }) => (
-  <div className="event-source-consumption-sensor">
+  <div className={block()}>
     <picture>
       <source
         type="image/webp"
